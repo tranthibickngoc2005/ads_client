@@ -139,12 +139,12 @@ function switchTab(tabId) {
         renderChatList();
         renderChatViewport();
     } else if (tabId === 'fb-ads-create') {
-        document.getElementById('menu-fb-ads').classList.add('active', 'dropdown-active');
+        document.getElementById('menu-fb-ads').classList.add('dropdown-active');
         document.getElementById('menu-fb-ads-create').classList.add('active');
         document.getElementById('breadcrumb-title').textContent = "Tạo quảng cáo Facebook";
         renderAdsPage();
     } else if (tabId === 'fb-ads-list') {
-        document.getElementById('menu-fb-ads').classList.add('active', 'dropdown-active');
+        document.getElementById('menu-fb-ads').classList.add('dropdown-active');
         document.getElementById('menu-fb-ads-list').classList.add('active');
         document.getElementById('breadcrumb-title').textContent = "Danh sách quảng cáo Facebook";
         renderAdsTable();
