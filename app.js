@@ -219,14 +219,6 @@ function requestDataErasure() {
     });
 }
 
-function showDataDeletionInstructions() {
-    alert("Data Deletion Instructions:\n\n1. Log into your Facebook account and go to Settings & Privacy > Settings > Apps and Websites.\n2. Find 'Ezi Talent' app and click Remove.\n3. Alternatively, submit a deletion request directly to contact@ezisolutions.tech with your Page ID or User ID.\n\nAll associated data will be purged within 24 hours.");
-}
-
-function showReviewerLoginModal() {
-    alert("Meta App Reviewer Demo Access:\n\nEnvironment: Ezi Talent Production Reviewer Sandbox\nDemo Account: reviewer_demo@ezisolutions.tech\nGranted Permissions: pages_show_list, pages_read_engagement, pages_manage_posts, pages_messaging, ads_management, ads_read");
-}
-
 // --- Sidebar Dropdown Toggle (Quản lý quảng cáo Facebook) ---
 function toggleAdsDropdown() {
     const menuItem = document.getElementById('menu-fb-ads');
@@ -243,11 +235,11 @@ function toggleAdsDropdown() {
 function renderPosts() {
     const container = document.getElementById('posts-container');
     const emptyState = document.getElementById('posts-empty-state');
-    
+
     // Check search filter and page filter
     const query = document.getElementById('fb-posts-search').value.toLowerCase();
     const pageFilter = document.getElementById('fb-page-filter').value;
-    
+
     const filteredPosts = posts.filter(post => {
         return post.content.toLowerCase().includes(query) && (pageFilter === 'all' || post.pageName === pageFilter);
     });
@@ -258,7 +250,7 @@ function renderPosts() {
     } else {
         container.style.display = 'grid';
         emptyState.classList.add('hidden');
-        
+
         container.innerHTML = filteredPosts.map(post => `
             <div class="post-card" id="${post.id}">
                 <div class="card-header">
@@ -414,7 +406,7 @@ function editPost(id) {
     document.getElementById('post-fanpage').value = post.pageName;
     document.getElementById('post-content').value = post.content;
     document.getElementById('post-image-url').value = post.imagePreset;
-    
+
     // UI update for edit mode
     document.getElementById('create-post-title').textContent = "Chỉnh sửa bài viết";
     document.getElementById('create-post-subtitle').textContent = "Cập nhật lại nội dung bài đăng trên Fanpage";
@@ -439,17 +431,17 @@ function resetPostForm() {
     document.getElementById('fb-create-post-form').reset();
     document.getElementById('edit-post-id').value = '';
     document.getElementById('post-image-url').value = '';
-    
+
     document.getElementById('create-post-title').textContent = "Tạo bài viết mới";
     document.getElementById('create-post-subtitle').textContent = "Soạn thảo bài viết và đăng lên Fanpage Facebook";
     document.getElementById('submit-post-btn').textContent = "Tạo bài viết";
-    
+
     removeSelectedImage(null);
 }
 
 function handlePostSubmit(event) {
     event.preventDefault();
-    
+
     const editId = document.getElementById('edit-post-id').value;
     const pageName = document.getElementById('post-fanpage').value;
     const content = document.getElementById('post-content').value;
@@ -531,11 +523,11 @@ function updateLivePreview() {
     // Update Image Preview
     const mediaBox = document.getElementById('preview-media-box');
     const mediaImg = document.getElementById('preview-image-elem');
-    
+
     if (imagePreset) {
         mediaBox.classList.remove('hidden');
         mediaImg.className = 'fb-media-preview-img'; // clear classes
-        
+
         if (imagePreset.startsWith('blob:')) {
             mediaImg.style.backgroundImage = `url('${imagePreset}')`;
         } else {
@@ -575,12 +567,12 @@ function showSelectedImage(fileUrl, filename) {
     const indicator = document.getElementById('selected-image-indicator');
     const thumb = document.getElementById('selected-image-thumb');
     const nameLabel = document.getElementById('selected-image-name');
-    
+
     indicator.classList.remove('hidden');
     nameLabel.textContent = filename;
-    
+
     // Set thumbnail background to local file url
-    thumb.className = ''; 
+    thumb.className = '';
     thumb.style.background = `url('${fileUrl}')`;
     thumb.style.backgroundSize = 'cover';
     thumb.style.backgroundPosition = 'center';
@@ -588,11 +580,11 @@ function showSelectedImage(fileUrl, filename) {
 
 function removeSelectedImage(event) {
     if (event) event.stopPropagation();
-    
+
     // Reset file input
     const fileInput = document.getElementById('post-file-input');
     if (fileInput) fileInput.value = '';
-    
+
     document.getElementById('post-image-url').value = '';
     document.getElementById('selected-image-indicator').classList.add('hidden');
     updateLivePreview();
@@ -602,10 +594,10 @@ function removeSelectedImage(event) {
 function renderChatList() {
     const container = document.getElementById('chat-list-container');
     if (!container) return;
-    
+
     const searchInput = document.getElementById('chat-search-input');
     const query = searchInput ? searchInput.value.toLowerCase() : '';
-    
+
     const pageFilterElem = document.getElementById('chat-page-filter');
     const pageFilter = pageFilterElem ? pageFilterElem.value : 'all';
 
@@ -629,7 +621,7 @@ function renderChatList() {
         const lastMsgText = lastMsg ? lastMsg.text : "";
         const isActive = c.id === activeChatId;
         const pageClass = c.pageName === 'Ezi Talent' ? 'badge-ezi-talent' : 'badge-ezi-academy';
-        
+
         return `
             <div class="chat-item ${isActive ? 'active' : ''} ${c.unread > 0 ? 'unread' : ''}" onclick="selectChat('${c.id}')">
                 <div class="chat-item-avatar">
@@ -665,7 +657,7 @@ function filterChatList() {
 
 function selectChat(chatId) {
     activeChatId = chatId;
-    
+
     // Mark as read
     const chat = chats.find(c => c.id === chatId);
     if (chat) {
@@ -683,7 +675,7 @@ function renderChatViewport() {
     // Render active header
     document.getElementById('active-chat-avatar').textContent = chat.avatar;
     document.getElementById('active-chat-name').textContent = chat.name;
-    
+
     // Update Active Fanpage Name
     const pageNameElem = document.getElementById('active-chat-page-name');
     if (pageNameElem) {
@@ -749,9 +741,9 @@ function simulateIncomingReply(chat) {
     // Show typing indicator
     const typingIndicator = document.getElementById('chat-typing-indicator');
     const typingAvatar = document.getElementById('typing-user-avatar');
-    
+
     typingAvatar.textContent = chat.avatar;
-    
+
     setTimeout(() => {
         // Show typing dot container
         if (activeChatId === chat.id) {
@@ -768,7 +760,7 @@ function simulateIncomingReply(chat) {
         // Logic response generator
         let replyText = "Cảm ơn anh/chị tuyển dụng, em đã nhận được thông tin ạ. Em sẽ chuẩn bị CV gửi qua link sớm nhất.";
         const lastAgentMsg = chat.messages.filter(m => m.sender === 'outgoing').pop();
-        
+
         if (lastAgentMsg) {
             const agentTxt = lastAgentMsg.text.toLowerCase();
             if (agentTxt.includes('lương') || agentTxt.includes('thu nhập') || agentTxt.includes('phúc lợi')) {
@@ -819,7 +811,7 @@ function simulateSendJobTemplate() {
 function syncCandidateProfile() {
     const chat = chats.find(c => c.id === activeChatId);
     if (!chat) return;
-    
+
     alert(`Đã trích xuất thông tin liên hệ và CV từ cuộc trò chuyện của ứng viên "${chat.name}" để lưu vào hệ thống Quản lý Ứng viên Ezi Talent.`);
     showToast("Đã đồng bộ ứng viên", `Hồ sơ ứng viên ${chat.name} đã được lưu thành công vào cơ sở dữ liệu.`);
 }
@@ -870,9 +862,9 @@ function showToast(title, desc) {
     const toast = document.getElementById('toast-notif');
     document.getElementById('toast-title').textContent = title;
     document.getElementById('toast-desc').textContent = desc;
-    
+
     toast.classList.remove('hidden');
-    
+
     // Auto hide after 5 seconds
     setTimeout(() => {
         closeToast();
@@ -895,7 +887,7 @@ setTimeout(() => {
         const replyText = "Em vừa gửi CV qua link rồi ạ, shop check giúp em xem hệ thống nhận được chưa nha.";
         const now = new Date();
         const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-        
+
         chat.messages.push({
             sender: "incoming",
             text: replyText,
@@ -903,12 +895,12 @@ setTimeout(() => {
         });
         chat.lastTime = timeStr;
         chat.unread += 1;
-        
+
         renderChatList();
         if (activeChatId === 'chat-cong') {
             renderChatViewport();
         }
-        
+
         showToast(`Tin nhắn mới từ ${chat.name}`, replyText);
     }
 }, 12000);
@@ -924,7 +916,7 @@ function renderFacebookConnectionPanel() {
     if (facebookConnected) {
         if (unconnected) unconnected.classList.add('hidden');
         if (connected) connected.classList.remove('hidden');
-        
+
         if (settingsFbCard) settingsFbCard.classList.remove('hidden');
         if (settingsFbActions) {
             settingsFbActions.innerHTML = `
@@ -939,7 +931,7 @@ function renderFacebookConnectionPanel() {
     } else {
         if (unconnected) unconnected.classList.remove('hidden');
         if (connected) connected.classList.add('hidden');
-        
+
         if (settingsFbCard) settingsFbCard.classList.add('hidden');
         if (settingsFbActions) {
             settingsFbActions.innerHTML = `
@@ -1140,7 +1132,7 @@ function updateAdPreview() {
     const startDate = document.getElementById('ad-start-date') ? document.getElementById('ad-start-date').value : '';
     const endDate = document.getElementById('ad-end-date') ? document.getElementById('ad-end-date').value : '';
     const radius = document.getElementById('ad-radius') ? document.getElementById('ad-radius').value : 40;
-    
+
     const mediaInput = document.getElementById('ad-video-input');
     const mediaContainer = document.querySelector('.ad-preview-media');
     const mediaPlaceholder = document.getElementById('ad-preview-media-placeholder');
@@ -1199,7 +1191,7 @@ function updateAdPreview() {
 
     const dailyReachLow = Math.round((budget / 1000) * 10);
     const dailyReachHigh = Math.round((budget / 1000) * 28);
-    
+
     const reachEl = document.getElementById('ad-estimate-reach');
     if (reachEl) {
         reachEl.textContent = `${dailyReachLow.toLocaleString('vi-VN')} - ${dailyReachHigh.toLocaleString('vi-VN')} người`;
@@ -1324,7 +1316,7 @@ function toggleSelectAllAds(checkbox) {
 }
 
 // --- Initialization ---
-window.onload = function() {
+window.onload = function () {
     renderFacebookConnectionPanel();
     // Nếu URL có ?code=... (vừa được Facebook redirect về sau khi ủy quyền), xử lý kết nối
     handleFacebookOAuthCallback();
