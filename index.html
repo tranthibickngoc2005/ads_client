@@ -158,8 +158,8 @@
                         </ul>
                     </li>
 
-                    <!-- Settings Menu Item -->
-                    <li class="menu-item" id="menu-settings" onclick="switchTab('settings')">
+                    <!-- Settings Menu Item with Dropdown -->
+                    <li class="menu-item dropdown" id="menu-settings" onclick="toggleSettingsDropdown(event)">
                         <a href="javascript:void(0)">
                             <span class="item-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -171,7 +171,35 @@
                                 </svg>
                             </span>
                             <span class="item-text">Cài đặt</span>
+                            <span class="dropdown-chevron">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </span>
                         </a>
+                        <ul class="submenu">
+                            <li class="submenu-item" id="menu-settings-policy" onclick="switchTab('settings-policy'); event.stopPropagation();">
+                                <a href="javascript:void(0)">
+                                    <span class="submenu-icon">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="item-text">Chính sách</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item" id="menu-settings-personal" onclick="switchTab('settings-personal'); event.stopPropagation();">
+                                <a href="javascript:void(0)">
+                                    <span class="submenu-icon">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                    </span>
+                                    <span class="item-text">Dữ liệu cá nhân</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -952,93 +980,200 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                 <section id="section-settings" class="tab-content hidden">
                     <div class="content-header">
                         <h1>Cài đặt hệ thống</h1>
-                        <p class="subtitle">Quản lý cấu hình, tích hợp các kênh mạng xã hội</p>
+                        <p class="subtitle">Quản lý chính sách bảo mật, dữ liệu cá nhân và tích hợp các kênh Facebook</p>
                     </div>
 
-                    <div class="settings-grid">
-                        <!-- Integrations Card -->
-                        <div class="settings-card">
-                            <div class="settings-card-header">
-                                <div class="header-icon brand-facebook-color">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
-                                        </path>
-                                    </svg>
+                    <!-- Subtab Navigation Bar -->
+                    <div class="settings-subtabs-nav">
+                        <button class="settings-tab-btn active" id="settings-tab-btn-policy" onclick="switchSettingsSubTab('policy')">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                            Chính sách
+                        </button>
+                        <button class="settings-tab-btn" id="settings-tab-btn-personal" onclick="switchSettingsSubTab('personal')">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            Dữ liệu cá nhân
+                        </button>
+                    </div>
+
+                    <!-- TAB 1: CHÍNH SÁCH -->
+                    <div class="settings-subtab-panel" id="settings-panel-policy">
+                        <div class="settings-grid">
+                            <!-- Policy Card -->
+                            <div class="settings-card">
+                                <div class="settings-card-header">
+                                    <div class="header-icon purple-bg">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3>Chính sách bảo mật & Điều khoản sử dụng</h3>
+                                        <p>Quy định về bảo mật dữ liệu, tích hợp Facebook Messenger API và bảo vệ thông tin ứng viên.</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3>Kênh tuyển dụng Facebook Fanpage</h3>
-                                    <p>Tích hợp Fanpage để đăng tin tự động và giao tiếp với ứng viên qua Messenger.</p>
+
+                                <div class="policy-content-box" style="padding: 18px; background: var(--background); border-radius: var(--radius-md); font-size: 13.5px; line-height: 1.6; color: var(--text-muted); border: 1px solid var(--border);">
+                                    <div class="policy-item" style="margin-bottom: 14px;">
+                                        <h4 style="font-weight: 600; color: var(--text-main); margin-bottom: 4px; font-size: 14px;">1. Bảo mật dữ liệu tuyển dụng & Mã hóa SSL</h4>
+                                        <p>Tất cả thông tin CV, hồ sơ ứng viên và tin nhắn Messenger đồng bộ trên Ezi Talent đều được mã hóa bằng chuẩn SSL 256-bit và tuân thủ các quy định bảo mật thông tin doanh nghiệp.</p>
+                                    </div>
+                                    <div class="policy-item" style="margin-bottom: 14px;">
+                                        <h4 style="font-weight: 600; color: var(--text-main); margin-bottom: 4px; font-size: 14px;">2. Quyền riêng tư Facebook Messenger API</h4>
+                                        <p>Hệ thống chỉ truy xuất tin nhắn gửi trực tiếp đến Fanpage được ủy quyền nhằm mục đích hỗ trợ tư vấn tuyển dụng. Ezi Talent cam kết không chia sẻ dữ liệu cho bất kỳ bên thứ ba nào khác.</p>
+                                    </div>
+                                    <div class="policy-item">
+                                        <h4 style="font-weight: 600; color: var(--text-main); margin-bottom: 4px; font-size: 14px;">3. Điều khoản lưu trữ & Xóa dữ liệu</h4>
+                                        <p>Doanh nghiệp có quyền trích xuất hoặc yêu cầu xóa hoàn toàn dữ liệu hội thoại và dữ liệu tuyển dụng khỏi máy chủ Ezi Talent bất kỳ lúc nào theo tiêu chuẩn Facebook App Review.</p>
+                                    </div>
                                 </div>
-                                <span class="connection-status-tag connected" id="settings-fb-status-tag">Đã kết
-                                    nối</span>
                             </div>
 
-                            <div class="connected-pages-list" id="settings-fb-pages-list">
-                                <div class="connected-page-item">
-                                    <div class="page-brand-info">
-                                        <div class="page-logo-circle et-logo">ET</div>
-                                        <div>
-                                            <span class="page-name-text">Ezi Talent (Fanpage chính)</span>
-                                            <span class="page-id-text">ID: 104859385938294</span>
-                                        </div>
+                            <!-- Integrations Card -->
+                            <div class="settings-card">
+                                <div class="settings-card-header">
+                                    <div class="header-icon brand-facebook-color">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
+                                            </path>
+                                        </svg>
                                     </div>
-                                    <span class="connection-status-tag connected">Hoạt động</span>
-                                </div>
-                                <div class="connected-page-item">
-                                    <div class="page-brand-info">
-                                        <div class="page-logo-circle ea-logo">EA</div>
-                                        <div>
-                                            <span class="page-name-text">Ezi Academy (Cộng đồng)</span>
-                                            <span class="page-id-text">ID: 294850385938592</span>
-                                        </div>
+                                    <div>
+                                        <h3>Kênh tuyển dụng Facebook Fanpage</h3>
+                                        <p>Tích hợp Fanpage để đăng tin tự động và giao tiếp với ứng viên qua Messenger.</p>
                                     </div>
-                                    <span class="connection-status-tag connected">Hoạt động</span>
+                                    <span class="connection-status-tag connected" id="settings-fb-status-tag">Đã kết nối</span>
                                 </div>
-                            </div>
 
-                            <div class="settings-card-actions" id="settings-fb-actions">
-                                <button class="btn btn-outline-danger" onclick="simulateFacebookDisconnect()">Hủy kết
-                                    nối kênh Facebook</button>
-                                <button class="btn btn-outline" onclick="simulateAddFanpage()">+ Thêm Fanpage liên
-                                    kết</button>
+                                <div class="connected-pages-list" id="settings-fb-pages-list">
+                                    <div class="connected-page-item">
+                                        <div class="page-brand-info">
+                                            <div class="page-logo-circle et-logo">ET</div>
+                                            <div>
+                                                <span class="page-name-text">Ezi Talent (Fanpage chính)</span>
+                                                <span class="page-id-text">ID: 104859385938294</span>
+                                            </div>
+                                        </div>
+                                        <span class="connection-status-tag connected">Hoạt động</span>
+                                    </div>
+                                    <div class="connected-page-item">
+                                        <div class="page-brand-info">
+                                            <div class="page-logo-circle ea-logo">EA</div>
+                                            <div>
+                                                <span class="page-name-text">Ezi Academy (Cộng đồng)</span>
+                                                <span class="page-id-text">ID: 294850385938592</span>
+                                            </div>
+                                        </div>
+                                        <span class="connection-status-tag connected">Hoạt động</span>
+                                    </div>
+                                </div>
+
+                                <div class="settings-card-actions" id="settings-fb-actions">
+                                    <button class="btn btn-outline-danger" onclick="simulateFacebookDisconnect()">Hủy kết nối kênh Facebook</button>
+                                    <button class="btn btn-outline" onclick="simulateAddFanpage()">+ Thêm Fanpage liên kết</button>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- User Profile Settings -->
-                        <div class="settings-card">
-                            <div class="settings-card-header">
-                                <div class="header-icon purple-bg">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                        <path
-                                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
-                                        </path>
-                                    </svg>
+                    <!-- TAB 2: DỮ LIỆU CÁ NHÂN -->
+                    <div class="settings-subtab-panel hidden" id="settings-panel-personal">
+                        <div class="settings-grid">
+                            <!-- User Profile Card -->
+                            <div class="settings-card">
+                                <div class="settings-card-header">
+                                    <div class="header-icon purple-bg">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3>Thông tin Tài khoản tuyển dụng</h3>
+                                        <p>Quản lý thông tin hồ sơ chuyên viên tuyển dụng cá nhân của bạn.</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3>Thiết lập Tài khoản tuyển dụng</h3>
-                                    <p>Quản lý thông tin tài khoản chuyên viên tuyển dụng cá nhân của bạn.</p>
+
+                                <div class="settings-form">
+                                    <div class="form-row">
+                                        <div class="form-col">
+                                            <label>Họ và tên</label>
+                                            <input type="text" id="user-profile-name" value="Minh Anh Nguyễn">
+                                        </div>
+                                        <div class="form-col">
+                                            <label>Chức vụ</label>
+                                            <input type="text" id="user-profile-title" value="Chuyên viên tuyển dụng Senior">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-col">
+                                            <label>Email liên kết</label>
+                                            <input type="email" id="user-profile-email" value="minhanh.nguyen@ezitalent.com">
+                                        </div>
+                                        <div class="form-col">
+                                            <label>Số điện thoại</label>
+                                            <input type="tel" id="user-profile-phone" value="0988 123 456">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-col">
+                                            <label>Phòng ban</label>
+                                            <input type="text" id="user-profile-dept" value="Phòng Nhân sự & Tuyển dụng (HR)">
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 16px; display: flex; justify-content: flex-end;">
+                                        <button class="btn btn-primary" onclick="saveUserProfile()">Lưu thay đổi thông tin</button>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="settings-form">
-                                <div class="form-row">
-                                    <div class="form-col">
-                                        <label>Họ và tên</label>
-                                        <input type="text" value="Minh Anh Nguyễn" readonly class="locked-input">
+                            <!-- Personal Data Management & Privacy Card -->
+                            <div class="settings-card">
+                                <div class="settings-card-header">
+                                    <div class="header-icon blue-bg">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                        </svg>
                                     </div>
-                                    <div class="form-col">
-                                        <label>Chức vụ</label>
-                                        <input type="text" value="Chuyên viên tuyển dụng" readonly class="locked-input">
+                                    <div>
+                                        <h3>Quản lý Quyền riêng tư & Dữ liệu cá nhân</h3>
+                                        <p>Kiểm soát quyền dữ liệu cá nhân, sao lưu thông tin và bảo mật tài khoản.</p>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-col">
-                                        <label>Email liên kết</label>
-                                        <input type="text" value="minhanh.nguyen@ezitalent.com" readonly
-                                            class="locked-input">
+
+                                <div class="personal-data-actions" style="display: flex; flex-direction: column; gap: 12px; padding: 4px 0;">
+                                    <div class="data-action-row" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md);">
+                                        <div>
+                                            <h4 style="font-size: 14px; font-weight: 600; color: var(--text-main);">Tải xuống bản sao dữ liệu cá nhân</h4>
+                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Xuất toàn bộ lịch sử hoạt động, bài viết và báo cáo cá nhân dạng CSV/PDF.</p>
+                                        </div>
+                                        <button class="btn btn-outline" onclick="exportPersonalData()">Tải dữ liệu</button>
+                                    </div>
+
+                                    <div class="data-action-row" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md);">
+                                        <div>
+                                            <h4 style="font-size: 14px; font-weight: 600; color: var(--text-main);">Lịch sử đăng nhập & Thiết bị</h4>
+                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">MacBook Air (Hồ Chí Minh) · Đang hoạt động</p>
+                                        </div>
+                                        <button class="btn btn-outline" onclick="showLoginHistory()">Xem chi tiết</button>
+                                    </div>
+
+                                    <div class="data-action-row" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #fff5f5; border: 1px solid #feb2b2; border-radius: var(--radius-md);">
+                                        <div>
+                                            <h4 style="font-size: 14px; font-weight: 600; color: #c53030;">Yêu cầu xóa dữ liệu cá nhân</h4>
+                                            <p style="font-size: 12px; color: #9b2c2c; margin-top: 2px;">Xóa toàn bộ hồ sơ dữ liệu cá nhân khỏi máy chủ hệ thống Ezi Talent.</p>
+                                        </div>
+                                        <button class="btn btn-outline-danger" onclick="requestDataErasure()">Yêu cầu xóa</button>
                                     </div>
                                 </div>
                             </div>

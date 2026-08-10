@@ -148,10 +148,75 @@ function switchTab(tabId) {
         document.getElementById('menu-fb-ads-list').classList.add('active');
         document.getElementById('breadcrumb-title').textContent = "Danh sách quảng cáo Facebook";
         renderAdsTable();
-    } else if (tabId === 'settings') {
-        document.getElementById('menu-settings').classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Cài đặt cấu hình";
+    } else if (tabId === 'settings' || tabId === 'settings-policy') {
+        const settingsMenu = document.getElementById('menu-settings');
+        if (settingsMenu) settingsMenu.classList.add('dropdown-active');
+        const policySub = document.getElementById('menu-settings-policy');
+        if (policySub) policySub.classList.add('active');
+        document.getElementById('breadcrumb-title').textContent = "Cài đặt - Chính sách hệ thống";
+        switchSettingsSubTab('policy');
+    } else if (tabId === 'settings-personal') {
+        const settingsMenu = document.getElementById('menu-settings');
+        if (settingsMenu) settingsMenu.classList.add('dropdown-active');
+        const personalSub = document.getElementById('menu-settings-personal');
+        if (personalSub) personalSub.classList.add('active');
+        document.getElementById('breadcrumb-title').textContent = "Cài đặt - Dữ liệu cá nhân";
+        switchSettingsSubTab('personal');
     }
+}
+
+// --- Sidebar Dropdown Toggle (Cài đặt) ---
+function toggleSettingsDropdown(event) {
+    const menuItem = document.getElementById('menu-settings');
+    if (!menuItem) return;
+    const isActive = menuItem.classList.contains('dropdown-active');
+    if (isActive && event && event.target.closest('.submenu')) {
+        return; // Don't collapse when clicking a sub-item
+    }
+    if (isActive) {
+        menuItem.classList.remove('dropdown-active');
+    } else {
+        switchTab('settings-policy');
+    }
+}
+
+function switchSettingsSubTab(subTab) {
+    document.querySelectorAll('.settings-subtab-panel').forEach(panel => {
+        panel.classList.add('hidden');
+    });
+    document.querySelectorAll('.settings-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    const activePanel = document.getElementById(`settings-panel-${subTab}`);
+    if (activePanel) activePanel.classList.remove('hidden');
+
+    const activeBtn = document.getElementById(`settings-tab-btn-${subTab}`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Also sync sidebar sub-item state
+    document.querySelectorAll('#menu-settings .submenu-item').forEach(item => item.classList.remove('active'));
+    const subMenuItem = document.getElementById(`menu-settings-${subTab}`);
+    if (subMenuItem) subMenuItem.classList.add('active');
+}
+
+function saveUserProfile() {
+    const name = document.getElementById('user-profile-name').value;
+    showToast("Cập nhật hồ sơ thành công", `Thông tin dữ liệu cá nhân của ${name} đã được lưu thành công.`);
+}
+
+function exportPersonalData() {
+    showToast("Đang chuẩn bị bản sao dữ liệu...", "Hệ thống đang trích xuất dữ liệu cá nhân của bạn dưới dạng tệp bảo mật.");
+}
+
+function showLoginHistory() {
+    alert("Lịch sử đăng nhập tài khoản:\n\n1. macOS Monterey · Chrome · TP. Hồ Chí Minh (Đang hoạt động)\n2. iOS 17.4 · Safari · TP. Hồ Chí Minh (Hôm qua 18:32)\n3. Windows 11 · Edge · TP. Hồ Chí Minh (3 ngày trước)");
+}
+
+function requestDataErasure() {
+    showConfirmModal("Bạn có chắc chắn muốn gửi yêu cầu xóa toàn bộ dữ liệu cá nhân khỏi máy chủ Ezi Talent không?", () => {
+        showToast("Đã gửi yêu cầu xóa dữ liệu", "Yêu cầu xóa dữ liệu cá nhân của bạn đang được Bộ phận Kỹ thuật & Pháp lý xử lý trong vòng 24h.");
+    });
 }
 
 // --- Sidebar Dropdown Toggle (Quản lý quảng cáo Facebook) ---
