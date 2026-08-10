@@ -54,6 +54,7 @@ let chats = [
         avatar: "A",
         online: true,
         unread: 2,
+        pageName: "Ezi Talent",
         messages: [
             { sender: "incoming", text: "Chào shop, vị trí tuyển dụng còn tuyển không ạ?", time: "03:01" },
             { sender: "outgoing", text: "Chào bạn, cảm ơn bạn đã quan tâm! Vị trí vẫn còn, bạn có thể ứng tuyển ngay trên trang web của chúng mình nhé.", time: "03:01" },
@@ -68,6 +69,7 @@ let chats = [
         avatar: "B",
         online: false,
         unread: 0,
+        pageName: "Ezi Academy",
         messages: [
             { sender: "incoming", text: "Cho mình hỏi chế độ thử việc bên mình như thế nào ạ?", time: "Hôm qua" },
             { sender: "outgoing", text: "Dạ chào bạn, thời gian thử việc bên mình là 2 tháng, nhận 85% lương cứng cộng đầy đủ phụ cấp cơm trưa bạn nhé.", time: "Hôm qua" },
@@ -81,6 +83,7 @@ let chats = [
         avatar: "C",
         online: true,
         unread: 1,
+        pageName: "Ezi Talent",
         messages: [
             { sender: "incoming", text: "Cho em xin link ứng tuyển với ạ", time: "2 ngày trước" },
             { sender: "outgoing", text: "Chào Công, em có thể nộp CV qua đường link: ezitalent.vn/jobs/react-native nhé.", time: "2 ngày trước" },
@@ -525,14 +528,34 @@ function removeSelectedImage(event) {
 // --- Messenger CSKH Real-Time Simulator ---
 function renderChatList() {
     const container = document.getElementById('chat-list-container');
-    const query = document.getElementById('chat-search-input').value.toLowerCase();
+    if (!container) return;
+    
+    const searchInput = document.getElementById('chat-search-input');
+    const query = searchInput ? searchInput.value.toLowerCase() : '';
+    
+    const pageFilterElem = document.getElementById('chat-page-filter');
+    const pageFilter = pageFilterElem ? pageFilterElem.value : 'all';
 
-    const filteredChats = chats.filter(c => c.name.toLowerCase().includes(query));
+    const filteredChats = chats.filter(c => {
+        const matchesQuery = c.name.toLowerCase().includes(query) || c.messages.some(m => m.text.toLowerCase().includes(query));
+        const matchesPage = pageFilter === 'all' || c.pageName === pageFilter;
+        return matchesQuery && matchesPage;
+    });
+
+    if (filteredChats.length === 0) {
+        container.innerHTML = `
+            <div style="padding: 24px 16px; text-align: center; color: var(--text-muted); font-size: 13px;">
+                Không tìm thấy tin nhắn thuộc Fanpage đã chọn.
+            </div>
+        `;
+        return;
+    }
 
     container.innerHTML = filteredChats.map(c => {
         const lastMsg = c.messages[c.messages.length - 1];
         const lastMsgText = lastMsg ? lastMsg.text : "";
         const isActive = c.id === activeChatId;
+        const pageClass = c.pageName === 'Ezi Talent' ? 'badge-ezi-talent' : 'badge-ezi-academy';
         
         return `
             <div class="chat-item ${isActive ? 'active' : ''} ${c.unread > 0 ? 'unread' : ''}" onclick="selectChat('${c.id}')">
@@ -544,6 +567,14 @@ function renderChatList() {
                     <div class="chat-item-header">
                         <span class="chat-item-name">${c.name}</span>
                         <span class="chat-item-time">${c.lastTime}</span>
+                    </div>
+                    <div class="chat-item-subline">
+                        <span class="chat-page-tag ${pageClass}">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:3px;">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                            ${c.pageName || 'Ezi Talent'}
+                        </span>
                     </div>
                     <div class="chat-item-body">
                         <span class="chat-item-message">${lastMsgText}</span>
@@ -579,12 +610,19 @@ function renderChatViewport() {
     // Render active header
     document.getElementById('active-chat-avatar').textContent = chat.avatar;
     document.getElementById('active-chat-name').textContent = chat.name;
+    
+    // Update Active Fanpage Name
+    const pageNameElem = document.getElementById('active-chat-page-name');
+    if (pageNameElem) {
+        pageNameElem.textContent = chat.pageName || 'Ezi Talent';
+    }
+
     const statusDot = document.querySelector('.active-status .status-dot');
     if (chat.online) {
-        statusDot.classList.add('online');
+        if (statusDot) statusDot.classList.add('online');
         document.querySelector('.active-status').innerHTML = '<span class="status-dot online"></span>Đang hoạt động';
     } else {
-        statusDot.classList.remove('online');
+        if (statusDot) statusDot.classList.remove('online');
         document.querySelector('.active-status').innerHTML = '<span class="status-dot"></span>Ngoại tuyến';
     }
 

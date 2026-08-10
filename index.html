@@ -516,6 +516,14 @@
                         <div class="chat-sidebar">
                             <div class="chat-sidebar-header">
                                 <h2>Hộp thoại</h2>
+                                <div class="page-selector-wrapper chat-page-selector" style="margin-bottom: 12px;">
+                                    <label for="chat-page-filter">Fanpage:</label>
+                                    <select id="chat-page-filter" onchange="filterChatList()">
+                                        <option value="all">Tất cả Fanpage</option>
+                                        <option value="Ezi Talent">Ezi Talent</option>
+                                        <option value="Ezi Academy">Ezi Academy</option>
+                                    </select>
+                                </div>
                                 <div class="chat-search">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -539,22 +547,17 @@
                                     <div class="active-avatar" id="active-chat-avatar">N</div>
                                     <div class="active-info">
                                         <span class="active-name" id="active-chat-name">Nguyễn Văn An</span>
-                                        <span class="active-status"><span class="status-dot online"></span>Đang hoạt
-                                            động</span>
+                                        <span class="active-status"><span class="status-dot online"></span>Đang hoạt động</span>
                                     </div>
                                 </div>
                                 <div class="active-actions">
-                                    <!-- Sync Candidate Action -->
-                                    <button class="btn btn-outline" onclick="syncCandidateProfile()">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" style="margin-right: 6px;">
-                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="9" cy="7" r="4"></circle>
-                                            <polyline points="16 11 18 13 22 9"></polyline>
+                                    <!-- Fanpage badge for active conversation -->
+                                    <div class="active-fanpage-badge">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;">
+                                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                         </svg>
-                                        Lưu hồ sơ ứng viên
-                                    </button>
+                                        <span>Fanpage: <strong id="active-chat-page-name">Ezi Talent</strong></span>
+                                    </div>
                                 </div>
                             </div>
 
