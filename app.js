@@ -103,7 +103,11 @@ function switchTab(tabId) {
     });
 
     // Show selected tab
-    const activeSection = document.getElementById(`section-${tabId}`);
+    let sectionId = `section-${tabId}`;
+    if (tabId === 'settings-policy' || tabId === 'settings-personal') {
+        sectionId = 'section-settings';
+    }
+    const activeSection = document.getElementById(sectionId);
     if (activeSection) {
         activeSection.classList.remove('hidden');
     }
@@ -111,7 +115,7 @@ function switchTab(tabId) {
     // Manage active classes on Sidebar items
     document.querySelectorAll('.menu-item').forEach(item => {
         item.classList.remove('active');
-        if (tabId !== 'fb-ads-create' && tabId !== 'fb-ads-list') {
+        if (tabId !== 'fb-ads-create' && tabId !== 'fb-ads-list' && tabId !== 'settings' && tabId !== 'settings-policy' && tabId !== 'settings-personal') {
             item.classList.remove('dropdown-active');
         }
     });
