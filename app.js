@@ -1098,10 +1098,15 @@ function updateAdPreview() {
 
     const dailyReachLow = Math.round((budget / 1000) * 10);
     const dailyReachHigh = Math.round((budget / 1000) * 28);
-    document.getElementById('ad-estimate-reach').textContent =
-        `${dailyReachLow.toLocaleString('vi-VN')} - ${dailyReachHigh.toLocaleString('vi-VN')} người`;
-    document.getElementById('ad-estimate-total').textContent =
-        `${totalBudget.toLocaleString('vi-VN')} ₫`;
+    
+    const reachEl = document.getElementById('ad-estimate-reach');
+    if (reachEl) {
+        reachEl.textContent = `${dailyReachLow.toLocaleString('vi-VN')} - ${dailyReachHigh.toLocaleString('vi-VN')} người`;
+    }
+    const totalEl = document.getElementById('ad-estimate-total');
+    if (totalEl) {
+        totalEl.textContent = `${totalBudget.toLocaleString('vi-VN')} ₫`;
+    }
 }
 
 function handleAdSubmit(event) {
