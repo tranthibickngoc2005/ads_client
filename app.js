@@ -1039,9 +1039,11 @@ function handleAdVideoUpload(event) {
     const file = event.target.files[0];
     const filenameEl = document.getElementById('ad-video-filename');
     if (file) {
-        filenameEl.textContent = `✅ ${file.name}`;
+        const isImage = file.type.startsWith('image/');
+        const isVideo = file.type.startsWith('video/');
+        filenameEl.textContent = `${isImage ? '🖼️' : isVideo ? '🎬' : '📁'} ${file.name}`;
     } else {
-        filenameEl.textContent = "Chọn video";
+        filenameEl.textContent = "Chọn hình ảnh hoặc video";
     }
     updateAdPreview();
 }
@@ -1065,8 +1067,10 @@ function updateAdPreview() {
     const startDate = document.getElementById('ad-start-date') ? document.getElementById('ad-start-date').value : '';
     const endDate = document.getElementById('ad-end-date') ? document.getElementById('ad-end-date').value : '';
     const radius = document.getElementById('ad-radius') ? document.getElementById('ad-radius').value : 40;
-    const videoInput = document.getElementById('ad-video-input');
-    const hasVideo = videoInput && videoInput.files && videoInput.files.length > 0;
+    
+    const mediaInput = document.getElementById('ad-video-input');
+    const mediaContainer = document.querySelector('.ad-preview-media');
+    const mediaPlaceholder = document.getElementById('ad-preview-media-placeholder');
 
     document.getElementById('ad-preview-avatar').textContent = fanpage === 'Ezi Talent' ? 'ET' : 'EA';
     document.getElementById('ad-preview-page-name').textContent = fanpage;
@@ -1074,9 +1078,33 @@ function updateAdPreview() {
     document.getElementById('ad-preview-headline').textContent = headline || "Tiêu đề quảng cáo sẽ hiển thị ở đây";
     document.getElementById('ad-preview-cta').textContent = AD_DESTINATION_CTA[destination] || "Tìm hiểu thêm";
 
-    const mediaPlaceholder = document.getElementById('ad-preview-media-placeholder');
-    if (mediaPlaceholder) {
-        mediaPlaceholder.parentElement.classList.toggle('has-video', hasVideo);
+    if (mediaInput && mediaInput.files && mediaInput.files.length > 0) {
+        const file = mediaInput.files[0];
+        const fileUrl = URL.createObjectURL(file);
+        if (file.type.startsWith('image/')) {
+            if (mediaContainer) mediaContainer.className = 'ad-preview-media has-image';
+            if (mediaPlaceholder) {
+                mediaPlaceholder.innerHTML = `<img src="${fileUrl}" style="width:100%; max-height:240px; object-fit:cover; display:block;" alt="Ad Media Preview">`;
+            }
+        } else if (file.type.startsWith('video/')) {
+            if (mediaContainer) mediaContainer.className = 'ad-preview-media has-video';
+            if (mediaPlaceholder) {
+                mediaPlaceholder.innerHTML = `<video src="${fileUrl}" controls autoplay muted loop style="width:100%; max-height:240px; object-fit:cover; display:block;"></video>`;
+            }
+        }
+    } else {
+        if (mediaContainer) mediaContainer.className = 'ad-preview-media';
+        if (mediaPlaceholder) {
+            mediaPlaceholder.innerHTML = `
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+            `;
+        }
     }
 
     if (document.getElementById('ad-radius-value')) {
