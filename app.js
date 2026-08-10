@@ -219,6 +219,14 @@ function requestDataErasure() {
     });
 }
 
+function showDataDeletionInstructions() {
+    alert("Data Deletion Instructions:\n\n1. Log into your Facebook account and go to Settings & Privacy > Settings > Apps and Websites.\n2. Find 'Ezi Talent' app and click Remove.\n3. Alternatively, submit a deletion request directly to contact@ezisolutions.tech with your Page ID or User ID.\n\nAll associated data will be purged within 24 hours.");
+}
+
+function showReviewerLoginModal() {
+    alert("Meta App Reviewer Demo Access:\n\nEnvironment: Ezi Talent Production Reviewer Sandbox\nDemo Account: reviewer_demo@ezisolutions.tech\nGranted Permissions: pages_show_list, pages_read_engagement, pages_manage_posts, pages_messaging, ads_management, ads_read");
+}
+
 // --- Sidebar Dropdown Toggle (Quản lý quảng cáo Facebook) ---
 function toggleAdsDropdown() {
     const menuItem = document.getElementById('menu-fb-ads');
