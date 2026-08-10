@@ -1209,7 +1209,6 @@ function updateAdPreview() {
 function handleAdSubmit(event) {
     event.preventDefault();
 
-    const adAccount = document.getElementById('ad-account') ? document.getElementById('ad-account').value : 'act_102938482938492';
     const fanpage = document.getElementById('ad-fanpage').value;
     const name = document.getElementById('ad-name').value || "Chiến dịch chưa đặt tên";
     const objective = document.getElementById('ad-objective').value;
@@ -1222,7 +1221,6 @@ function handleAdSubmit(event) {
     const newAd = {
         id: `${Date.now()}`.slice(-11),
         name: name,
-        account: adAccount,
         pageName: fanpage,
         objective: objective,
         objectiveLabel: AD_OBJECTIVE_LABELS[objective],
