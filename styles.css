@@ -2445,14 +2445,15 @@ body {
 
 .location-search-icon {
     position: absolute;
-    left: 14px;
+    right: 14px;
+    left: auto;
     color: var(--text-light);
     pointer-events: none;
 }
 
 .location-input-wrap input {
-    padding-left: 40px;
-    padding-right: 76px;
+    padding-left: 14px;
+    padding-right: 40px;
 }
 
 .from-jd-badge {
