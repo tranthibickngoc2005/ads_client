@@ -2,6 +2,7 @@
 
 // --- Global State ---
 let facebookConnected = true; // Default to connected to show high-fidelity page items
+let adsConnected = true; // Default state for Ads Connection
 
 let posts = [
     {
@@ -128,6 +129,7 @@ function switchTab(tabId) {
         document.getElementById('menu-fb-connect').classList.add('active');
         document.getElementById('breadcrumb-title').textContent = "Kết nối tài khoản Facebook";
         renderFacebookConnectionPanel();
+        renderAdsConnectionPanel();
     } else if (tabId === 'fb-posts') {
         document.getElementById('menu-fb-posts').classList.add('active');
         document.getElementById('breadcrumb-title').textContent = "Quản lý bài viết Facebook Fanpage";
@@ -909,6 +911,40 @@ setTimeout(() => {
     }
 }, 12000);
 
+// --- Ads Account Connection Simulation ---
+function renderAdsConnectionPanel() {
+    const unconnected = document.getElementById('ads-unconnected-state');
+    const connected = document.getElementById('ads-connected-state');
+
+    if (adsConnected) {
+        if (unconnected) unconnected.classList.add('hidden');
+        if (connected) connected.classList.remove('hidden');
+    } else {
+        if (unconnected) unconnected.classList.remove('hidden');
+        if (connected) connected.classList.add('hidden');
+    }
+}
+
+function simulateAdsOAuth() {
+    showToast("Đang chuyển hướng...", "Đang mở trang xác thực và ủy quyền tài khoản Quảng cáo.");
+    setTimeout(() => {
+        adsConnected = true;
+        renderAdsConnectionPanel();
+        showToast("Kết nối thành công!", "Đã liên kết tài khoản Quảng cáo.");
+    }, 1000);
+}
+
+function simulateAdsDisconnect() {
+    showConfirmModal(
+        "Bạn có chắc chắn muốn hủy liên kết tài khoản Quảng cáo không? Toàn bộ đồng bộ chiến dịch sẽ bị tạm dừng.",
+        () => {
+            adsConnected = false;
+            renderAdsConnectionPanel();
+            showToast("Đã hủy kết nối", "Đã ngắt liên kết tài khoản Quảng cáo.");
+        }
+    );
+}
+
 // --- Facebook Account Connection Simulation ---
 function renderFacebookConnectionPanel() {
     const unconnected = document.getElementById('fb-unconnected-state');
@@ -1019,6 +1055,22 @@ function toggleFanpageSync(fanpageName, checkbox) {
         showToast("Bật đồng bộ", `Đã bật đồng bộ tin nhắn và bài đăng cho Fanpage ${fanpageName}.`);
     } else {
         showToast("Tắt đồng bộ", `Đã tắt đồng bộ dữ liệu cho Fanpage ${fanpageName}.`);
+    }
+}
+
+function toggleAdsSync(accountName, checkbox) {
+    if (checkbox.checked) {
+        showToast("Bật đồng bộ", `Đã bật đồng bộ dữ liệu cho tài khoản quảng cáo ${accountName}.`);
+    } else {
+        showToast("Tắt đồng bộ", `Đã tắt đồng bộ dữ liệu cho tài khoản quảng cáo ${accountName}.`);
+    }
+}
+
+function simulateAddAdsAccount() {
+    const newAccount = prompt("Nhập tên tài khoản quảng cáo muốn liên kết với hệ thống tuyển dụng Ezi Talent:", "Ezi Talent Ads");
+    if (newAccount) {
+        alert(`Hệ thống đang mở popup OAuth Facebook... Đã ủy quyền thành công! Đã kết nối tài khoản quảng cáo "${newAccount}" vào Ezi Talent.`);
+        showToast("Liên kết tài khoản quảng cáo mới", `Đã liên kết thành công tài khoản quảng cáo "${newAccount}" vào kênh tuyển dụng.`);
     }
 }
 
@@ -1322,6 +1374,7 @@ function toggleSelectAllAds(checkbox) {
 // --- Initialization ---
 window.onload = function () {
     renderFacebookConnectionPanel();
+    renderAdsConnectionPanel();
     // Nếu URL có ?code=... (vừa được Facebook redirect về sau khi ủy quyền), xử lý kết nối
     handleFacebookOAuthCallback();
     // Default open Post Management page
