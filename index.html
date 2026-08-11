@@ -47,17 +47,53 @@
             <nav class="sidebar-menu">
                 <div class="menu-label">MENU</div>
                 <ul class="menu-list">
-                    <!-- Kết nối Facebook -->
-                    <li class="menu-item" id="menu-fb-connect" onclick="switchTab('fb-connect')">
-                        <a href="javascript:void(0)">
+                    <!-- Quản lý tài nguyên -->
+                    <li class="menu-item" id="menu-resources">
+                        <a href="javascript:void(0)" onclick="toggleResourcesDropdown()">
                             <span class="item-icon brand-facebook-color">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                 </svg>
                             </span>
-                            <span class="item-text">Kết nối Facebook</span>
+                            <span class="item-text">Quản lý tài nguyên</span>
+                            <span class="dropdown-chevron">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </span>
                         </a>
+                        <ul class="submenu">
+                            <li class="submenu-item" id="menu-fb-connect" onclick="switchTab('fb-connect')">
+                                <a href="javascript:void(0)">
+                                    <span class="submenu-icon">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                                        </svg>
+                                    </span>
+                                    <span class="item-text">Tài khoản Facebook</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item" id="menu-ads-connect" onclick="switchTab('ads-connect')">
+                                <a href="javascript:void(0)">
+                                    <span class="submenu-icon">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                                        </svg>
+                                    </span>
+                                    <span class="item-text">Tài khoản quảng cáo</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <!-- Quản lý bài viết -->
@@ -245,19 +281,19 @@
             <!-- Dynamic Content Sections -->
             <main class="content-container">
 
-                <!-- 3.5. KẾT NỐI TÀI KHOẢN SECTION -->
+                <!-- 3.5. KẾT NỐI TÀI KHOẢN SECTION (FACEBOOK) -->
                 <section id="section-fb-connect" class="tab-content hidden">
                     <div class="content-header">
-                        <h1>Kết nối tài khoản Facebook</h1>
+                        <h1>Tài khoản Facebook</h1>
                         <p class="subtitle">Liên kết tài khoản cá nhân và tích hợp các kênh Fanpage để đồng bộ tuyển
                             dụng</p>
                     </div>
 
-                    <div class="settings-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+                    <div class="settings-grid" style="grid-template-columns: 1fr;">
 
                         <!-- FACEBOOK CONNECTION PANEL -->
                         <div class="settings-card" id="fb-connection-panel"
-                            style="text-align: center; padding: 40px 24px;">
+                            style="text-align: center; padding: 40px 24px; max-width: 800px; margin: 0 auto; width: 100%;">
                             <!-- State 1: Unconnected -->
                             <div id="fb-unconnected-state" class="fb-connect-state-view hidden">
                                 <div class="connect-welcome-icon" style="margin-bottom: 20px;">
@@ -369,10 +405,20 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </section>
 
+                <!-- 3.6. KẾT NỐI TÀI KHOẢN SECTION (ADS) -->
+                <section id="section-ads-connect" class="tab-content hidden">
+                    <div class="content-header">
+                        <h1>Tài khoản quảng cáo</h1>
+                        <p class="subtitle">Kết nối tài khoản quảng cáo để quản lý chiến dịch, ngân sách và theo dõi hiệu quả tuyển dụng.</p>
+                    </div>
+
+                    <div class="settings-grid" style="grid-template-columns: 1fr;">
                         <!-- ADS CONNECTION PANEL -->
                         <div class="settings-card" id="ads-connection-panel"
-                            style="text-align: center; padding: 40px 24px;">
+                            style="text-align: center; padding: 40px 24px; max-width: 800px; margin: 0 auto; width: 100%;">
                             <!-- State 1: Ads Unconnected -->
                             <div id="ads-unconnected-state" class="fb-connect-state-view hidden">
                                 <div class="connect-welcome-icon" style="margin-bottom: 20px;">

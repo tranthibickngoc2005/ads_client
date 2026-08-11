@@ -116,7 +116,7 @@ function switchTab(tabId) {
     // Manage active classes on Sidebar items
     document.querySelectorAll('.menu-item').forEach(item => {
         item.classList.remove('active');
-        if (tabId !== 'fb-ads-create' && tabId !== 'fb-ads-list' && tabId !== 'settings' && tabId !== 'settings-policy' && tabId !== 'settings-personal') {
+        if (tabId !== 'fb-connect' && tabId !== 'ads-connect' && tabId !== 'fb-ads-create' && tabId !== 'fb-ads-list' && tabId !== 'settings' && tabId !== 'settings-policy' && tabId !== 'settings-personal') {
             item.classList.remove('dropdown-active');
         }
     });
@@ -126,9 +126,14 @@ function switchTab(tabId) {
 
     // Specific sidebar item activation logic
     if (tabId === 'fb-connect') {
+        document.getElementById('menu-resources').classList.add('dropdown-active');
         document.getElementById('menu-fb-connect').classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Kết nối tài khoản Facebook";
+        document.getElementById('breadcrumb-title').textContent = "Tài khoản Facebook";
         renderFacebookConnectionPanel();
+    } else if (tabId === 'ads-connect') {
+        document.getElementById('menu-resources').classList.add('dropdown-active');
+        document.getElementById('menu-ads-connect').classList.add('active');
+        document.getElementById('breadcrumb-title').textContent = "Tài khoản quảng cáo";
         renderAdsConnectionPanel();
     } else if (tabId === 'fb-posts') {
         document.getElementById('menu-fb-posts').classList.add('active');
@@ -234,6 +239,17 @@ function toggleAdsDropdown() {
     } else {
         // Mở dropdown và điều hướng luôn tới trang Tạo quảng cáo nếu chưa ở trong nhóm này
         switchTab('fb-ads-create');
+    }
+}
+
+// --- Sidebar Dropdown Toggle (Quản lý tài nguyên) ---
+function toggleResourcesDropdown() {
+    const menuItem = document.getElementById('menu-resources');
+    const isActive = menuItem.classList.contains('dropdown-active');
+    if (isActive) {
+        menuItem.classList.remove('dropdown-active');
+    } else {
+        switchTab('fb-connect');
     }
 }
 
