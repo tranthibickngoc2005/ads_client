@@ -452,8 +452,15 @@
 
                             <!-- State 2: Ads Connected -->
                             <div id="ads-connected-state" class="fb-connect-state-view" style="text-align: left;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                    <h4 style="font-size: 15px; font-weight: 600; color: var(--text-main); margin: 0;">Các tài khoản đã kết nối:</h4>
+                                    <button class="btn btn-outline" style="font-size: 13px; padding: 6px 12px;" onclick="simulateAdsOAuth()">
+                                        + Kết nối tài khoản quảng cáo
+                                    </button>
+                                </div>
+
                                 <div class="connected-user-badge"
-                                    style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 24px;">
+                                    style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 12px;">
                                     <div style="display: flex; align-items: center; gap: 14px;">
                                         <div class="page-logo-circle et-logo"
                                             style="background: linear-gradient(135deg, #1877f2, #0d6efd); width: 48px; height: 48px; font-size: 16px;">
@@ -463,6 +470,23 @@
                                             <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Ezi Solution Ads</h4>
                                             <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Trạng thái: Đã liên kết tài khoản quảng cáo</p>
                                             <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Quyền hạn: Quản trị viên · ID: 678912345678901</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline-danger" style="padding: 6px 12px; font-size: 12px;"
+                                        onclick="simulateAdsDisconnect()">Hủy kết nối</button>
+                                </div>
+
+                                <div class="connected-user-badge"
+                                    style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 12px;">
+                                    <div style="display: flex; align-items: center; gap: 14px;">
+                                        <div class="page-logo-circle ea-logo"
+                                            style="background: linear-gradient(135deg, #f0703e, #f9a826); width: 48px; height: 48px; font-size: 16px;">
+                                            TA
+                                        </div>
+                                        <div>
+                                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Talent Acquisition Ads</h4>
+                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Trạng thái: Đã liên kết tài khoản quảng cáo</p>
+                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Quyền hạn: Quản trị viên · ID: 123456789012345</p>
                                         </div>
                                     </div>
                                     <button class="btn btn-outline-danger" style="padding: 6px 12px; font-size: 12px;"
