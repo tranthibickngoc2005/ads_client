@@ -962,13 +962,25 @@ function confirmAdsConnection() {
     }, 1000);
 }
 
-function simulateAdsDisconnect() {
+function simulateAdsDisconnect(btnElement) {
     showConfirmModal(
-        "Bạn có chắc chắn muốn hủy liên kết tài khoản Quảng cáo không? Toàn bộ đồng bộ chiến dịch sẽ bị tạm dừng.",
+        "Bạn có chắc chắn muốn hủy liên kết tài khoản quảng cáo này không?",
         () => {
-            adsConnected = false;
-            renderAdsConnectionPanel();
-            showToast("Đã hủy kết nối", "Đã ngắt liên kết tài khoản Quảng cáo.");
+            if (btnElement) {
+                const badge = btnElement.closest('.connected-user-badge');
+                if (badge) {
+                    badge.remove();
+                }
+            }
+            
+            // Check if any accounts are left
+            const remainingAccounts = document.querySelectorAll('#ads-connected-state .connected-user-badge');
+            if (remainingAccounts.length === 0) {
+                adsConnected = false;
+                renderAdsConnectionPanel();
+            }
+            
+            showToast("Đã hủy kết nối", "Đã ngắt liên kết tài khoản quảng cáo.");
         }
     );
 }
