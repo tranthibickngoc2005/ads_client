@@ -928,22 +928,114 @@ setTimeout(() => {
 }, 12000);
 
 // --- Ads Account Connection Simulation ---
+let adAccounts = [
+    { id: 'ad1', name: 'Ezi Solution Ads', displayId: '678912345678901', logo: 'AD', bg: 'linear-gradient(135deg, #1877f2, #0d6efd)', cls: 'et-logo', connected: true },
+    { id: 'ad2', name: 'Talent Acquisition Ads', displayId: '123456789012345', logo: 'TA', bg: 'linear-gradient(135deg, #f0703e, #f9a826)', cls: 'ea-logo', connected: true },
+    { id: 'ad3', name: 'HR Dept Campaigns', displayId: '987654321098765', logo: 'HR', bg: 'linear-gradient(135deg, #6b7280, #9ca3af)', cls: '', connected: false }
+];
+
 function renderAdsConnectionPanel() {
     const unconnected = document.getElementById('ads-unconnected-state');
-    const connected = document.getElementById('ads-connected-state');
+    const connectedState = document.getElementById('ads-connected-state');
+    const connectedList = document.getElementById('ads-connected-list');
+    const emptyState = document.getElementById('ads-connected-empty');
+    const header = document.getElementById('ads-connected-header');
+
+    if (!unconnected || !connectedState || !connectedList) return;
 
     if (adsConnected) {
-        if (unconnected) unconnected.classList.add('hidden');
-        if (connected) connected.classList.remove('hidden');
+        unconnected.classList.add('hidden');
+        connectedState.classList.remove('hidden');
+
+        const connectedAccounts = adAccounts.filter(a => a.connected);
+        
+        if (connectedAccounts.length === 0) {
+            if (header) header.classList.add('hidden');
+            if (emptyState) emptyState.classList.remove('hidden');
+            connectedList.innerHTML = '';
+        } else {
+            if (header) header.classList.remove('hidden');
+            if (emptyState) emptyState.classList.add('hidden');
+            
+            connectedList.innerHTML = connectedAccounts.map(account => `
+                <div class="connected-user-badge" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div class="page-logo-circle ${account.cls}" style="background: ${account.bg}; width: 48px; height: 48px; font-size: 16px; color: ${account.cls ? 'inherit' : 'white'};">
+                            ${account.logo}
+                        </div>
+                        <div>
+                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">${account.name}</h4>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Trạng thái: Đã liên kết tài khoản quảng cáo</p>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Quyền hạn: Quản trị viên · ID: ${account.displayId}</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-danger" style="padding: 6px 12px; font-size: 12px;" onclick="simulateAdsDisconnect('${account.id}')">Hủy kết nối</button>
+                </div>
+            `).join('');
+        }
+        updateCreateAdDropdown();
     } else {
-        if (unconnected) unconnected.classList.remove('hidden');
-        if (connected) connected.classList.add('hidden');
+        unconnected.classList.remove('hidden');
+        connectedState.classList.add('hidden');
     }
+}
+
+function updateCreateAdDropdown() {
+    const dropdown = document.getElementById('ad-account-select-create');
+    if (!dropdown) return;
+    
+    const connectedAccounts = adAccounts.filter(a => a.connected);
+    if (connectedAccounts.length === 0) {
+        dropdown.innerHTML = '<option value="">Chưa có tài khoản nào</option>';
+    } else {
+        dropdown.innerHTML = connectedAccounts.map(account => 
+            `<option value="${account.id}">${account.name}</option>`
+        ).join('');
+    }
+}
+
+function renderAdsModalList() {
+    const modalList = document.getElementById('ads-modal-list');
+    if (!modalList) return;
+    
+    modalList.innerHTML = adAccounts.map(account => {
+        let actionHtml = '';
+        if (account.connected) {
+            actionHtml = `
+                <div>
+                    <span style="font-size: 13px; color: #10b981; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Đã kết nối
+                    </span>
+                </div>
+            `;
+        } else {
+            actionHtml = `
+                <label style="cursor: pointer;">
+                    <input type="checkbox" class="modal-ad-checkbox" value="${account.id}" style="width: 18px; height: 18px; cursor: pointer;">
+                </label>
+            `;
+        }
+        
+        return `
+            <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div class="page-logo-circle ${account.cls}" style="background: ${account.bg}; width: 40px; height: 40px; font-size: 14px; color: ${account.cls ? 'inherit' : 'white'};">${account.logo}</div>
+                    <div>
+                        <span class="page-name-text">${account.name}</span>
+                        <span class="page-id-text">ID: ${account.displayId}</span>
+                    </div>
+                </div>
+                ${actionHtml}
+            </div>
+        `;
+    }).join('');
 }
 
 function simulateAdsOAuth() {
     showToast("Đang tải dữ liệu...", "Đang lấy danh sách tài khoản quảng cáo.");
     setTimeout(() => {
+        renderAdsModalList();
         document.getElementById('ads-selection-modal-overlay').classList.remove('hidden');
     }, 800);
 }
@@ -954,38 +1046,38 @@ function closeAdsSelectionModal() {
 
 function confirmAdsConnection() {
     closeAdsSelectionModal();
+    
+    const checkboxes = document.querySelectorAll('.modal-ad-checkbox:checked');
+    if (checkboxes.length > 0) {
+        checkboxes.forEach(cb => {
+            const acc = adAccounts.find(a => a.id === cb.value);
+            if (acc) acc.connected = true;
+        });
+    } else {
+        return; // Nothing selected
+    }
+    
     showToast("Đang kết nối...", "Đang thiết lập ủy quyền tài khoản quảng cáo.");
     setTimeout(() => {
         adsConnected = true;
         renderAdsConnectionPanel();
-        
-        const emptyState = document.getElementById('ads-connected-empty');
-        if (emptyState) emptyState.classList.add('hidden');
-        const header = document.getElementById('ads-connected-header');
-        if (header) header.classList.remove('hidden');
-        
         showToast("Kết nối thành công!", "Đã liên kết tài khoản quảng cáo.");
     }, 1000);
 }
 
-function simulateAdsDisconnect(btnElement) {
+function simulateAdsDisconnect(id) {
     showConfirmModal(
         "Bạn có chắc chắn muốn hủy liên kết tài khoản quảng cáo này không?",
         () => {
-            if (btnElement) {
-                const badge = btnElement.closest('.connected-user-badge');
-                if (badge) {
-                    badge.remove();
-                }
-            }
+            const acc = adAccounts.find(a => a.id === id);
+            if (acc) acc.connected = false;
             
-            // Check if any accounts are left
-            const remainingAccounts = document.querySelectorAll('#ads-connected-state .connected-user-badge');
+            const remainingAccounts = adAccounts.filter(a => a.connected);
             if (remainingAccounts.length === 0) {
-                document.getElementById('ads-connected-header').classList.add('hidden');
-                document.getElementById('ads-connected-empty').classList.remove('hidden');
+                adsConnected = true; // Stay in connected view, but show empty state
             }
             
+            renderAdsConnectionPanel();
             showToast("Đã hủy kết nối", "Đã ngắt liên kết tài khoản quảng cáo.");
         }
     );
