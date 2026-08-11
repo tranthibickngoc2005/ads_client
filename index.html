@@ -452,41 +452,21 @@
 
                             <!-- State 2: Ads Connected -->
                             <div id="ads-connected-state" class="fb-connect-state-view" style="text-align: left;">
-                                <!-- Removed user badge from Ads tab -->
-                                <div class="connected-ads-section">
-                                    <h4
-                                        style="font-size: 14.5px; font-weight: 600; margin-bottom: 12px; color: var(--text-main);">
-                                        Các tài khoản quảng cáo đang liên kết:</h4>
-                                    <div class="connected-ads-list">
-                                        <div class="connected-ad-item"
-                                            style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 12px;">
-                                            <div class="page-brand-info">
-                                                <div class="page-logo-circle et-logo"
-                                                    style="background: linear-gradient(135deg, #1877f2, #0d6efd);">AD
-                                                </div>
-                                                <div>
-                                                    <span class="page-name-text">Ezi Solution Ads</span>
-                                                    <span class="page-id-text">Quyền hạn: Quản trị viên · ID:
-                                                        678912345678901</span>
-                                                </div>
-                                            </div>
-                                            <div style="display: flex; align-items: center; gap: 12px;">
-                                                <span class="connection-status-tag connected">Hoạt động</span>
-                                                <label class="switch-toggle"
-                                                    style="position: relative; display: inline-block; width: 44px; height: 24px;">
-                                                    <input type="checkbox" checked
-                                                        style="opacity: 0; width: 0; height: 0;"
-                                                        onchange="toggleAdsSync('Ezi Solution Ads', this)">
-                                                    <span class="toggle-slider"
-                                                        style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e0; transition: .4s; border-radius: 24px;"></span>
-                                                </label>
-                                            </div>
+                                <div class="connected-user-badge"
+                                    style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 24px;">
+                                    <div style="display: flex; align-items: center; gap: 14px;">
+                                        <div class="page-logo-circle et-logo"
+                                            style="background: linear-gradient(135deg, #1877f2, #0d6efd); width: 48px; height: 48px; font-size: 16px;">
+                                            AD
+                                        </div>
+                                        <div>
+                                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Ezi Solution Ads</h4>
+                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Trạng thái: Đã liên kết tài khoản quảng cáo</p>
+                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Quyền hạn: Quản trị viên · ID: 678912345678901</p>
                                         </div>
                                     </div>
-                                    <div style="margin-top: 16px; display: flex; justify-content: flex-end;">
-                                        <button class="btn btn-outline" style="font-size: 13px;"
-                                            onclick="simulateAddAdsAccount()">+ Thêm tài khoản quảng cáo</button>
-                                    </div>
+                                    <button class="btn btn-outline-danger" style="padding: 6px 12px; font-size: 12px;"
+                                        onclick="simulateAdsDisconnect()">Hủy kết nối</button>
                                 </div>
                             </div>
                         </div>
