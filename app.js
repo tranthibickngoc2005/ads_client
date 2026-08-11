@@ -1367,8 +1367,8 @@ function renderAdsTable() {
     const pageAds = ads.slice(startIdx, startIdx + ADS_PAGE_SIZE);
 
     tbody.innerHTML = pageAds.map(ad => `
-        <tr>
-            <td><input type="checkbox" class="ads-row-checkbox"></td>
+        <tr style="cursor: pointer;" onclick="viewCampaignDetails('${ad.id}')">
+            <td><input type="checkbox" class="ads-row-checkbox" onclick="event.stopPropagation()"></td>
             <td>
                 <div class="ads-table-campaign-name">${ad.name}</div>
                 <div class="ads-table-campaign-id">ID: ${ad.id}</div>
@@ -1389,6 +1389,40 @@ function renderAdsTable() {
     document.getElementById('ads-page-current').textContent = adsCurrentPage;
     document.getElementById('ads-page-prev').disabled = adsCurrentPage <= 1;
     document.getElementById('ads-page-next').disabled = adsCurrentPage >= totalPages;
+}
+
+function viewCampaignDetails(id) {
+    const ad = ads.find(a => a.id === id);
+    if (!ad) return;
+
+    document.getElementById('campaign-details-subtitle').textContent = `ID: ${ad.id}`;
+    document.getElementById('campaign-details-name').value = ad.name;
+    document.getElementById('campaign-details-objective').value = ad.objectiveLabel || ad.objective || '--';
+    document.getElementById('campaign-details-destination').value = ad.destination || '--';
+    document.getElementById('campaign-details-budget').value = ad.budget.toLocaleString('vi-VN');
+    document.getElementById('campaign-details-page').value = ad.pageName || '--';
+    
+    // Convert DD/MM/YYYY to YYYY-MM-DD for date inputs if necessary
+    const parseDate = (dStr) => {
+        if (!dStr) return '';
+        if (dStr.includes('-')) return dStr; // already YYYY-MM-DD
+        const parts = dStr.split('/');
+        if (parts.length === 3) return `${parts[2]}-${parts[1]}-${parts[0]}`;
+        return dStr;
+    };
+    
+    document.getElementById('campaign-details-start').value = parseDate(ad.startDate);
+    document.getElementById('campaign-details-end').value = parseDate(ad.endDate);
+    
+    document.getElementById('campaign-details-spend').textContent = ad.spend.toLocaleString('vi-VN') + ' đ';
+    document.getElementById('campaign-details-reach').textContent = ad.reach.toLocaleString('vi-VN');
+    document.getElementById('campaign-details-clicks').textContent = ad.clicks.toLocaleString('vi-VN');
+    
+    document.getElementById('campaign-details-modal').classList.remove('hidden');
+}
+
+function closeCampaignDetailsModal() {
+    document.getElementById('campaign-details-modal').classList.add('hidden');
 }
 
 function formatAdDate(dateStr) {

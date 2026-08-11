@@ -1344,6 +1344,80 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
         </div>
         <button class="toast-close" onclick="closeToast()">&times;</button>
     </div>
+    <!-- Campaign Details Modal -->
+    <div class="confirm-modal-overlay hidden" id="campaign-details-modal">
+        <div class="confirm-modal-box" style="max-width: 600px;">
+            <div class="comments-modal-header">
+                <div>
+                    <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main);">Chi tiết chiến dịch</h3>
+                    <p class="comments-modal-subtitle" id="campaign-details-subtitle">ID: --</p>
+                </div>
+                <button class="toast-close" onclick="closeCampaignDetailsModal()">&times;</button>
+            </div>
+            
+            <div style="margin: 16px 0;">
+                <div class="form-group">
+                    <label>Tên chiến dịch</label>
+                    <input type="text" id="campaign-details-name" readonly style="background-color: var(--surface-variant);">
+                </div>
+                
+                <div class="form-row" style="margin-top: 12px;">
+                    <div class="form-col">
+                        <label>Mục tiêu</label>
+                        <input type="text" id="campaign-details-objective" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                    <div class="form-col">
+                        <label>Đích đến</label>
+                        <input type="text" id="campaign-details-destination" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                </div>
+
+                <div class="form-row" style="margin-top: 12px;">
+                    <div class="form-col">
+                        <label>Ngân sách (VNĐ)</label>
+                        <input type="text" id="campaign-details-budget" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                    <div class="form-col">
+                        <label>Fanpage</label>
+                        <input type="text" id="campaign-details-page" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                </div>
+                
+                <div class="form-row" style="margin-top: 12px;">
+                    <div class="form-col">
+                        <label>Ngày bắt đầu</label>
+                        <input type="date" id="campaign-details-start" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                    <div class="form-col">
+                        <label>Ngày kết thúc</label>
+                        <input type="date" id="campaign-details-end" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                </div>
+                
+                <div style="margin-top: 16px; padding: 12px; background-color: var(--primary-light); border-radius: var(--radius-md);">
+                    <h4 style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">Hiệu suất hiện tại</h4>
+                    <div style="display: flex; gap: 24px;">
+                        <div>
+                            <div style="font-size: 11px; color: var(--text-muted);">Số tiền đã chi tiêu</div>
+                            <div style="font-weight: 700; color: var(--text-main);" id="campaign-details-spend">--</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 11px; color: var(--text-muted);">Số người tiếp cận</div>
+                            <div style="font-weight: 700; color: var(--text-main);" id="campaign-details-reach">--</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 11px; color: var(--text-muted);">Lượt click</div>
+                            <div style="font-weight: 700; color: var(--text-main);" id="campaign-details-clicks">--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="confirm-modal-actions">
+                <button class="btn btn-outline" onclick="closeCampaignDetailsModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Comments Management Modal -->
     <div class="confirm-modal-overlay hidden" id="comments-modal-overlay">
