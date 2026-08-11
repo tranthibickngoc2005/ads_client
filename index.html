@@ -452,32 +452,7 @@
 
                             <!-- State 2: Ads Connected -->
                             <div id="ads-connected-state" class="fb-connect-state-view" style="text-align: left;">
-                                <div class="connected-user-badge"
-                                    style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 24px;">
-                                    <div style="display: flex; align-items: center; gap: 14px;">
-                                        <div class="user-fb-avatar-holder"
-                                            style="position: relative; width: 48px; height: 48px; background-color: #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--text-main); font-size: 16px;">
-                                            MA
-                                            <div class="fb-small-badge"
-                                                style="position: absolute; bottom: -2px; right: -2px; width: 18px; height: 18px; background-color: #0d6efd; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #ffffff;">
-                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="#ffffff">
-                                                    <path
-                                                        d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM5 19V5h14l.002 14H5z" />
-                                                    <path
-                                                        d="m9.293 11.293-2.793 2.793 1.414 1.414 2.793-2.793 2.793 2.793 4.207-4.207-1.414-1.414-2.793 2.793z" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Minh
-                                                Anh Nguyễn</h4>
-                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Trạng
-                                                thái: Đã liên kết tài khoản quảng cáo</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-outline-danger" style="padding: 6px 12px; font-size: 12px;"
-                                        onclick="simulateAdsDisconnect()">Hủy kết nối</button>
-                                </div>
+                                <!-- Removed user badge from Ads tab -->
                                 <div class="connected-ads-section">
                                     <h4
                                         style="font-size: 14.5px; font-weight: 600; margin-bottom: 12px; color: var(--text-main);">
@@ -490,7 +465,7 @@
                                                     style="background: linear-gradient(135deg, #1877f2, #0d6efd);">AD
                                                 </div>
                                                 <div>
-                                                    <span class="page-name-text">Tài khoản quảng cáo Ezi</span>
+                                                    <span class="page-name-text">Ezi Solution Ads</span>
                                                     <span class="page-id-text">Quyền hạn: Quản trị viên · ID:
                                                         678912345678901</span>
                                                 </div>
@@ -501,7 +476,7 @@
                                                     style="position: relative; display: inline-block; width: 44px; height: 24px;">
                                                     <input type="checkbox" checked
                                                         style="opacity: 0; width: 0; height: 0;"
-                                                        onchange="toggleAdsSync('Tài khoản quảng cáo Ezi', this)">
+                                                        onchange="toggleAdsSync('Ezi Solution Ads', this)">
                                                     <span class="toggle-slider"
                                                         style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e0; transition: .4s; border-radius: 24px;"></span>
                                                 </label>
