@@ -792,6 +792,16 @@
                                 <!-- Thiết lập chiến dịch -->
                                 <div class="ad-form-section-label">Thiết lập chiến dịch</div>
 
+                                <!-- Chọn tài khoản quảng cáo -->
+                                <div class="form-group">
+                                    <label>Tài khoản quảng cáo <span class="required">*</span></label>
+                                    <select id="ad-account-select-create" required>
+                                        <option value="ezi">Ezi Solution Ads</option>
+                                        <option value="ta">Talent Acquisition Ads</option>
+                                        <option value="hr">HR Dept Campaigns</option>
+                                    </select>
+                                </div>
+
                                 <div class="form-group">
                                     <label>Fanpage chạy quảng cáo <span class="required">*</span></label>
                                     <select id="ad-fanpage" required onchange="updateAdPreview()">
@@ -1380,9 +1390,12 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                             <span class="page-id-text">ID: 678912345678901</span>
                         </div>
                     </div>
-                    <label style="cursor: pointer;">
-                        <input type="radio" name="ad_account_select" value="1" checked style="width: 18px; height: 18px; cursor: pointer;">
-                    </label>
+                    <div>
+                        <span style="font-size: 13px; color: #10b981; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Đã kết nối
+                        </span>
+                    </div>
                 </div>
 
                 <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
@@ -1394,7 +1407,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                         </div>
                     </div>
                     <label style="cursor: pointer;">
-                        <input type="radio" name="ad_account_select" value="2" style="width: 18px; height: 18px; cursor: pointer;">
+                        <input type="checkbox" name="ad_account_select_2" value="2" style="width: 18px; height: 18px; cursor: pointer;">
                     </label>
                 </div>
 
@@ -1407,7 +1420,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                         </div>
                     </div>
                     <label style="cursor: pointer;">
-                        <input type="radio" name="ad_account_select" value="3" style="width: 18px; height: 18px; cursor: pointer;">
+                        <input type="checkbox" name="ad_account_select_3" value="3" style="width: 18px; height: 18px; cursor: pointer;">
                     </label>
                 </div>
             </div>
