@@ -2685,10 +2685,10 @@ body {
     background-color: #f2f2f2;
 }
 
-/* Accent navy button (Tạo chiến dịch) */
+/* Accent navy button (Tạo chiến dịch) - Updated to Primary color */
 .btn-accent-navy {
-    background-color: #1a2a40;
-    border: 1px solid #1a2a40;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
     color: #ffffff;
     display: inline-flex;
     align-items: center;
@@ -2697,8 +2697,8 @@ body {
 }
 
 .btn-accent-navy:hover {
-    background-color: #0d1624;
-    border-color: #0d1624;
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
 }
 
 .btn-icon-square {
