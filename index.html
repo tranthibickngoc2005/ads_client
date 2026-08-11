@@ -452,11 +452,17 @@
 
                             <!-- State 2: Ads Connected -->
                             <div id="ads-connected-state" class="fb-connect-state-view" style="text-align: left;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <div id="ads-connected-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                                     <h4 style="font-size: 15px; font-weight: 600; color: var(--text-main); margin: 0;">Các tài khoản đã kết nối:</h4>
                                     <button class="btn btn-outline" style="font-size: 13px; padding: 6px 12px;" onclick="simulateAdsOAuth()">
                                         + Kết nối tài khoản quảng cáo
                                     </button>
+                                </div>
+
+                                <div id="ads-connected-empty" class="empty-state-card hidden" style="margin-top: 20px;">
+                                    <h3>Chưa có tài khoản nào</h3>
+                                    <p>Vui lòng kết nối tài khoản quảng cáo để thiết lập chiến dịch.</p>
+                                    <button class="btn btn-primary" style="margin-top: 16px;" onclick="simulateAdsOAuth()">Kết nối tài khoản quảng cáo</button>
                                 </div>
 
                                 <div class="connected-user-badge"

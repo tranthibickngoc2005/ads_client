@@ -958,6 +958,12 @@ function confirmAdsConnection() {
     setTimeout(() => {
         adsConnected = true;
         renderAdsConnectionPanel();
+        
+        const emptyState = document.getElementById('ads-connected-empty');
+        if (emptyState) emptyState.classList.add('hidden');
+        const header = document.getElementById('ads-connected-header');
+        if (header) header.classList.remove('hidden');
+        
         showToast("Kết nối thành công!", "Đã liên kết tài khoản quảng cáo.");
     }, 1000);
 }
@@ -976,8 +982,8 @@ function simulateAdsDisconnect(btnElement) {
             // Check if any accounts are left
             const remainingAccounts = document.querySelectorAll('#ads-connected-state .connected-user-badge');
             if (remainingAccounts.length === 0) {
-                adsConnected = false;
-                renderAdsConnectionPanel();
+                document.getElementById('ads-connected-header').classList.add('hidden');
+                document.getElementById('ads-connected-empty').classList.remove('hidden');
             }
             
             showToast("Đã hủy kết nối", "Đã ngắt liên kết tài khoản quảng cáo.");
