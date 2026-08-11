@@ -1360,6 +1360,41 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
         </div>
     </div>
 
+    <!-- Ads Selection Modal -->
+    <div class="confirm-modal-overlay hidden" id="ads-selection-modal-overlay">
+        <div class="confirm-modal-box" style="max-width: 500px;">
+            <div class="comments-modal-header">
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--text-main);">Kết nối tài khoản quảng cáo</h3>
+                    <p class="comments-modal-subtitle">Chọn tài khoản quảng cáo bạn muốn kết nối</p>
+                </div>
+                <button class="toast-close" onclick="closeAdsSelectionModal()">&times;</button>
+            </div>
+
+            <div style="margin-top: 16px; margin-bottom: 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div class="page-logo-circle et-logo" style="background: linear-gradient(135deg, #1877f2, #0d6efd); width: 40px; height: 40px; font-size: 14px;">AD</div>
+                    <div>
+                        <span class="page-name-text">Ezi Solution Ads</span>
+                        <span class="page-id-text">ID: 678912345678901</span>
+                    </div>
+                </div>
+                <label style="cursor: pointer;">
+                    <input type="radio" name="ad_account_select" value="1" checked style="width: 18px; height: 18px; cursor: pointer;">
+                </label>
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+                <button class="btn btn-outline" style="font-size: 13px;" onclick="simulateAddAdsAccount()">+ Thêm tài khoản quảng cáo</button>
+            </div>
+
+            <div class="confirm-modal-actions">
+                <button class="btn btn-outline" onclick="closeAdsSelectionModal()">Hủy bỏ</button>
+                <button class="btn btn-primary" onclick="confirmAdsConnection()">Kết nối</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Custom Confirm Modal (thay thế window.confirm() để tránh bị trình duyệt/preview tự đóng quá nhanh) -->
     <div class="confirm-modal-overlay hidden" id="confirm-modal-overlay">
         <div class="confirm-modal-box">

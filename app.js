@@ -942,11 +942,23 @@ function renderAdsConnectionPanel() {
 }
 
 function simulateAdsOAuth() {
-    showToast("Đang chuyển hướng...", "Đang mở trang xác thực và ủy quyền tài khoản Quảng cáo.");
+    showToast("Đang tải dữ liệu...", "Đang lấy danh sách tài khoản quảng cáo.");
+    setTimeout(() => {
+        document.getElementById('ads-selection-modal-overlay').classList.remove('hidden');
+    }, 800);
+}
+
+function closeAdsSelectionModal() {
+    document.getElementById('ads-selection-modal-overlay').classList.add('hidden');
+}
+
+function confirmAdsConnection() {
+    closeAdsSelectionModal();
+    showToast("Đang kết nối...", "Đang thiết lập ủy quyền tài khoản quảng cáo.");
     setTimeout(() => {
         adsConnected = true;
         renderAdsConnectionPanel();
-        showToast("Kết nối thành công!", "Đã liên kết tài khoản Quảng cáo.");
+        showToast("Kết nối thành công!", "Đã liên kết tài khoản quảng cáo.");
     }, 1000);
 }
 
