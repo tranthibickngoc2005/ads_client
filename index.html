@@ -1429,56 +1429,89 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                 <button class="toast-close" onclick="closeCampaignDetailsModal()">&times;</button>
             </div>
 
-            <div style="margin: 16px 0;">
-                <div class="form-group">
-                    <label>Tên chiến dịch</label>
-                    <input type="text" id="campaign-details-name" readonly
-                        style="background-color: var(--surface-variant);">
+            <div style="margin: 16px 0; max-height: 450px; overflow-y: auto; padding-right: 8px;">
+                <!-- Nhóm 1: Thông tin chung -->
+                <h4 style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; margin-top: 0; padding-bottom: 4px; border-bottom: 1px solid var(--border);">Thiết lập chung</h4>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label>Tên chiến dịch</label>
+                        <input type="text" id="campaign-details-name" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                    <div class="form-col">
+                        <label>Tài khoản quảng cáo</label>
+                        <input type="text" id="campaign-details-ad-account" readonly style="background-color: var(--surface-variant);">
+                    </div>
                 </div>
-
+                
                 <div class="form-row" style="margin-top: 12px;">
                     <div class="form-col">
                         <label>Mục tiêu</label>
-                        <input type="text" id="campaign-details-objective" readonly
-                            style="background-color: var(--surface-variant);">
+                        <input type="text" id="campaign-details-objective" readonly style="background-color: var(--surface-variant);">
                     </div>
                     <div class="form-col">
                         <label>Đích đến</label>
-                        <input type="text" id="campaign-details-destination" readonly
-                            style="background-color: var(--surface-variant);">
+                        <input type="text" id="campaign-details-destination" readonly style="background-color: var(--surface-variant);">
                     </div>
                 </div>
 
                 <div class="form-row" style="margin-top: 12px;">
                     <div class="form-col">
                         <label>Ngân sách (VNĐ)</label>
-                        <input type="text" id="campaign-details-budget" readonly
-                            style="background-color: var(--surface-variant);">
+                        <input type="text" id="campaign-details-budget" readonly style="background-color: var(--surface-variant);">
                     </div>
                     <div class="form-col">
-                        <label>Fanpage</label>
-                        <input type="text" id="campaign-details-page" readonly
-                            style="background-color: var(--surface-variant);">
+                        <label>Loại ngân sách</label>
+                        <input type="text" id="campaign-details-budget-type" readonly style="background-color: var(--surface-variant);">
                     </div>
                 </div>
 
                 <div class="form-row" style="margin-top: 12px;">
                     <div class="form-col">
-                        <label>Ngày bắt đầu</label>
-                        <input type="date" id="campaign-details-start" readonly
-                            style="background-color: var(--surface-variant);">
+                        <label>Fanpage</label>
+                        <input type="text" id="campaign-details-page" readonly style="background-color: var(--surface-variant);">
                     </div>
                     <div class="form-col">
-                        <label>Ngày kết thúc</label>
-                        <input type="date" id="campaign-details-end" readonly
-                            style="background-color: var(--surface-variant);">
+                        <label>Thời gian chạy</label>
+                        <input type="text" id="campaign-details-time" readonly style="background-color: var(--surface-variant);">
                     </div>
                 </div>
 
-                <div
-                    style="margin-top: 16px; padding: 12px; background-color: var(--primary-light); border-radius: var(--radius-md);">
-                    <h4 style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">Hiệu suất
-                        hiện tại</h4>
+                <!-- Nhóm 2: Đối tượng & Vị trí -->
+                <h4 style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; margin-top: 16px; padding-bottom: 4px; border-bottom: 1px solid var(--border);">Đối tượng mục tiêu & Vị trí</h4>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label>Độ tuổi</label>
+                        <input type="text" id="campaign-details-age" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                    <div class="form-col">
+                        <label>Giới tính</label>
+                        <input type="text" id="campaign-details-gender" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                </div>
+                <div class="form-row" style="margin-top: 12px;">
+                    <div class="form-col">
+                        <label>Vị trí địa lý</label>
+                        <input type="text" id="campaign-details-location" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                    <div class="form-col">
+                        <label>Phạm vi bán kính</label>
+                        <input type="text" id="campaign-details-radius" readonly style="background-color: var(--surface-variant);">
+                    </div>
+                </div>
+
+                <!-- Nhóm 3: Nội dung quảng cáo -->
+                <h4 style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; margin-top: 16px; padding-bottom: 4px; border-bottom: 1px solid var(--border);">Nội dung quảng cáo</h4>
+                <div class="form-group">
+                    <label>Tiêu đề (Headline)</label>
+                    <input type="text" id="campaign-details-headline" readonly style="background-color: var(--surface-variant);">
+                </div>
+                <div class="form-group" style="margin-top: 12px;">
+                    <label>Văn bản chính (Primary Text)</label>
+                    <textarea id="campaign-details-text" readonly style="background-color: var(--surface-variant); height: 80px; resize: none; font-family: inherit; line-height: 1.4; padding: 10px;"></textarea>
+                </div>
+                
+                <div style="margin-top: 16px; padding: 12px; background-color: var(--primary-light); border-radius: var(--radius-md);">
+                    <h4 style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">Hiệu suất hiện tại</h4>
                     <div style="display: flex; gap: 24px;">
                         <div>
                             <div style="font-size: 11px; color: var(--text-muted);">Số tiền đã chi tiêu</div>
@@ -1490,8 +1523,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                         </div>
                         <div>
                             <div style="font-size: 11px; color: var(--text-muted);">Lượt click</div>
-                            <div style="font-weight: 700; color: var(--text-main);" id="campaign-details-clicks">--
-                            </div>
+                            <div style="font-weight: 700; color: var(--text-main);" id="campaign-details-clicks">--</div>
                         </div>
                     </div>
                 </div>

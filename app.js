@@ -1402,6 +1402,9 @@ function viewCampaignDetails(id) {
     document.getElementById('campaign-details-budget').value = ad.budget.toLocaleString('vi-VN');
     document.getElementById('campaign-details-page').value = ad.pageName || '--';
     
+    document.getElementById('campaign-details-ad-account').value = ad.adAccount || 'Ezi Solution Ads';
+    document.getElementById('campaign-details-budget-type').value = ad.budgetType === 'lifetime' ? 'Ngân sách trọn đời' : 'Ngân sách hàng ngày';
+    
     // Convert DD/MM/YYYY to YYYY-MM-DD for date inputs if necessary
     const parseDate = (dStr) => {
         if (!dStr) return '';
@@ -1411,8 +1414,25 @@ function viewCampaignDetails(id) {
         return dStr;
     };
     
-    document.getElementById('campaign-details-start').value = parseDate(ad.startDate);
-    document.getElementById('campaign-details-end').value = parseDate(ad.endDate);
+    const startDate = parseDate(ad.startDate);
+    const endDate = parseDate(ad.endDate);
+    
+    const formatDateObj = (dStr) => {
+        if (!dStr) return '--';
+        const parts = dStr.split('-');
+        if (parts.length === 3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
+        return dStr;
+    };
+    
+    document.getElementById('campaign-details-time').value = `${formatDateObj(startDate)} - ${formatDateObj(endDate)}`;
+    
+    document.getElementById('campaign-details-age').value = ad.ageRange || '18 - 45';
+    document.getElementById('campaign-details-gender').value = ad.gender || 'Tất cả';
+    document.getElementById('campaign-details-location').value = ad.location || 'Hà Nội, TP. Hồ Chí Minh';
+    document.getElementById('campaign-details-radius').value = ad.radius ? `${ad.radius} km` : '40 km';
+    
+    document.getElementById('campaign-details-headline').value = ad.headline || 'Tuyển dụng nhân sự tài năng - Thu nhập hấp dẫn';
+    document.getElementById('campaign-details-text').value = ad.primaryText || 'Tham gia cùng Ezi Talent để phát triển sự nghiệp của bạn!\nMôi trường làm việc chuyên nghiệp, cơ hội thăng tiến cao.\nỨng tuyển ngay hôm nay!';
     
     document.getElementById('campaign-details-spend').textContent = ad.spend.toLocaleString('vi-VN') + ' đ';
     document.getElementById('campaign-details-reach').textContent = ad.reach.toLocaleString('vi-VN');
