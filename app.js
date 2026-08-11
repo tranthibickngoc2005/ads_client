@@ -1299,7 +1299,7 @@ function resetAdForm() {
     const form = document.getElementById('fb-create-ad-form');
     if (form) form.reset();
     document.getElementById('ad-budget').value = 150000;
-    document.getElementById('ad-video-filename').textContent = "Chọn video";
+    document.getElementById('ad-video-filename').textContent = "Chọn video hoặc hình ảnh";
     updateAdPreview();
 }
 

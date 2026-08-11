@@ -238,18 +238,7 @@
                         </svg>
                         <span class="notification-badge"></span>
                     </div>
-                    <!-- User Profile Dropdown -->
-                    <div class="user-profile">
-                        <div class="profile-avatar">MA</div>
-                        <div class="profile-details">
-                            <span class="profile-name">Minh Anh Nguyễn</span>
-                            <span class="profile-role">Chuyên viên tuyển dụng</span>
-                        </div>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 9l6 6 6-6" />
-                        </svg>
-                    </div>
+
                 </div>
             </header>
 
@@ -853,6 +842,14 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Mục đích chiến dịch <span class="required">*</span></label>
+                                    <select id="ad-objective" required onchange="updateAdPreview()">
+                                        <option value="traffic">Lưu lượng truy cập</option>
+                                        <option value="engagement" selected>Lượt tương tác</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
                                     <label>Đích đến</label>
                                     <div class="toggle-btn-group" id="ad-destination-group">
                                         <button type="button" class="toggle-btn-option" data-value="website"
@@ -865,16 +862,6 @@
                                         </button>
                                     </div>
                                     <input type="hidden" id="ad-destination" value="message">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Mục đích chiến dịch <span class="required">*</span></label>
-                                    <select id="ad-objective" required onchange="updateAdPreview()">
-                                        <option value="reach">Tăng lượt tiếp cận bài viết</option>
-                                        <option value="engagement" selected>Engagement Video</option>
-                                        <option value="messages">Thu hút ứng viên nhắn tin qua Messenger</option>
-                                        <option value="traffic">Tăng lượt truy cập trang tuyển dụng</option>
-                                    </select>
                                 </div>
 
                                 <!-- Đối tượng mục tiêu -->
@@ -961,8 +948,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                             <circle cx="8.5" cy="8.5" r="1.5"></circle>
                                             <polyline points="21 15 16 10 5 21"></polyline>
                                         </svg>
-                                        <div class="video-dropzone-title" id="ad-video-filename">Chọn hình ảnh hoặc
-                                            video</div>
+                                        <div class="video-dropzone-title" id="ad-video-filename">Chọn video hoặc hình ảnh</div>
                                         <div class="video-dropzone-hint">PNG, JPG, MP4, MOV tối đa 1GB · Tỷ lệ 1:1, 16:9
                                             hoặc 9:16
                                         </div>
@@ -1043,7 +1029,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                         </path>
                                     </svg>
                                 </button>
-                                <button class="btn btn-accent-orange" onclick="switchTab('fb-ads-create')">
+                                <button class="btn btn-accent-navy" onclick="switchTab('fb-ads-create')">
                                     <span style="font-size:16px; line-height:1;">+</span> Tạo chiến dịch
                                 </button>
                             </div>
@@ -1221,18 +1207,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                         </p>
                                     </div>
 
-                                    <!-- Meta Reviewer & Deletion Actions -->
-                                    <div
-                                        style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border);">
-                                        <button class="btn btn-outline" style="font-size: 13px; font-weight: 600;"
-                                            onclick="showDataDeletionInstructions()">
-                                            📄 Data deletion instructions
-                                        </button>
-                                        <button class="btn btn-outline" style="font-size: 13px; font-weight: 600;"
-                                            onclick="showReviewerLoginModal()">
-                                            🔑 Reviewer login
-                                        </button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>

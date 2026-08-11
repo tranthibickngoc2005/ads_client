@@ -2684,10 +2684,10 @@ body {
     background-color: #f2f2f2;
 }
 
-/* Accent orange button (Tạo chiến dịch) */
-.btn-accent-orange {
-    background-color: #f0703e;
-    border: 1px solid #f0703e;
+/* Accent navy button (Tạo chiến dịch) */
+.btn-accent-navy {
+    background-color: #1a2a40;
+    border: 1px solid #1a2a40;
     color: #ffffff;
     display: inline-flex;
     align-items: center;
@@ -2695,9 +2695,9 @@ body {
     font-weight: 600;
 }
 
-.btn-accent-orange:hover {
-    background-color: #db5f30;
-    border-color: #db5f30;
+.btn-accent-navy:hover {
+    background-color: #0d1624;
+    border-color: #0d1624;
 }
 
 .btn-icon-square {
