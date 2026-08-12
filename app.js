@@ -1664,8 +1664,19 @@ window.onload = function () {
 
 function toggleCampaignStatus(id, checkbox) {
     const ad = ads.find(a => a.id === id);
-    if (ad) {
-        ad.status = checkbox.checked ? 'running' : 'paused';
-        showToast("Cập nhật trạng thái", `Đã ${checkbox.checked ? 'bật' : 'tắt'} chiến dịch: ${ad.name}`);
-    }
+    if (!ad) return;
+
+    const isTurningOn = checkbox.checked;
+    
+    // Revert visual state immediately
+    checkbox.checked = !isTurningOn;
+
+    showConfirmModal(
+        `Bạn có chắc chắn muốn ${isTurningOn ? 'bật' : 'tắt'} chiến dịch "${ad.name}"?`,
+        () => {
+            checkbox.checked = isTurningOn;
+            ad.status = isTurningOn ? 'running' : 'paused';
+            showToast("Cập nhật trạng thái", `Đã ${isTurningOn ? 'bật' : 'tắt'} chiến dịch: ${ad.name}`);
+        }
+    );
 }
