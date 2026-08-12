@@ -294,8 +294,7 @@ function renderPosts() {
                     <button class="btn btn-outline" onclick="openCommentsModal('${post.id}')">
                         💬 Manage Comments (${(comments[post.id] || []).length})
                     </button>
-                    <button class="btn btn-outline" onclick="editPost('${post.id}')">Edit</button>
-                    <button class="btn btn-outline-danger" onclick="deletePost('${post.id}')">Delete</button>
+                    <button class="btn btn-outline" onclick="editPost('${post.id}')">View</button>
                 </div>
             </div>
         `).join('');
@@ -422,10 +421,10 @@ function editPost(id) {
     document.getElementById('post-content').value = post.content;
     document.getElementById('post-image-url').value = post.imagePreset;
 
-    // UI update for edit mode
-    document.getElementById('create-post-title').textContent = "Edit Post";
-    document.getElementById('create-post-subtitle').textContent = "Update the content of the post on Fanpage";
-    document.getElementById('submit-post-btn').textContent = "Update Post";
+    // UI update for view mode
+    document.getElementById('create-post-title').textContent = "Xem Bài Viết";
+    document.getElementById('create-post-subtitle').textContent = "Xem nội dung của bài viết trên Fanpage";
+    document.getElementById('submit-post-btn').style.display = 'none';
 
     if (post.imagePreset) {
         showSelectedImage(post.imagePreset, post.imagePresetName || 'tệp_đã_tải_lên.png');
@@ -450,6 +449,7 @@ function resetPostForm() {
     document.getElementById('create-post-title').textContent = "Create New Post";
     document.getElementById('create-post-subtitle').textContent = "Draft a post and publish it to Facebook Fanpage";
     document.getElementById('submit-post-btn').textContent = "Create Post";
+    document.getElementById('submit-post-btn').style.display = 'inline-block';
 
     removeSelectedImage(null);
 }
@@ -1434,7 +1434,10 @@ function resetAdForm() {
     const subtitleEl = document.getElementById('create-ad-subtitle');
     if(subtitleEl) subtitleEl.textContent = "Run ads for recruitment posts to reach more potential candidates";
     const btnEl = document.getElementById('submit-ad-btn');
-    if(btnEl) btnEl.textContent = "🚀 Publish Ad";
+    if(btnEl) {
+        btnEl.textContent = "🚀 Publish Ad";
+        btnEl.style.display = 'inline-block';
+    }
 
     updateAdPreview();
 }
@@ -1477,8 +1480,7 @@ function renderAdsTable() {
             <td>${ad.ctr.toFixed(2)}%</td>
             <td>${ad.impressions.toLocaleString('vi-VN')}</td>
             <td>
-                <button class="btn btn-outline" style="padding: 4px 8px; font-size: 12px; margin-right: 4px;" onclick="editAd('${ad.id}')">Sửa</button>
-                <button class="btn btn-outline-danger" style="padding: 4px 8px; font-size: 12px;" onclick="deleteAd('${ad.id}')">Delete</button>
+                <button class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;" onclick="editAd('${ad.id}')">Xem</button>
             </td>
         </tr>
     `).join('');
@@ -1519,11 +1521,11 @@ function editAd(id) {
 
     // Update UI headers
     const titleEl = document.getElementById('create-ad-title');
-    if(titleEl) titleEl.textContent = "Edit quảng cáo";
+    if(titleEl) titleEl.textContent = "Xem quảng cáo";
     const subtitleEl = document.getElementById('create-ad-subtitle');
-    if(subtitleEl) subtitleEl.textContent = "Cập nhật lại thông tin chiến dịch quảng cáo";
+    if(subtitleEl) subtitleEl.textContent = "Xem thông tin chiến dịch quảng cáo";
     const btnEl = document.getElementById('submit-ad-btn');
-    if(btnEl) btnEl.textContent = "Lưu thay đổi";
+    if(btnEl) btnEl.style.display = 'none';
 
     updateAdPreview();
     switchTab('fb-ads-create');
