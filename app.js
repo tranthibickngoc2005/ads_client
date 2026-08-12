@@ -1672,11 +1672,11 @@ function toggleCampaignStatus(id, checkbox) {
     checkbox.checked = !isTurningOn;
 
     showConfirmModal(
-        `Bạn có chắc chắn muốn ${isTurningOn ? 'bật' : 'tắt'} chiến dịch "${ad.name}"?`,
+        `Are you sure you want to turn ${isTurningOn ? 'on' : 'off'} the campaign "${ad.name}"?`,
         () => {
             checkbox.checked = isTurningOn;
             ad.status = isTurningOn ? 'running' : 'paused';
-            showToast("Cập nhật trạng thái", `Đã ${isTurningOn ? 'bật' : 'tắt'} chiến dịch: ${ad.name}`);
+            showToast("Status Updated", `Campaign "${ad.name}" has been turned ${isTurningOn ? 'on' : 'off'}.`);
         }
     );
 }
