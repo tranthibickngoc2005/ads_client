@@ -446,8 +446,8 @@ function editPost(id) {
     document.getElementById('post-image-url').value = post.imagePreset;
 
     // UI update for view mode
-    document.getElementById('create-post-title').textContent = "Xem Bài Viết";
-    document.getElementById('create-post-subtitle').textContent = "Xem nội dung của bài viết trên Fanpage";
+    document.getElementById('create-post-title').textContent = "View Post";
+    document.getElementById('create-post-subtitle').textContent = "View the content of the post on Fanpage";
     document.getElementById('submit-post-btn').style.display = 'none';
     setFormReadOnly('fb-create-post-form', true);
 
@@ -1513,7 +1513,7 @@ function renderAdsTable() {
             <td>${ad.ctr.toFixed(2)}%</td>
             <td>${ad.impressions.toLocaleString('vi-VN')}</td>
             <td>
-                <button class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;" onclick="editAd('${ad.id}')">Xem</button>
+                <button class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;" onclick="editAd('${ad.id}')">View</button>
             </td>
         </tr>
     `).join('');
@@ -1554,9 +1554,9 @@ function editAd(id) {
 
     // Update UI headers
     const titleEl = document.getElementById('create-ad-title');
-    if(titleEl) titleEl.textContent = "Xem quảng cáo";
+    if(titleEl) titleEl.textContent = "View Facebook Ad";
     const subtitleEl = document.getElementById('create-ad-subtitle');
-    if(subtitleEl) subtitleEl.textContent = "Xem thông tin chiến dịch quảng cáo";
+    if(subtitleEl) subtitleEl.textContent = "View campaign information";
     const btnEl = document.getElementById('submit-ad-btn');
     if(btnEl) btnEl.style.display = 'none';
     setFormReadOnly('fb-create-ad-form', true);
