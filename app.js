@@ -1495,6 +1495,12 @@ function renderAdsTable() {
         <tr>
             <td><input type="checkbox" class="ads-row-checkbox" onclick="event.stopPropagation()"></td>
             <td>
+                <label class="switch-toggle" onclick="event.stopPropagation()">
+                    <input type="checkbox" ${ad.status === 'running' ? 'checked' : ''} onchange="toggleCampaignStatus('${ad.id}', this)">
+                    <span class="toggle-slider"></span>
+                </label>
+            </td>
+            <td>
                 <div class="ads-table-campaign-name">${ad.name}</div>
                 <div class="ads-table-campaign-id">ID: ${ad.id}</div>
             </td>
@@ -1654,3 +1660,12 @@ window.onload = function () {
     // Default open Post Management page
     switchTab('fb-posts');
 };
+
+
+function toggleCampaignStatus(id, checkbox) {
+    const ad = ads.find(a => a.id === id);
+    if (ad) {
+        ad.status = checkbox.checked ? 'running' : 'paused';
+        showToast("Cập nhật trạng thái", `Đã ${checkbox.checked ? 'bật' : 'tắt'} chiến dịch: ${ad.name}`);
+    }
+}
