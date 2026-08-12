@@ -33,7 +33,7 @@
             <div class="status-badge-container">
                 <span class="status-badge">
                     <span class="badge-dot"></span>
-                    Đã xác thực
+                    Authenticated
                 </span>
             </div>
 
@@ -41,7 +41,7 @@
             <nav class="sidebar-menu">
                 <div class="menu-label">MENU</div>
                 <ul class="menu-list">
-                    <!-- Quản lý tài nguyên -->
+                    <!-- Resource Management -->
                     <li class="menu-item" id="menu-resources">
                         <a href="javascript:void(0)" onclick="toggleResourcesDropdown()">
                             <span class="item-icon brand-facebook-color">
@@ -50,7 +50,7 @@
                                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                 </svg>
                             </span>
-                            <span class="item-text">Quản lý tài nguyên</span>
+                            <span class="item-text">Resource Management</span>
                             <span class="dropdown-chevron">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -70,7 +70,7 @@
                                             <line x1="8" y1="12" x2="16" y2="12"></line>
                                         </svg>
                                     </span>
-                                    <span class="item-text">Tài khoản Facebook</span>
+                                    <span class="item-text">Facebook Account</span>
                                 </a>
                             </li>
                             <li class="submenu-item" id="menu-ads-connect" onclick="switchTab('ads-connect')">
@@ -84,13 +84,13 @@
                                             <line x1="8" y1="12" x2="16" y2="12"></line>
                                         </svg>
                                     </span>
-                                    <span class="item-text">Tài khoản quảng cáo</span>
+                                    <span class="item-text">Ads Account</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
 
-                    <!-- Quản lý bài viết -->
+                    <!-- Post Management -->
                     <li class="menu-item active" id="menu-fb-posts" onclick="switchTab('fb-posts')">
                         <a href="javascript:void(0)">
                             <span class="item-icon">
@@ -103,11 +103,11 @@
                                     <polyline points="10 9 9 9 8 9"></polyline>
                                 </svg>
                             </span>
-                            <span class="item-text">Quản lý bài viết</span>
+                            <span class="item-text">Post Management</span>
                         </a>
                     </li>
 
-                    <!-- Tạo bài viết -->
+                    <!-- Create Post -->
                     <li class="menu-item" id="menu-fb-create" onclick="switchTab('fb-create')">
                         <a href="javascript:void(0)">
                             <span class="item-icon">
@@ -118,7 +118,7 @@
                                     <line x1="8" y1="12" x2="16" y2="12"></line>
                                 </svg>
                             </span>
-                            <span class="item-text">Tạo bài viết</span>
+                            <span class="item-text">Create Post</span>
                         </a>
                     </li>
 
@@ -136,7 +136,7 @@
                         </a>
                     </li>
 
-                    <!-- Quản lý quảng cáo Facebook -->
+                    <!-- Facebook Ads Management -->
                     <li class="menu-item" id="menu-fb-ads">
                         <a href="javascript:void(0)" onclick="toggleAdsDropdown()">
                             <span class="item-icon">
@@ -145,7 +145,7 @@
                                     <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
                                 </svg>
                             </span>
-                            <span class="item-text">Quản lý quảng cáo Facebook</span>
+                            <span class="item-text">Facebook Ads Management</span>
                             <span class="dropdown-chevron">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -154,7 +154,8 @@
                             </span>
                         </a>
                         <ul class="submenu">
-                            <li class="submenu-item" id="menu-fb-ads-create" onclick="switchTab('fb-ads-create')">
+                            <li class="submenu-item" id="menu-fb-ads-create"
+                                onclick="resetAdForm(); switchTab('fb-ads-create')">
                                 <a href="javascript:void(0)">
                                     <span class="submenu-icon">
                                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -165,7 +166,7 @@
                                             <line x1="8" y1="12" x2="16" y2="12"></line>
                                         </svg>
                                     </span>
-                                    <span class="item-text">Tạo quảng cáo</span>
+                                    <span class="item-text">Create Ad</span>
                                 </a>
                             </li>
                             <li class="submenu-item" id="menu-fb-ads-list" onclick="switchTab('fb-ads-list')">
@@ -182,7 +183,7 @@
                                             <line x1="3" y1="18" x2="3.01" y2="18"></line>
                                         </svg>
                                     </span>
-                                    <span class="item-text">Danh sách quảng cáo</span>
+                                    <span class="item-text">Ads List</span>
                                 </a>
                             </li>
                         </ul>
@@ -200,7 +201,7 @@
                                     </path>
                                 </svg>
                             </span>
-                            <span class="item-text">Cài đặt</span>
+                            <span class="item-text">Settings</span>
                             <span class="dropdown-chevron">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -219,7 +220,7 @@
                                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                         </svg>
                                     </span>
-                                    <span class="item-text">Chính sách</span>
+                                    <span class="item-text">Policies</span>
                                 </a>
                             </li>
                             <li class="submenu-item" id="menu-settings-personal"
@@ -233,7 +234,7 @@
                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>
                                     </span>
-                                    <span class="item-text">Dữ liệu cá nhân</span>
+                                    <span class="item-text">Personal Data</span>
                                 </a>
                             </li>
                         </ul>
@@ -249,7 +250,7 @@
             <!-- Top Header -->
             <header class="top-header">
                 <div class="header-breadcrumb">
-                    <span id="breadcrumb-title">Quản lý bài viết Facebook Fanpage</span>
+                    <span id="breadcrumb-title">Post Management Facebook Fanpage</span>
                 </div>
                 <div class="header-actions">
                     <!-- Notification Icon -->
@@ -271,7 +272,7 @@
                 <!-- 3.5. KẾT NỐI TÀI KHOẢN SECTION (FACEBOOK) -->
                 <section id="section-fb-connect" class="tab-content hidden">
                     <div class="content-header">
-                        <h1>Tài khoản Facebook</h1>
+                        <h1>Facebook Account</h1>
                         <p class="subtitle">Liên kết tài khoản cá nhân và tích hợp các kênh Fanpage để đồng bộ tuyển
                             dụng</p>
                     </div>
@@ -304,7 +305,7 @@
                                         <path
                                             d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                                     </svg>
-                                    Kết nối tài khoản Facebook
+                                    Connect Facebook Account
                                 </button>
                             </div>
 
@@ -332,13 +333,13 @@
                                         </div>
                                     </div>
                                     <button class="btn btn-outline-danger" style="padding: 6px 12px; font-size: 12px;"
-                                        onclick="simulateFacebookDisconnect()">Hủy kết nối</button>
+                                        onclick="simulateFacebookDisconnect()">Disconnect</button>
                                 </div>
 
                                 <div class="connected-pages-section">
                                     <h4
                                         style="font-size: 14.5px; font-weight: 600; margin-bottom: 12px; color: var(--text-main);">
-                                        Các trang Fanpage đang đồng bộ dữ liệu:</h4>
+                                        Fanpages currently syncing data:</h4>
                                     <div class="connected-pages-list">
                                         <div class="connected-page-item"
                                             style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 12px;">
@@ -346,12 +347,12 @@
                                                 <div class="page-logo-circle et-logo">ET</div>
                                                 <div>
                                                     <span class="page-name-text">Ezi Talent (Fanpage chính)</span>
-                                                    <span class="page-id-text">Quyền hạn: Admin · ID:
+                                                    <span class="page-id-text">Role: Admin · ID:
                                                         104859385938294</span>
                                                 </div>
                                             </div>
                                             <div style="display: flex; align-items: center; gap: 12px;">
-                                                <span class="connection-status-tag connected">Hoạt động</span>
+                                                <span class="connection-status-tag connected">Active</span>
                                                 <label class="switch-toggle"
                                                     style="position: relative; display: inline-block; width: 44px; height: 24px;">
                                                     <input type="checkbox" checked
@@ -368,12 +369,12 @@
                                                 <div class="page-logo-circle ea-logo">EA</div>
                                                 <div>
                                                     <span class="page-name-text">Ezi Academy (Cộng đồng)</span>
-                                                    <span class="page-id-text">Quyền hạn: Admin · ID:
+                                                    <span class="page-id-text">Role: Admin · ID:
                                                         294850385938592</span>
                                                 </div>
                                             </div>
                                             <div style="display: flex; align-items: center; gap: 12px;">
-                                                <span class="connection-status-tag connected">Hoạt động</span>
+                                                <span class="connection-status-tag connected">Active</span>
                                                 <label class="switch-toggle"
                                                     style="position: relative; display: inline-block; width: 44px; height: 24px;">
                                                     <input type="checkbox" checked
@@ -387,7 +388,7 @@
                                     </div>
                                     <div style="margin-top: 16px; display: flex; justify-content: flex-end;">
                                         <button class="btn btn-outline" style="font-size: 13px;"
-                                            onclick="simulateAddFanpage()">+ Thêm Fanpage liên kết</button>
+                                            onclick="simulateAddFanpage()">+ Add Linked Fanpage</button>
                                     </div>
                                 </div>
                             </div>
@@ -398,8 +399,8 @@
                 <!-- 3.6. KẾT NỐI TÀI KHOẢN SECTION (ADS) -->
                 <section id="section-ads-connect" class="tab-content hidden">
                     <div class="content-header">
-                        <h1>Tài khoản quảng cáo</h1>
-                        <p class="subtitle">Kết nối tài khoản quảng cáo để quản lý chiến dịch, ngân sách và theo dõi
+                        <h1>Ads Account</h1>
+                        <p class="subtitle">Connect Ads Account để quản lý chiến dịch, ngân sách và theo dõi
                             hiệu quả tuyển dụng.</p>
                     </div>
 
@@ -417,12 +418,11 @@
                                             d="M3.464 6.36l1.414-1.414 2.121 2.121-1.414 1.414zM18.36 6.36l-1.414-1.414-2.121 2.121 1.414 1.414z" />
                                     </svg>
                                 </div>
-                                <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Liên kết tài khoản
-                                    Quảng cáo</h3>
+                                <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Link Ads Account</h3>
                                 <p
                                     style="max-width: 480px; margin: 0 auto 24px auto; color: var(--text-muted); font-size: 14px; line-height: 1.5;">
-                                    Kết nối tài khoản quảng cáo để quản lý chiến dịch, ngân sách và theo dõi hiệu quả
-                                    tuyển dụng trực tiếp.
+                                    Connect Ads Account to manage campaigns, budgets and track recruitment performance
+                                    directly.
                                 </p>
                                 <button class="btn btn-primary"
                                     style="background-color: #0d6efd; border-color: #0d6efd;"
@@ -434,7 +434,7 @@
                                         <path
                                             d="m9.293 11.293-2.793 2.793 1.414 1.414 2.793-2.793 2.793 2.793 4.207-4.207-1.414-1.414-2.793 2.793z" />
                                     </svg>
-                                    Kết nối tài khoản quảng cáo
+                                    Connect Ads Account
                                 </button>
                             </div>
 
@@ -443,58 +443,22 @@
                                 <div id="ads-connected-header"
                                     style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                                     <h4 style="font-size: 15px; font-weight: 600; color: var(--text-main); margin: 0;">
-                                        Các tài khoản đã kết nối:</h4>
+                                        Connected accounts:</h4>
                                     <button class="btn btn-outline" style="font-size: 13px; padding: 6px 12px;"
                                         onclick="simulateAdsOAuth()">
-                                        + Kết nối tài khoản quảng cáo
+                                        + Connect Ads Account
                                     </button>
                                 </div>
 
                                 <div id="ads-connected-empty" class="empty-state-card hidden" style="margin-top: 20px;">
-                                    <h3>Chưa có tài khoản nào</h3>
-                                    <p>Vui lòng kết nối tài khoản quảng cáo để thiết lập chiến dịch.</p>
+                                    <h3>No accounts yet</h3>
+                                    <p>Please connect an ads account to set up campaigns.</p>
                                     <button class="btn btn-primary" style="margin-top: 16px;"
-                                        onclick="simulateAdsOAuth()">Kết nối tài khoản quảng cáo</button>
+                                        onclick="simulateAdsOAuth()">Connect Ads Account</button>
                                 </div>
 
-                                <div class="connected-user-badge"
-                                    style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 12px;">
-                                    <div style="display: flex; align-items: center; gap: 14px;">
-                                        <div class="page-logo-circle et-logo"
-                                            style="background: linear-gradient(135deg, #1877f2, #0d6efd); width: 48px; height: 48px; font-size: 16px;">
-                                            AD
-                                        </div>
-                                        <div>
-                                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">Ezi
-                                                Solution Ads</h4>
-                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Trạng
-                                                thái: Đã liên kết tài khoản quảng cáo</p>
-                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Quyền
-                                                hạn: Quản trị viên · ID: 678912345678901</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-outline-danger" style="padding: 6px 12px; font-size: 12px;"
-                                        onclick="simulateAdsDisconnect(this)">Hủy kết nối</button>
-                                </div>
-
-                                <div class="connected-user-badge"
-                                    style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 12px;">
-                                    <div style="display: flex; align-items: center; gap: 14px;">
-                                        <div class="page-logo-circle ea-logo"
-                                            style="background: linear-gradient(135deg, #f0703e, #f9a826); width: 48px; height: 48px; font-size: 16px;">
-                                            TA
-                                        </div>
-                                        <div>
-                                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">
-                                                Talent Acquisition Ads</h4>
-                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Trạng
-                                                thái: Đã liên kết tài khoản quảng cáo</p>
-                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Quyền
-                                                hạn: Quản trị viên · ID: 123456789012345</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-outline-danger" style="padding: 6px 12px; font-size: 12px;"
-                                        onclick="simulateAdsDisconnect()">Hủy kết nối</button>
+                                <div id="ads-connected-list-container">
+                                    <!-- Dynamic ad accounts will be rendered here -->
                                 </div>
                             </div>
                         </div>
@@ -506,8 +470,8 @@
                 <section id="section-fb-posts" class="tab-content">
                     <div class="content-header flex-header">
                         <div>
-                            <h1>Bài viết Facebook</h1>
-                            <p class="subtitle">Tạo, chỉnh sửa và quản lý bài viết trên Fanpage</p>
+                            <h1>Facebook Posts</h1>
+                            <p class="subtitle">Create, edit, and manage Fanpage posts</p>
                         </div>
                         <button class="btn btn-primary" onclick="switchTab('fb-create')">
                             <span class="btn-icon">
@@ -517,7 +481,7 @@
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                 </svg>
                             </span>
-                            Tạo bài viết
+                            Create Post
                         </button>
                     </div>
 
@@ -529,13 +493,13 @@
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
-                            <input type="text" id="fb-posts-search" placeholder="Tìm kiếm bài viết..."
+                            <input type="text" id="fb-posts-search" placeholder="Search posts..."
                                 oninput="filterFacebookPosts()">
                         </div>
                         <div class="page-selector-wrapper">
                             <label for="fb-page-filter">Fanpage:</label>
                             <select id="fb-page-filter" onchange="filterFacebookPosts()">
-                                <option value="all">Tất cả Fanpage</option>
+                                <option value="all">All Fanpages</option>
                                 <option value="Ezi Talent">Ezi Talent</option>
                                 <option value="Ezi Academy">Ezi Academy</option>
                             </select>
@@ -558,17 +522,17 @@
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                             </svg>
                         </div>
-                        <h3>Chưa có bài viết nào</h3>
-                        <p>Bấm "Tạo bài viết" để bắt đầu</p>
-                        <button class="btn btn-primary" onclick="switchTab('fb-create')">Tạo bài viết ngay</button>
+                        <h3>No posts yet</h3>
+                        <p>Click "Create Post" to start</p>
+                        <button class="btn btn-primary" onclick="switchTab('fb-create')">Create Post ngay</button>
                     </div>
                 </section>
 
                 <!-- 5. TẠO BÀI VIẾT SECTION -->
                 <section id="section-fb-create" class="tab-content hidden">
                     <div class="content-header">
-                        <h1 id="create-post-title">Tạo bài viết mới</h1>
-                        <p class="subtitle" id="create-post-subtitle">Soạn thảo bài viết và đăng lên Fanpage Facebook
+                        <h1 id="create-post-title">Create New Post</h1>
+                        <p class="subtitle" id="create-post-subtitle">Draft a post and publish it to Facebook Fanpage
                         </p>
                     </div>
 
@@ -579,7 +543,7 @@
                                 <input type="hidden" id="edit-post-id" value="">
 
                                 <div class="form-group">
-                                    <label for="post-fanpage">Fanpage đăng <span class="required">*</span></label>
+                                    <label for="post-fanpage">Post to Fanpage <span class="required">*</span></label>
                                     <select id="post-fanpage" required onchange="updateLivePreview()">
                                         <option value="Ezi Talent">Ezi Talent</option>
                                         <option value="Ezi Academy">Ezi Academy</option>
@@ -587,14 +551,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="post-content">Nội dung bài viết <span class="required">*</span></label>
+                                    <label for="post-content">Post Content <span class="required">*</span></label>
                                     <textarea id="post-content" rows="8"
                                         placeholder="Viết nội dung bài đăng Facebook tuyển dụng tại đây..." required
                                         oninput="updateLivePreview()"></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Hình ảnh / Video minh họa</label>
+                                    <label>Illustrative Image / Video</label>
                                     <div class="upload-zone" id="upload-zone" onclick="triggerFileUploadSelect()">
                                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a0aec0"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -602,8 +566,8 @@
                                             <polyline points="17 8 12 3 7 8"></polyline>
                                             <line x1="12" y1="3" x2="12" y2="15"></line>
                                         </svg>
-                                        <span class="upload-text">Tải lên hình ảnh hoặc video từ máy tính</span>
-                                        <span class="upload-subtext">Hỗ trợ các định dạng ảnh và video (PNG, JPG,
+                                        <span class="upload-text">Upload image or video from computer</span>
+                                        <span class="upload-subtext">Supports image and video formats (PNG, JPG,
                                             MP4)</span>
                                     </div>
                                     <input type="file" id="post-file-input" accept="image/*,video/*"
@@ -616,23 +580,23 @@
                                         <div class="selected-image-info">
                                             <span class="image-name" id="selected-image-name">tuyen_dung.png</span>
                                             <button type="button" class="remove-image-btn"
-                                                onclick="removeSelectedImage(event)">Gỡ bỏ</button>
+                                                onclick="removeSelectedImage(event)">Remove</button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-actions">
                                     <button type="button" class="btn btn-secondary"
-                                        onclick="cancelPostEdit()">Hủy</button>
-                                    <button type="submit" class="btn btn-primary" id="submit-post-btn">Tạo bài
-                                        viết</button>
+                                        onclick="cancelPostEdit()">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" id="submit-post-btn">Create
+                                        Post</button>
                                 </div>
                             </form>
                         </div>
 
                         <!-- Live Preview Block (Right) -->
                         <div class="post-preview-card">
-                            <div class="preview-header-label">● Bản xem trước</div>
+                            <div class="preview-header-label">● Preview</div>
 
                             <!-- Facebook Mockup -->
                             <div class="facebook-mockup">
@@ -640,14 +604,14 @@
                                     <div class="fb-avatar" id="preview-avatar">ET</div>
                                     <div class="fb-user-info">
                                         <div class="fb-name" id="preview-page-name">Ezi Talent</div>
-                                        <div class="fb-time">Vừa xong · <span class="fb-globe-icon">🌐</span></div>
+                                        <div class="fb-time">Just now · <span class="fb-globe-icon">🌐</span></div>
                                     </div>
                                     <div class="fb-more-btn">•••</div>
                                 </div>
                                 <div class="fb-body">
-                                    <div class="fb-text" id="preview-post-content" style="margin-top: 4px;">Nội dung chi
-                                        tiết bài viết sẽ được cập nhật trực tiếp tại đây khi bạn nhập vào biểu mẫu bên
-                                        trái...</div>
+                                    <div class="fb-text" id="preview-post-content" style="margin-top: 4px;">The detailed
+                                        post content will be updated directly here when you input into the form on the
+                                        left...</div>
                                     <div class="fb-media-container hidden" id="preview-media-box">
                                         <div class="fb-media-preview-img" id="preview-image-elem"></div>
                                     </div>
@@ -658,9 +622,9 @@
                                         <span class="like-count">0</span>
                                     </div>
                                     <div class="fb-stats-replies">
-                                        <span>0 bình luận</span>
+                                        <span>0 comments</span>
                                         <span>·</span>
-                                        <span>0 lượt chia sẻ</span>
+                                        <span>0 shares</span>
                                     </div>
                                 </div>
                                 <div class="fb-actions">
@@ -672,7 +636,7 @@
                                                 d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
                                             </path>
                                         </svg>
-                                        Thích
+                                        Like
                                     </div>
                                     <div class="fb-action-btn">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -681,7 +645,7 @@
                                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z">
                                             </path>
                                         </svg>
-                                        Bình luận
+                                        Comment
                                     </div>
                                     <div class="fb-action-btn">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -693,7 +657,7 @@
                                             <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
                                             <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                                         </svg>
-                                        Chia sẻ
+                                        Share
                                     </div>
                                 </div>
                             </div>
@@ -707,11 +671,11 @@
                         <!-- Chat Sidebar (Left) -->
                         <div class="chat-sidebar">
                             <div class="chat-sidebar-header">
-                                <h2>Hộp thoại</h2>
+                                <h2>Chat Inbox</h2>
                                 <div class="page-selector-wrapper chat-page-selector" style="margin-bottom: 12px;">
                                     <label for="chat-page-filter">Fanpage:</label>
                                     <select id="chat-page-filter" onchange="filterChatList()">
-                                        <option value="all">Tất cả Fanpage</option>
+                                        <option value="all">All Fanpages</option>
                                         <option value="Ezi Talent">Ezi Talent</option>
                                         <option value="Ezi Academy">Ezi Academy</option>
                                     </select>
@@ -722,7 +686,7 @@
                                         <circle cx="11" cy="11" r="8"></circle>
                                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                     </svg>
-                                    <input type="text" id="chat-search-input" placeholder="Tìm kiếm..."
+                                    <input type="text" id="chat-search-input" placeholder="Search..."
                                         oninput="filterChatList()">
                                 </div>
                             </div>
@@ -739,8 +703,8 @@
                                     <div class="active-avatar" id="active-chat-avatar">N</div>
                                     <div class="active-info">
                                         <span class="active-name" id="active-chat-name">Nguyễn Văn An</span>
-                                        <span class="active-status"><span class="status-dot online"></span>Đang hoạt
-                                            động</span>
+                                        <span class="active-status"><span class="status-dot online"></span>Active
+                                            now</span>
                                     </div>
                                 </div>
                                 <div class="active-actions">
@@ -765,7 +729,7 @@
                             <!-- Chat Input Bar -->
                             <div class="chat-input-bar">
                                 <div class="input-utility-buttons">
-                                    <button class="utility-btn" title="Đính kèm ảnh"
+                                    <button class="utility-btn" title="Attach image"
                                         onclick="simulateAttachmentClick()">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -775,7 +739,7 @@
                                             <polyline points="21 15 16 10 5 21"></polyline>
                                         </svg>
                                     </button>
-                                    <button class="utility-btn" title="Tin tuyển dụng mẫu"
+                                    <button class="utility-btn" title="Sample recruitment message"
                                         onclick="simulateSendJobTemplate()">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -788,7 +752,7 @@
                                 </div>
                                 <form id="chat-message-form" class="chat-form-wrapper"
                                     onsubmit="handleSendMessage(event)">
-                                    <input type="text" id="chat-message-input" placeholder="Nhập tin nhắn..."
+                                    <input type="text" id="chat-message-input" placeholder="Type a message..."
                                         autocomplete="off">
                                     <button type="submit" class="chat-send-btn">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -807,22 +771,23 @@
                 <!-- 6.5. TẠO QUẢNG CÁO SECTION -->
                 <section id="section-fb-ads-create" class="tab-content hidden">
                     <div class="content-header">
-                        <h1>Tạo quảng cáo Facebook</h1>
-                        <p class="subtitle">Chạy quảng cáo cho bài viết tuyển dụng để tiếp cận nhiều ứng viên tiềm năng
-                            hơn</p>
+                        <h1 id="create-ad-title">Create Facebook Ad</h1>
+                        <p class="subtitle" id="create-ad-subtitle">Run ads for recruitment posts to reach more
+                            potential candidates</p>
                     </div>
 
                     <div class="create-post-layout">
                         <!-- Ad Form (Left) -->
                         <div class="post-form-card">
                             <form id="fb-create-ad-form" onsubmit="handleAdSubmit(event)">
+                                <input type="hidden" id="edit-ad-id" value="">
 
-                                <!-- Thiết lập chiến dịch -->
-                                <div class="ad-form-section-label">Thiết lập chiến dịch</div>
+                                <!-- Campaign Setup -->
+                                <div class="ad-form-section-label">Campaign Setup</div>
 
                                 <!-- Chọn tài khoản quảng cáo -->
                                 <div class="form-group">
-                                    <label>Tài khoản quảng cáo <span class="required">*</span></label>
+                                    <label>Ads Account <span class="required">*</span></label>
                                     <select id="ad-account-select-create" required>
                                         <option value="ezi">Ezi Solution Ads</option>
                                         <option value="ta">Talent Acquisition Ads</option>
@@ -831,7 +796,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Fanpage chạy quảng cáo <span class="required">*</span></label>
+                                    <label>Fanpage running ads <span class="required">*</span></label>
                                     <select id="ad-fanpage" required onchange="updateAdPreview()">
                                         <option value="Ezi Talent">Ezi Talent</option>
                                         <option value="Ezi Academy">Ezi Academy</option>
@@ -839,28 +804,28 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Tên chiến dịch <span class="required">*</span></label>
+                                    <label>Campaign Name <span class="required">*</span></label>
                                     <input type="text" id="ad-name" placeholder="VD: HCM - Tuyển Trưởng phòng Marketing"
                                         required oninput="updateAdPreview()">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Loại ngân sách</label>
+                                    <label>Budget Type</label>
                                     <div class="toggle-btn-group" id="ad-budget-type-group">
                                         <button type="button" class="toggle-btn-option active" data-value="daily"
                                             onclick="selectToggleOption(this, 'ad-budget-type-group')">
-                                            <span class="toggle-btn-dot"></span> Ngân sách hàng ngày
+                                            <span class="toggle-btn-dot"></span> Daily Budget
                                         </button>
                                         <button type="button" class="toggle-btn-option" data-value="lifetime"
                                             onclick="selectToggleOption(this, 'ad-budget-type-group')">
-                                            <span class="toggle-btn-dot"></span> Ngân sách trọn đời
+                                            <span class="toggle-btn-dot"></span> Lifetime Budget
                                         </button>
                                     </div>
                                     <input type="hidden" id="ad-budget-type" value="daily">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Nhập ngân sách (VNĐ) <span class="required">*</span></label>
+                                    <label>Enter Budget (VND) <span class="required">*</span></label>
                                     <div class="input-with-suffix">
                                         <input type="number" id="ad-budget" min="20000" step="10000"
                                             placeholder="Ví dụ: 10.000.000" value="150000" required
@@ -871,25 +836,25 @@
 
                                 <div class="form-row">
                                     <div class="form-col">
-                                        <label>Ngày bắt đầu</label>
+                                        <label>Start Date</label>
                                         <input type="date" id="ad-start-date" onchange="updateAdPreview()">
                                     </div>
                                     <div class="form-col">
-                                        <label>Ngày kết thúc</label>
+                                        <label>End Date</label>
                                         <input type="date" id="ad-end-date" onchange="updateAdPreview()">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Mục đích chiến dịch <span class="required">*</span></label>
+                                    <label>Campaign Objective <span class="required">*</span></label>
                                     <select id="ad-objective" required onchange="updateAdPreview()">
-                                        <option value="traffic">Lưu lượng truy cập</option>
-                                        <option value="engagement" selected>Lượt tương tác</option>
+                                        <option value="traffic">Traffic</option>
+                                        <option value="engagement" selected>Engagement</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Đích đến</label>
+                                    <label>Destination</label>
                                     <div class="toggle-btn-group" id="ad-destination-group">
                                         <button type="button" class="toggle-btn-option" data-value="website"
                                             onclick="selectToggleOption(this, 'ad-destination-group'); updateAdPreview()">
@@ -897,18 +862,18 @@
                                         </button>
                                         <button type="button" class="toggle-btn-option active" data-value="message"
                                             onclick="selectToggleOption(this, 'ad-destination-group'); updateAdPreview()">
-                                            <span class="toggle-btn-dot"></span> Tin nhắn
+                                            <span class="toggle-btn-dot"></span> Message
                                         </button>
                                     </div>
                                     <input type="hidden" id="ad-destination" value="message">
                                 </div>
 
                                 <!-- Đối tượng mục tiêu -->
-                                <div class="ad-form-section-label with-top-border">ĐỐI TƯỢNG MỤC TIÊU</div>
+                                <div class="ad-form-section-label with-top-border">TARGET AUDIENCE</div>
 
                                 <div class="form-row">
                                     <div class="form-col">
-                                        <label>Độ tuổi</label>
+                                        <label>Age</label>
                                         <div class="age-range-inputs">
                                             <input type="number" id="ad-age-min" min="13" max="65" value="28"
                                                 oninput="updateAdPreview()">
@@ -918,17 +883,17 @@
                                         </div>
                                     </div>
                                     <div class="form-col">
-                                        <label>Giới tính</label>
+                                        <label>Gender</label>
                                         <select id="ad-gender" onchange="updateAdPreview()">
-                                            <option value="all" selected>Tất cả</option>
-                                            <option value="male">Nam</option>
-                                            <option value="female">Nữ</option>
+                                            <option value="all" selected>All</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Vị trí</label>
+                                    <label>Location</label>
                                     <div class="location-input-wrap">
                                         <svg class="location-search-icon" width="16" height="16" viewBox="0 0 24 24"
                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -942,7 +907,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Phạm vi bán kính</label>
+                                    <label>Radius range</label>
                                     <div class="radius-slider-wrap">
                                         <input type="range" id="ad-radius" min="1" max="80" value="40"
                                             oninput="updateAdPreview()">
@@ -951,13 +916,13 @@
                                 </div>
 
                                 <!-- Nội dung quảng cáo -->
-                                <div class="ad-form-section-label with-top-border">Xây dựng nội dung quảng cáo</div>
+                                <div class="ad-form-section-label with-top-border">Build Ad Content</div>
 
                                 <div class="form-group">
                                     <div class="label-with-action">
-                                        <label>Văn bản chính (Primary Text) <span class="required">*</span></label>
+                                        <label>Primary Text <span class="required">*</span></label>
                                         <a href="javascript:void(0)" class="suggest-content-link"
-                                            onclick="suggestAdContent()">Gợi ý nội dung</a>
+                                            onclick="suggestAdContent()">Suggest content</a>
                                     </div>
                                     <textarea id="ad-primary-text" rows="6" maxlength="1000" required
                                         oninput="updateAdPreview()">🔥HCM – TUYỂN TRƯỞNG PHÒNG MARKETING
@@ -969,7 +934,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Tiêu đề (Headline) <span class="required">*</span></label>
+                                    <label>Headline <span class="required">*</span></label>
                                     <input type="text" id="ad-headline" maxlength="100"
                                         value="Trưởng phòng Marketing - Thu nhập đến 45 triệu" required
                                         oninput="updateAdPreview()">
@@ -977,7 +942,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Tải lên hình ảnh hoặc video <span class="required">*</span></label>
+                                    <label>Upload image or video <span class="required">*</span></label>
                                     <div class="video-dropzone" id="ad-video-dropzone"
                                         onclick="document.getElementById('ad-video-input').click()">
                                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -987,10 +952,10 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                             <circle cx="8.5" cy="8.5" r="1.5"></circle>
                                             <polyline points="21 15 16 10 5 21"></polyline>
                                         </svg>
-                                        <div class="video-dropzone-title" id="ad-video-filename">Chọn video hoặc hình
-                                            ảnh</div>
-                                        <div class="video-dropzone-hint">PNG, JPG, MP4, MOV tối đa 1GB · Tỷ lệ 1:1, 16:9
-                                            hoặc 9:16
+                                        <div class="video-dropzone-title" id="ad-video-filename">Select video or image
+                                        </div>
+                                        <div class="video-dropzone-hint">PNG, JPG, MP4, MOV max 1GB · Ratio 1:1, 16:9 or
+                                            9:16
                                         </div>
                                     </div>
                                     <input type="file" id="ad-video-input" accept="image/*,video/*"
@@ -998,28 +963,29 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                 </div>
 
                                 <div class="form-actions">
-                                    <button type="button" class="btn btn-secondary" onclick="resetAdForm()">Hủy</button>
-                                    <button type="submit" class="btn btn-primary">🚀 Khởi chạy quảng cáo</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        onclick="resetAdForm()">Cancel</button>
+                                    <button type="submit" id="submit-ad-btn" class="btn btn-primary">Publish Ad</button>
                                 </div>
                             </form>
                         </div>
 
                         <!-- Ad Preview (Right) -->
                         <div class="post-preview-card">
-                            <div class="preview-header-label">● Xem trước quảng cáo</div>
+                            <div class="preview-header-label">● Ad Preview</div>
 
                             <div class="facebook-mockup">
                                 <div class="fb-header">
                                     <div class="fb-avatar" id="ad-preview-avatar">ET</div>
                                     <div class="fb-user-info">
                                         <div class="fb-name" id="ad-preview-page-name">Ezi Talent</div>
-                                        <div class="fb-time">Được tài trợ · <span class="fb-globe-icon">🌐</span></div>
+                                        <div class="fb-time">Sponsored · <span class="fb-globe-icon">🌐</span></div>
                                     </div>
                                     <div class="fb-more-btn">•••</div>
                                 </div>
                                 <div class="fb-body">
-                                    <div class="fb-text" id="ad-preview-content" style="margin-top: 4px;">Chọn thông tin
-                                        bên trái để xem trước nội dung quảng cáo...</div>
+                                    <div class="fb-text" id="ad-preview-content" style="margin-top: 4px;">Select
+                                        information on the left to preview ad content...</div>
                                 </div>
                                 <div class="ad-preview-media">
                                     <div class="ad-preview-media-placeholder" id="ad-preview-media-placeholder">
@@ -1034,15 +1000,15 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                 <div class="ad-preview-cta-row">
                                     <div class="ad-preview-cta-text">
                                         <div class="ad-preview-domain">EZITALENT.VN</div>
-                                        <div class="ad-preview-headline" id="ad-preview-headline">Tiêu đề quảng cáo sẽ
-                                            hiển thị ở đây</div>
+                                        <div class="ad-preview-headline" id="ad-preview-headline">Ad headline will
+                                            appear here</div>
                                     </div>
-                                    <div class="ad-preview-cta-btn" id="ad-preview-cta">Gửi tin nhắn</div>
+                                    <div class="ad-preview-cta-btn" id="ad-preview-cta">Send message</div>
                                 </div>
                                 <div class="fb-actions" style="border-top: 1px solid var(--border);">
-                                    <div class="fb-action-btn-mini">👍 Thích</div>
-                                    <div class="fb-action-btn-mini">💬 Bình luận</div>
-                                    <div class="fb-action-btn-mini">↗ Chia sẻ</div>
+                                    <div class="fb-action-btn-mini">👍 Like</div>
+                                    <div class="fb-action-btn-mini">💬 Comment</div>
+                                    <div class="fb-action-btn-mini">↗ Share</div>
                                 </div>
                             </div>
                         </div>
@@ -1052,13 +1018,13 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                 <!-- 6.6. DANH SÁCH QUẢNG CÁO SECTION -->
                 <section id="section-fb-ads-list" class="tab-content hidden">
                     <div class="content-header">
-                        <h1>Danh sách quảng cáo Facebook</h1>
-                        <p class="subtitle">Theo dõi hiệu suất và quản lý toàn bộ chiến dịch quảng cáo đang chạy</p>
+                        <h1>Ads List Facebook</h1>
+                        <p class="subtitle">Track performance and manage all running ad campaigns</p>
                     </div>
 
                     <div class="ads-table-card">
                         <div class="ads-table-toolbar">
-                            <h2>Danh sách chiến dịch</h2>
+                            <h2>Campaign List</h2>
                             <div class="ads-table-toolbar-actions">
                                 <button class="btn-icon-square" title="Làm mới" onclick="renderAdsTable()">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1069,8 +1035,8 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                         </path>
                                     </svg>
                                 </button>
-                                <button class="btn btn-accent-navy" onclick="switchTab('fb-ads-create')">
-                                    <span style="font-size:16px; line-height:1;">+</span> Tạo chiến dịch
+                                <button class="btn btn-accent-navy" onclick="resetAdForm(); switchTab('fb-ads-create')">
+                                    <span style="font-size:16px; line-height:1;">+</span> Create Campaign
                                 </button>
                             </div>
                         </div>
@@ -1090,6 +1056,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                         <th>CLICK</th>
                                         <th>CTR</th>
                                         <th>IMPRESSIONS</th>
+                                        <th>ACTIONS</th>
                                     </tr>
                                 </thead>
                                 <tbody id="ads-table-body"></tbody>
@@ -1117,7 +1084,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                 <!-- 7. CÀI ĐẶT SECTION -->
                 <section id="section-settings" class="tab-content hidden">
                     <div class="content-header">
-                        <h1>Cài đặt hệ thống</h1>
+                        <h1>Settings hệ thống</h1>
                         <p class="subtitle">Quản lý chính sách bảo mật, dữ liệu cá nhân và tích hợp các kênh Facebook
                         </p>
                     </div>
@@ -1130,7 +1097,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
-                            Chính sách
+                            Policies
                         </button>
                         <button class="settings-tab-btn" id="settings-tab-btn-personal"
                             onclick="switchSettingsSubTab('personal')">
@@ -1139,7 +1106,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
-                            Dữ liệu cá nhân
+                            Personal Data
                         </button>
                     </div>
 
@@ -1160,182 +1127,371 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3>Chính sách bảo mật & Điều khoản sử dụng</h3>
-                                        <p>Quy định về bảo mật dữ liệu, tích hợp Facebook Messenger API và bảo vệ thông
-                                            tin ứng viên.</p>
+                                        <h3>Security Policies & Terms of Use</h3>
+                                        <p>Regulations on data security, Facebook Messenger API integration and
+                                            candidate information protection.</p>
                                     </div>
                                 </div>
 
                                 <div class="policy-content-box"
                                     style="padding: 22px; background: var(--surface); border-radius: var(--radius-md); font-size: 14px; line-height: 1.65; color: var(--text-main); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
 
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border);">
-        <div>
-            <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main); margin: 0;">Chính Sách Quyền Riêng Tư (Privacy Policy)</h3>
-            <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Phiên bản chi tiết, Đầy đủ pháp lý - Dành cho Meta App Review & Người dùng cuối</div>
-        </div>
-        <span style="font-size: 12px; background: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: 12px; font-weight: 600;">Cập nhật: August 2026</span>
-    </div>
+                                    <div
+                                        style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border);">
+                                        <div>
+                                            <h3
+                                                style="font-size: 18px; font-weight: 700; color: var(--text-main); margin: 0;">
+                                                Privacy Policy</h3>
+                                            <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+                                                Detailed, full legal version - For Meta App Review & End Users</div>
+                                        </div>
+                                        <span
+                                            style="font-size: 12px; background: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: 12px; font-weight: 600;">Updated:
+                                            August 2026</span>
+                                    </div>
 
-    <!-- Accordion Styling -->
-    <style>
-        .policy-accordion { margin-bottom: 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background-color: #fff; }
-        .policy-accordion summary { padding: 14px 16px; background-color: var(--surface-variant); font-size: 15px; font-weight: 700; color: var(--text-main); cursor: pointer; user-select: none; transition: background-color 0.2s; }
-        .policy-accordion summary:hover { background-color: #f1f5f9; }
-        .policy-accordion[open] summary { border-bottom: 1px solid var(--border); background-color: #f1f5f9; }
-        .policy-accordion .accordion-content { padding: 16px; font-size: 14px; color: var(--text-muted); }
-        .policy-accordion .accordion-content p { margin-top: 0; margin-bottom: 12px; }
-        .policy-accordion .accordion-content p:last-child { margin-bottom: 0; }
-        .policy-accordion .accordion-content ul, .policy-accordion .accordion-content ol { margin-top: 0; padding-left: 20px; margin-bottom: 12px; }
-        .policy-accordion .accordion-content h4 { font-size: 14px; color: var(--text-main); margin-bottom: 8px; margin-top: 16px; }
-    </style>
+                                    <!-- Accordion Styling -->
+                                    <style>
+                                        .policy-accordion {
+                                            margin-bottom: 12px;
+                                            border: 1px solid var(--border);
+                                            border-radius: var(--radius-sm);
+                                            overflow: hidden;
+                                            background-color: #fff;
+                                        }
 
-    <details class="policy-accordion">
-        <summary>1. Giới thiệu và Phạm vi áp dụng</summary>
-        <div class="accordion-content">
-            <p>Chào mừng bạn đến với ứng dụng và dịch vụ của <strong>EZI Tech Solutions</strong> ("chúng tôi", "của chúng tôi"). Việc bảo vệ dữ liệu cá nhân và quyền riêng tư của bạn là cam kết cao nhất của chúng tôi.</p>
-            <p>Chính sách Quyền riêng tư này được soạn thảo nhằm giải thích một cách minh bạch, chi tiết và toàn diện nhất về cách thức chúng tôi thu thập, sử dụng, lưu trữ, xử lý và bảo vệ thông tin của bạn khi bạn truy cập trang web, sử dụng phần mềm, hoặc kết nối tài khoản Facebook/Meta của mình với hệ thống của chúng tôi (gọi chung là "Dịch vụ").</p>
-            <p>Chính sách này tuân thủ nghiêm ngặt các quy định về quyền riêng tư hiện hành, bao gồm các chính sách dành cho Nhà phát triển Ứng dụng của Meta (Meta App Developer Policies), cũng như các tiêu chuẩn bảo vệ dữ liệu chung. Việc bạn tiếp tục sử dụng Dịch vụ và cho phép đăng nhập qua Facebook đồng nghĩa với việc bạn đã đọc, hiểu và hoàn toàn đồng ý với các điều khoản được nêu dưới đây.</p>
-        </div>
-    </details>
+                                        .policy-accordion summary {
+                                            padding: 14px 16px;
+                                            background-color: var(--surface-variant);
+                                            font-size: 15px;
+                                            font-weight: 700;
+                                            color: var(--text-main);
+                                            cursor: pointer;
+                                            user-select: none;
+                                            transition: background-color 0.2s;
+                                        }
 
-    <details class="policy-accordion">
-        <summary>2. Thông tin và Dữ liệu chúng tôi thu thập</summary>
-        <div class="accordion-content">
-            <p>Để cung cấp cho bạn một Dịch vụ hoàn chỉnh (bao gồm quản lý Fanpage, đồng bộ quảng cáo, trả lời tin nhắn tự động), chúng tôi chỉ thu thập các dữ liệu cần thiết tối thiểu. Dữ liệu này được chia thành các nhóm sau:</p>
-            <h4>2.1. Dữ liệu từ tài khoản Facebook (Thông qua Meta Graph API)</h4>
-            <p>Khi bạn thực hiện thao tác "Đăng nhập bằng Facebook" và cấp quyền cho ứng dụng, chúng tôi có thể truy cập vào các dữ liệu sau dựa trên sự cho phép của bạn:</p>
-            <ul>
-                <li><strong>Dữ liệu Định danh Cơ bản:</strong> Tên hiển thị, ảnh đại diện, địa chỉ email, và Facebook User ID.</li>
-                <li><strong>Dữ liệu Quản lý Fanpage (<code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>pages_manage_posts</code>):</strong> Danh sách các Trang (Pages) bạn quản lý, ID của trang, tên trang, phân loại trang, nội dung bài viết, hình ảnh/video bạn đã đăng trên Trang, lượt thích (likes), lượt bình luận (comments), và Access Token của Trang để duy trì kết nối.</li>
-                <li><strong>Dữ liệu Hộp thư đến (<code>pages_messaging</code>):</strong> Lịch sử các cuộc hội thoại, tin nhắn văn bản, hình ảnh đính kèm mà khách hàng gửi đến Trang của bạn, cũng như các tin nhắn bạn gửi đi thông qua hệ thống của chúng tôi.</li>
-                <li><strong>Dữ liệu Quảng cáo và Doanh nghiệp (<code>ads_management</code>, <code>business_management</code>, <code>ads_read</code>):</strong> ID Tài khoản quảng cáo (Ad Account ID), ID Trình quản lý kinh doanh (Business Manager ID), cấu hình chiến dịch, nhóm quảng cáo, mẫu quảng cáo, và các chỉ số đo lường hiệu quả (Lượt tiếp cận, Hiển thị, Chi phí, Lượt nhấp, Chuyển đổi).</li>
-            </ul>
-            <h4>2.2. Dữ liệu Do bạn cung cấp trực tiếp</h4>
-            <p>Bao gồm các thông tin bạn điền vào form đăng ký tài khoản trên hệ thống của chúng tôi, số điện thoại liên hệ, tên công ty, mã số thuế (nếu có để xuất hóa đơn), và các nội dung yêu cầu hỗ trợ qua email/chat.</p>
-            <h4>2.3. Dữ liệu Thu thập tự động (Log & Usage Data)</h4>
-            <p>Khi bạn sử dụng ứng dụng, hệ thống của chúng tôi tự động ghi nhận các thông tin kỹ thuật như: Địa chỉ IP, loại trình duyệt, hệ điều hành, thời gian truy cập, các trang/chức năng bạn đã click, và các bản log lỗi (error logs) để phục vụ cho việc chẩn đoán sự cố hệ thống.</p>
-        </div>
-    </details>
+                                        .policy-accordion summary:hover {
+                                            background-color: #f1f5f9;
+                                        }
 
-    <details class="policy-accordion">
-        <summary>3. Mục đích sử dụng dữ liệu</summary>
-        <div class="accordion-content">
-            <p>Toàn bộ dữ liệu thu thập từ bạn và từ Meta API được chúng tôi sử dụng <strong>độc quyền</strong> cho các mục đích hợp pháp nhằm cung cấp và nâng cao chất lượng Dịch vụ. Cụ thể:</p>
-            <ul>
-                <li><strong>Cung cấp tính năng cốt lõi:</strong> Cho phép bạn xem báo cáo, đăng bài viết, đọc và tự động hóa việc trả lời bình luận/tin nhắn trên Fanpage ngay từ nền tảng của chúng tôi.</li>
-                <li><strong>Quản lý và Tối ưu Quảng cáo:</strong> Tổng hợp số liệu từ Meta Ads để vẽ biểu đồ báo cáo hiệu quả chiến dịch (Campaign Insights), hỗ trợ bạn lên kịch bản và tạo chiến dịch quảng cáo mới trực tiếp trên giao diện của chúng tôi một cách nhanh chóng.</li>
-                <li><strong>Duy trì và Xác thực:</strong> Sử dụng Access Token để duy trì phiên đăng nhập bảo mật giữa hệ thống của chúng tôi và hệ thống của Meta, đảm bảo luồng công việc của bạn không bị gián đoạn.</li>
-                <li><strong>Cải thiện Dịch vụ:</strong> Phân tích dữ liệu sử dụng ẩn danh (không gắn với danh tính) để phát hiện các lỗi phần mềm (bugs) và nâng cấp giao diện người dùng (UX/UI).</li>
-                <li><strong>Hỗ trợ Khách hàng:</strong> Sử dụng email hoặc số điện thoại của bạn để gửi thông báo về trạng thái tài khoản, cảnh báo bảo mật, hoặc phản hồi các yêu cầu hỗ trợ kỹ thuật từ bạn.</li>
-            </ul>
-        </div>
-    </details>
+                                        .policy-accordion[open] summary {
+                                            border-bottom: 1px solid var(--border);
+                                            background-color: #f1f5f9;
+                                        }
 
-    <details class="policy-accordion">
-        <summary>4. Chia sẻ và Tiết lộ dữ liệu cho Bên thứ ba</summary>
-        <div class="accordion-content">
-            <p>Chúng tôi tôn trọng tuyệt đối quyền riêng tư và coi dữ liệu của bạn là tài sản cần được bảo vệ nghiêm ngặt.</p>
-            <ul>
-                <li><strong>Cam kết Không bán Dữ liệu (No Data Selling):</strong> Chúng tôi KHÔNG BÁN, cho thuê, trao đổi, hoặc kiếm tiền từ bất kỳ dữ liệu cá nhân hay dữ liệu Facebook nào của bạn cho bất kỳ bên thứ ba, nhà môi giới dữ liệu (data broker), hay công ty quảng cáo nào.</li>
-                <li><strong>Nhà cung cấp Dịch vụ Đám mây (Cloud Providers):</strong> Dữ liệu của bạn được lưu trữ trên các máy chủ đám mây bảo mật cấp doanh nghiệp (như AWS, Google Cloud). Các đối tác này bị ràng buộc bởi các hợp đồng bảo mật nghiêm ngặt và không có quyền truy cập vào dữ liệu của bạn để sử dụng cho mục đích riêng của họ.</li>
-                <li><strong>Yêu cầu Pháp lý:</strong> Chúng tôi bảo lưu quyền tiết lộ dữ liệu của bạn khi bắt buộc phải làm vậy theo yêu cầu hợp pháp từ Tòa án, cơ quan điều tra, hoặc để tuân thủ các quy định của pháp luật nhằm ngăn chặn gian lận, bảo vệ quyền lợi hợp pháp của EZI Tech Solutions và sự an toàn của những người dùng khác.</li>
-            </ul>
-        </div>
-    </details>
+                                        .policy-accordion .accordion-content {
+                                            padding: 16px;
+                                            font-size: 14px;
+                                            color: var(--text-muted);
+                                        }
 
-    <details class="policy-accordion">
-        <summary>5. Lưu trữ và Bảo mật Dữ liệu</summary>
-        <div class="accordion-content">
-            <p>Chúng tôi áp dụng các tiêu chuẩn bảo mật của ngành công nghiệp phần mềm để bảo vệ dữ liệu chống lại sự truy cập, thay đổi, tiết lộ hoặc phá hủy trái phép.</p>
-            <ul>
-                <li><strong>Mã hóa Truyền tải:</strong> Tất cả các luồng dữ liệu giao tiếp giữa trình duyệt của bạn, máy chủ của chúng tôi và Meta đều được mã hóa theo chuẩn Transport Layer Security (TLS/HTTPS).</li>
-                <li><strong>Mã hóa Lưu trữ:</strong> Các dữ liệu nhạy cảm cực kỳ quan trọng như Facebook Access Token, Mật khẩu tài khoản, thông tin thanh toán đều được mã hóa một chiều (hashing) hoặc mã hóa bất đối xứng tại tầng Cơ sở dữ liệu.</li>
-                <li><strong>Thời gian lưu trữ (Retention Policy):</strong>
-                    <ul>
-                        <li>Chúng tôi chỉ lưu giữ dữ liệu của bạn trong thời gian tài khoản của bạn còn hoạt động hoặc cần thiết để thực hiện các nghĩa vụ trong hợp đồng.</li>
-                        <li>Lịch sử nội dung (Bài viết/Tin nhắn/Dữ liệu Ads) được lưu trữ tạm thời để phục vụ hiển thị báo cáo. Nếu bạn ngừng sử dụng dịch vụ hoặc ngắt kết nối Fanpage/Ad Account, hệ thống sẽ tự động ngừng thu thập dữ liệu mới.</li>
-                        <li>Các bản log hệ thống thường sẽ bị xóa hoặc làm ẩn danh sau 90 ngày.</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </details>
+                                        .policy-accordion .accordion-content p {
+                                            margin-top: 0;
+                                            margin-bottom: 12px;
+                                        }
 
-    <details class="policy-accordion">
-        <summary>6. Quyền của người dùng (User Rights)</summary>
-        <div class="accordion-content">
-            <p>Dù bạn ở bất kỳ khu vực nào, chúng tôi trao cho bạn các quyền kiểm soát dữ liệu cá nhân của mình ở mức cao nhất:</p>
-            <ul>
-                <li><strong>Quyền Truy cập:</strong> Bạn có quyền đăng nhập vào ứng dụng và xem tất cả các dữ liệu mà chúng tôi đang lưu trữ về bạn và các Fanpage bạn đã kết nối.</li>
-                <li><strong>Quyền Chỉnh sửa:</strong> Bạn có thể cập nhật, sửa đổi thông tin hồ sơ cá nhân của mình bất kỳ lúc nào thông qua phần Cài đặt tài khoản.</li>
-                <li><strong>Quyền Từ chối (Opt-out):</strong> Bạn có thể hủy đăng ký nhận email tiếp thị hoặc thông báo không quan trọng từ chúng tôi.</li>
-                <li><strong>Quyền Xóa bỏ (Right to Erasure):</strong> Bạn có quyền yêu cầu xóa bỏ hoàn toàn và vĩnh viễn dữ liệu của mình khỏi hệ thống của chúng tôi. (Vui lòng xem chi tiết tại Mục 7).</li>
-            </ul>
-        </div>
-    </details>
+                                        .policy-accordion .accordion-content p:last-child {
+                                            margin-bottom: 0;
+                                        }
 
-    <details class="policy-accordion">
-        <summary>7. Hướng dẫn Xóa dữ liệu (Data Deletion Instructions)</summary>
-        <div class="accordion-content">
-            <p>Nếu bạn không còn muốn sử dụng ứng dụng và muốn xóa toàn bộ dữ liệu mà chúng tôi đã thu thập từ Facebook của bạn, bạn có thể thực hiện theo quy trình minh bạch sau đây:</p>
-            <h4>Cách 1: Xóa ngay lập tức thông qua Facebook (Khuyến nghị)</h4>
-            <ol>
-                <li>Truy cập vào tài khoản Facebook của bạn.</li>
-                <li>Đi đến phần <strong>Cài đặt và Quyền riêng tư</strong> > <strong>Cài đặt</strong>.</li>
-                <li>Chọn mục <strong>Ứng dụng và Trang web (Apps and Websites)</strong> hoặc <strong>Tiện ích tích hợp cho doanh nghiệp (Business Integrations)</strong>.</li>
-                <li>Tìm ứng dụng của chúng tôi trong danh sách, chọn <strong>Gỡ (Remove)</strong>.<br>Ngay khi bạn thực hiện điều này, các Access Token mà chúng tôi đang giữ sẽ ngay lập tức bị vô hiệu hóa, và hệ thống của chúng tôi sẽ không thể truy cập thêm bất kỳ dữ liệu nào từ Facebook của bạn.</li>
-            </ol>
-            <h4>Cách 2: Gửi Yêu cầu Xóa dữ liệu đến máy chủ của chúng tôi</h4>
-            <p>Để đảm bảo toàn bộ dữ liệu lịch sử (bao gồm log, bản sao lưu) được xóa sạch khỏi Cơ sở dữ liệu của chúng tôi:</p>
-            <ol>
-                <li>Truy cập vào trang <strong><a href="/data-deletion" style="color: var(--primary);">Hướng dẫn Xóa Dữ Liệu</a></strong> trên website của chúng tôi.</li>
-                <li>Điền email hoặc Account ID của bạn vào form yêu cầu xóa dữ liệu.</li>
-                <li>Chúng tôi sẽ tiếp nhận, xác minh yêu cầu và tiến hành xóa vĩnh viễn mọi dữ liệu liên quan trong vòng tối đa <strong>7 ngày làm việc</strong>. Bạn sẽ nhận được email xác nhận khi quá trình xóa hoàn tất.</li>
-            </ol>
-        </div>
-    </details>
+                                        .policy-accordion .accordion-content ul,
+                                        .policy-accordion .accordion-content ol {
+                                            margin-top: 0;
+                                            padding-left: 20px;
+                                            margin-bottom: 12px;
+                                        }
 
-    <details class="policy-accordion">
-        <summary>8. Sử dụng Cookie và Công nghệ Theo dõi</summary>
-        <div class="accordion-content">
-            <p>Chúng tôi sử dụng Cookie (các tệp văn bản nhỏ lưu trên thiết bị của bạn) và các công nghệ tương tự (như LocalStorage, SessionStorage) chỉ với mục đích duy trì phiên đăng nhập (Authentication), ghi nhớ tùy chọn ngôn ngữ/giao diện, và đảm bảo an ninh mạng chống lại các cuộc tấn công giả mạo (CSRF). Bạn hoàn toàn có thể thiết lập trình duyệt của mình để từ chối tất cả cookie, tuy nhiên, điều này có thể làm cho một số tính năng bảo mật của Dịch vụ không thể hoạt động chính xác.</p>
-        </div>
-    </details>
+                                        .policy-accordion .accordion-content h4 {
+                                            font-size: 14px;
+                                            color: var(--text-main);
+                                            margin-bottom: 8px;
+                                            margin-top: 16px;
+                                        }
+                                    </style>
 
-    <details class="policy-accordion">
-        <summary>9. Trẻ em dưới 13 tuổi (Age Restrictions)</summary>
-        <div class="accordion-content">
-            <p>Dịch vụ của chúng tôi cung cấp công cụ quản lý doanh nghiệp (B2B) và các công cụ quảng cáo. Do đó, Dịch vụ này không được thiết kế và không nhắm mục tiêu đến trẻ em dưới 13 tuổi (hoặc độ tuổi giới hạn theo luật định tại quốc gia của bạn). Chúng tôi không cố ý thu thập thông tin cá nhân từ trẻ vị thành niên. Nếu chúng tôi phát hiện ra một tài khoản thuộc về người chưa đủ tuổi hợp pháp, chúng tôi sẽ tiến hành khóa tài khoản và xóa bỏ toàn bộ dữ liệu ngay lập tức.</p>
-        </div>
-    </details>
+                                    <details class="policy-accordion">
+                                        <summary>1. Introduction and Scope</summary>
+                                        <div class="accordion-content">
+                                            <p>Chào mừng bạn đến với ứng dụng và dịch vụ của <strong>EZI Tech
+                                                    Solutions</strong> ("chúng tôi", "của chúng tôi"). Việc bảo vệ dữ
+                                                liệu cá nhân và quyền riêng tư của bạn là cam kết cao nhất của chúng
+                                                tôi.</p>
+                                            <p>Policies Quyền riêng tư này được soạn thảo nhằm giải thích một cách
+                                                minh bạch, chi tiết và toàn diện nhất về cách thức chúng tôi thu thập,
+                                                sử dụng, lưu trữ, xử lý và bảo vệ thông tin của bạn khi bạn truy cập
+                                                trang web, sử dụng phần mềm, hoặc kết nối tài khoản Facebook/Meta của
+                                                mình với hệ thống của chúng tôi (gọi chung là "Dịch vụ").</p>
+                                            <p>Policies này tuân thủ nghiêm ngặt các quy định về quyền riêng tư hiện
+                                                hành, bao gồm các chính sách dành cho Nhà phát triển Ứng dụng của Meta
+                                                (Meta App Developer Policies), cũng như các tiêu chuẩn bảo vệ dữ liệu
+                                                chung. Việc bạn tiếp tục sử dụng Dịch vụ và cho phép đăng nhập qua
+                                                Facebook đồng nghĩa với việc bạn đã đọc, hiểu và hoàn toàn đồng ý với
+                                                các điều khoản được nêu dưới đây.</p>
+                                        </div>
+                                    </details>
 
-    <details class="policy-accordion">
-        <summary>10. Chuyển giao dữ liệu Quốc tế</summary>
-        <div class="accordion-content">
-            <p>Máy chủ cơ sở dữ liệu của chúng tôi có thể được đặt tại nhiều khu vực (Regions) khác nhau do các đối tác Cloud cung cấp. Do đó, dữ liệu của bạn có thể được truyền tải và lưu trữ bên ngoài quốc gia nơi bạn sinh sống. Khi thực hiện các luồng chuyển giao này, chúng tôi luôn đảm bảo việc truyền tải tuân thủ các Cơ chế bảo vệ dữ liệu được pháp luật công nhận, đảm bảo an toàn tuyệt đối.</p>
-        </div>
-    </details>
+                                    <details class="policy-accordion">
+                                        <summary>2. Information and Data we collect</summary>
+                                        <div class="accordion-content">
+                                            <p>Để cung cấp cho bạn một Dịch vụ hoàn chỉnh (bao gồm quản lý Fanpage, đồng
+                                                bộ quảng cáo, trả lời tin nhắn tự động), chúng tôi chỉ thu thập các dữ
+                                                liệu cần thiết tối thiểu. Dữ liệu này được chia thành các nhóm sau:</p>
+                                            <h4>2.1. Dữ liệu từ tài khoản Facebook (Thông qua Meta Graph API)</h4>
+                                            <p>Khi bạn thực hiện thao tác "Đăng nhập bằng Facebook" và cấp quyền cho ứng
+                                                dụng, chúng tôi có thể truy cập vào các dữ liệu sau dựa trên sự cho phép
+                                                của bạn:</p>
+                                            <ul>
+                                                <li><strong>Dữ liệu Định danh Cơ bản:</strong> Tên hiển thị, ảnh đại
+                                                    diện, địa chỉ email, và Facebook User ID.</li>
+                                                <li><strong>Dữ liệu Quản lý Fanpage (<code>pages_show_list</code>,
+                                                        <code>pages_read_engagement</code>,
+                                                        <code>pages_manage_posts</code>):</strong> Danh sách các Trang
+                                                    (Pages) bạn quản lý, ID của trang, tên trang, phân loại trang, nội
+                                                    dung bài viết, hình ảnh/video bạn đã đăng trên Trang, lượt thích
+                                                    (likes), lượt comments (comments), và Access Token của Trang để duy
+                                                    trì kết nối.</li>
+                                                <li><strong>Dữ liệu Hộp thư đến (<code>pages_messaging</code>):</strong>
+                                                    Lịch sử các cuộc hội thoại, tin nhắn văn bản, hình ảnh đính kèm mà
+                                                    khách hàng gửi đến Trang của bạn, cũng như các tin nhắn bạn gửi đi
+                                                    thông qua hệ thống của chúng tôi.</li>
+                                                <li><strong>Dữ liệu Quảng cáo và Doanh nghiệp
+                                                        (<code>ads_management</code>, <code>business_management</code>,
+                                                        <code>ads_read</code>):</strong> ID Ads Account (Ad
+                                                    Account ID), ID Trình quản lý kinh doanh (Business Manager ID), cấu
+                                                    hình chiến dịch, nhóm quảng cáo, mẫu quảng cáo, và các chỉ số đo
+                                                    lường hiệu quả (Lượt tiếp cận, Hiển thị, Chi phí, Lượt nhấp, Chuyển
+                                                    đổi).</li>
+                                            </ul>
+                                            <h4>2.2. Dữ liệu Do bạn cung cấp trực tiếp</h4>
+                                            <p>Bao gồm các thông tin bạn điền vào form đăng ký tài khoản trên hệ thống
+                                                của chúng tôi, số điện thoại liên hệ, tên công ty, mã số thuế (nếu có để
+                                                xuất hóa đơn), và các nội dung yêu cầu hỗ trợ qua email/chat.</p>
+                                            <h4>2.3. Dữ liệu Thu thập tự động (Log & Usage Data)</h4>
+                                            <p>Khi bạn sử dụng ứng dụng, hệ thống của chúng tôi tự động ghi nhận các
+                                                thông tin kỹ thuật như: Địa chỉ IP, loại trình duyệt, hệ điều hành, thời
+                                                gian truy cập, các trang/chức năng bạn đã click, và các bản log lỗi
+                                                (error logs) để phục vụ cho việc chẩn đoán sự cố hệ thống.</p>
+                                        </div>
+                                    </details>
 
-    <details class="policy-accordion">
-        <summary>11. Cập nhật và Thay đổi Chính sách</summary>
-        <div class="accordion-content">
-            <p>Chúng tôi bảo lưu quyền sửa đổi và cập nhật Chính sách Quyền riêng tư này vào bất kỳ lúc nào để phản ánh sự thay đổi trong công nghệ, luật pháp, hoặc tính năng Dịch vụ. Bất kỳ sự thay đổi quan trọng nào sẽ được thông báo rõ ràng cho bạn thông qua email (nếu bạn đã cung cấp) hoặc bằng một thông báo nổi bật ngay trên giao diện ứng dụng trước khi thay đổi có hiệu lực. Ngày "Cập nhật lần cuối" ở đầu trang sẽ cho bạn biết thời điểm chính sách này được sửa đổi gần nhất.</p>
-        </div>
-    </details>
+                                    <details class="policy-accordion">
+                                        <summary>3. Purpose of data use</summary>
+                                        <div class="accordion-content">
+                                            <p>Toàn bộ dữ liệu thu thập từ bạn và từ Meta API được chúng tôi sử dụng
+                                                <strong>độc quyền</strong> cho các mục đích hợp pháp nhằm cung cấp và
+                                                nâng cao chất lượng Dịch vụ. Cụ thể:
+                                            </p>
+                                            <ul>
+                                                <li><strong>Cung cấp tính năng cốt lõi:</strong> Cho phép bạn xem báo
+                                                    cáo, đăng bài viết, đọc và tự động hóa việc trả lời comments/tin
+                                                    nhắn trên Fanpage ngay từ nền tảng của chúng tôi.</li>
+                                                <li><strong>Quản lý và Tối ưu Quảng cáo:</strong> Tổng hợp số liệu từ
+                                                    Meta Ads để vẽ biểu đồ báo cáo hiệu quả chiến dịch (Campaign
+                                                    Insights), hỗ trợ bạn lên kịch bản và tạo chiến dịch quảng cáo mới
+                                                    trực tiếp trên giao diện của chúng tôi một cách nhanh chóng.</li>
+                                                <li><strong>Duy trì và Xác thực:</strong> Sử dụng Access Token để duy
+                                                    trì phiên đăng nhập bảo mật giữa hệ thống của chúng tôi và hệ thống
+                                                    của Meta, đảm bảo luồng công việc của bạn không bị gián đoạn.</li>
+                                                <li><strong>Cải thiện Dịch vụ:</strong> Phân tích dữ liệu sử dụng ẩn
+                                                    danh (không gắn với danh tính) để phát hiện các lỗi phần mềm (bugs)
+                                                    và nâng cấp giao diện người dùng (UX/UI).</li>
+                                                <li><strong>Hỗ trợ Khách hàng:</strong> Sử dụng email hoặc số điện thoại
+                                                    của bạn để gửi thông báo về trạng thái tài khoản, cảnh báo bảo mật,
+                                                    hoặc phản hồi các yêu cầu hỗ trợ kỹ thuật từ bạn.</li>
+                                            </ul>
+                                        </div>
+                                    </details>
 
-    <details class="policy-accordion">
-        <summary>12. Thông tin Liên hệ (Contact Information)</summary>
-        <div class="accordion-content">
-            <p>Chúng tôi luôn lắng nghe và sẵn sàng giải đáp mọi thắc mắc của bạn về Chính sách Quyền riêng tư này. Nếu bạn có bất kỳ câu hỏi nào, khiếu nại, hoặc muốn thực hiện các quyền riêng tư của mình, xin vui lòng liên hệ với Cán bộ Bảo vệ Dữ liệu (Data Protection Officer) của chúng tôi thông qua:</p>
-            <ul>
-                <li><strong>Email Hỗ trợ & Pháp lý:</strong> <a href="mailto:contact@ezisolutions.tech" style="color: var(--primary);">contact@ezisolutions.tech</a></li>
-                <li><strong>Địa chỉ Trụ sở chính:</strong> EZI Tech Solutions Headquarter, Việt Nam.</li>
-            </ul>
-            <p><em>Cảm ơn bạn đã tin tưởng và sử dụng Dịch vụ của chúng tôi!</em></p>
-        </div>
-    </details>
+                                    <details class="policy-accordion">
+                                        <summary>4. Sharing and Disclosing data to Third parties</summary>
+                                        <div class="accordion-content">
+                                            <p>Chúng tôi tôn trọng tuyệt đối quyền riêng tư và coi dữ liệu của bạn là
+                                                tài sản cần được bảo vệ nghiêm ngặt.</p>
+                                            <ul>
+                                                <li><strong>Cam kết Không bán Dữ liệu (No Data Selling):</strong> Chúng
+                                                    tôi KHÔNG BÁN, cho thuê, trao đổi, hoặc kiếm tiền từ bất kỳ dữ liệu
+                                                    cá nhân hay dữ liệu Facebook nào của bạn cho bất kỳ bên thứ ba, nhà
+                                                    môi giới dữ liệu (data broker), hay công ty quảng cáo nào.</li>
+                                                <li><strong>Nhà cung cấp Dịch vụ Đám mây (Cloud Providers):</strong> Dữ
+                                                    liệu của bạn được lưu trữ trên các máy chủ đám mây bảo mật cấp doanh
+                                                    nghiệp (như AWS, Google Cloud). Các đối tác này bị ràng buộc bởi các
+                                                    hợp đồng bảo mật nghiêm ngặt và không có quyền truy cập vào dữ liệu
+                                                    của bạn để sử dụng cho mục đích riêng của họ.</li>
+                                                <li><strong>Yêu cầu Pháp lý:</strong> Chúng tôi bảo lưu quyền tiết lộ dữ
+                                                    liệu của bạn khi bắt buộc phải làm vậy theo yêu cầu hợp pháp từ Tòa
+                                                    án, cơ quan điều tra, hoặc để tuân thủ các quy định của pháp luật
+                                                    nhằm ngăn chặn gian lận, bảo vệ quyền lợi hợp pháp của EZI Tech
+                                                    Solutions và sự an toàn của những người dùng khác.</li>
+                                            </ul>
+                                        </div>
+                                    </details>
 
+                                    <details class="policy-accordion">
+                                        <summary>5. Data Storage and Security</summary>
+                                        <div class="accordion-content">
+                                            <p>Chúng tôi áp dụng các tiêu chuẩn bảo mật của ngành công nghiệp phần mềm
+                                                để bảo vệ dữ liệu chống lại sự truy cập, thay đổi, tiết lộ hoặc phá hủy
+                                                trái phép.</p>
+                                            <ul>
+                                                <li><strong>Mã hóa Truyền tải:</strong> All các luồng dữ liệu giao
+                                                    tiếp giữa trình duyệt của bạn, máy chủ của chúng tôi và Meta đều
+                                                    được mã hóa theo chuẩn Transport Layer Security (TLS/HTTPS).</li>
+                                                <li><strong>Mã hóa Lưu trữ:</strong> Các dữ liệu nhạy cảm cực kỳ quan
+                                                    trọng như Facebook Access Token, Mật khẩu tài khoản, thông tin thanh
+                                                    toán đều được mã hóa một chiều (hashing) hoặc mã hóa bất đối xứng
+                                                    tại tầng Cơ sở dữ liệu.</li>
+                                                <li><strong>Thời gian lưu trữ (Retention Policy):</strong>
+                                                    <ul>
+                                                        <li>Chúng tôi chỉ lưu giữ dữ liệu của bạn trong thời gian tài
+                                                            khoản của bạn còn hoạt động hoặc cần thiết để thực hiện các
+                                                            nghĩa vụ trong hợp đồng.</li>
+                                                        <li>Lịch sử nội dung (Bài viết/Message/Dữ liệu Ads) được lưu
+                                                            trữ tạm thời để phục vụ hiển thị báo cáo. Nếu bạn ngừng sử
+                                                            dụng dịch vụ hoặc ngắt kết nối Fanpage/Ad Account, hệ thống
+                                                            sẽ tự động ngừng thu thập dữ liệu mới.</li>
+                                                        <li>Các bản log hệ thống thường sẽ bị xóa hoặc làm ẩn danh sau
+                                                            90 ngày.</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </details>
+
+                                    <details class="policy-accordion">
+                                        <summary>6. User Rights</summary>
+                                        <div class="accordion-content">
+                                            <p>Dù bạn ở bất kỳ khu vực nào, chúng tôi trao cho bạn các quyền kiểm soát
+                                                dữ liệu cá nhân của mình ở mức cao nhất:</p>
+                                            <ul>
+                                                <li><strong>Quyền Truy cập:</strong> Bạn có quyền đăng nhập vào ứng dụng
+                                                    và xem tất cả các dữ liệu mà chúng tôi đang lưu trữ về bạn và các
+                                                    Fanpage bạn đã kết nối.</li>
+                                                <li><strong>Quyền Edit:</strong> Bạn có thể cập nhật, sửa đổi thông
+                                                    tin hồ sơ cá nhân của mình bất kỳ lúc nào thông qua phần Settings
+                                                    tài
+                                                    khoản.</li>
+                                                <li><strong>Quyền Từ chối (Opt-out):</strong> Bạn có thể hủy đăng ký
+                                                    nhận email tiếp thị hoặc thông báo không quan trọng từ chúng tôi.
+                                                </li>
+                                                <li><strong>Quyền Delete bỏ (Right to Erasure):</strong> Bạn có quyền
+                                                    yêu
+                                                    cầu xóa bỏ hoàn toàn và vĩnh viễn dữ liệu của mình khỏi hệ thống của
+                                                    chúng tôi. (Vui lòng xem chi tiết tại Mục 7).</li>
+                                            </ul>
+                                        </div>
+                                    </details>
+
+                                    <details class="policy-accordion">
+                                        <summary>7. Data Deletion Instructions</summary>
+                                        <div class="accordion-content">
+                                            <p>Nếu bạn không còn muốn sử dụng ứng dụng và muốn xóa toàn bộ dữ liệu mà
+                                                chúng tôi đã thu thập từ Facebook của bạn, bạn có thể thực hiện theo quy
+                                                trình minh bạch sau đây:</p>
+                                            <h4>Cách 1: Delete ngay lập tức thông qua Facebook (Khuyến nghị)</h4>
+                                            <ol>
+                                                <li>Truy cập vào tài khoản Facebook của bạn.</li>
+                                                <li>Đi đến phần <strong>Settings và Quyền riêng tư</strong> >
+                                                    <strong>Cài
+                                                        đặt</strong>.</li>
+                                                <li>Chọn mục <strong>Ứng dụng và Trang web (Apps and Websites)</strong>
+                                                    hoặc <strong>Tiện ích tích hợp cho doanh nghiệp (Business
+                                                        Integrations)</strong>.</li>
+                                                <li>Tìm ứng dụng của chúng tôi trong danh sách, chọn <strong>Gỡ
+                                                        (Remove)</strong>.<br>Ngay khi bạn thực hiện điều này, các
+                                                    Access Token mà chúng tôi đang giữ sẽ ngay lập tức bị vô hiệu hóa,
+                                                    và hệ thống của chúng tôi sẽ không thể truy cập thêm bất kỳ dữ liệu
+                                                    nào từ Facebook của bạn.</li>
+                                            </ol>
+                                            <h4>Cách 2: Gửi Yêu cầu Delete dữ liệu đến máy chủ của chúng tôi</h4>
+                                            <p>Để đảm bảo toàn bộ dữ liệu lịch sử (bao gồm log, bản sao lưu) được xóa
+                                                sạch khỏi Cơ sở dữ liệu của chúng tôi:</p>
+                                            <ol>
+                                                <li>Truy cập vào trang <strong><a href="/data-deletion"
+                                                            style="color: var(--primary);">Hướng dẫn Delete Dữ
+                                                            Liệu</a></strong> trên website của chúng tôi.</li>
+                                                <li>Điền email hoặc Account ID của bạn vào form yêu cầu xóa dữ liệu.
+                                                </li>
+                                                <li>Chúng tôi sẽ tiếp nhận, xác minh yêu cầu và tiến hành xóa vĩnh viễn
+                                                    mọi dữ liệu liên quan trong vòng tối đa <strong>7 ngày làm
+                                                        việc</strong>. Bạn sẽ nhận được email xác nhận khi quá trình xóa
+                                                    hoàn tất.</li>
+                                            </ol>
+                                        </div>
+                                    </details>
+
+                                    <details class="policy-accordion">
+                                        <summary>8. Use of Cookies and Tracking Technologies</summary>
+                                        <div class="accordion-content">
+                                            <p>Chúng tôi sử dụng Cookie (các tệp văn bản nhỏ lưu trên thiết bị của bạn)
+                                                và các công nghệ tương tự (như LocalStorage, SessionStorage) chỉ với mục
+                                                đích duy trì phiên đăng nhập (Authentication), ghi nhớ tùy chọn ngôn
+                                                ngữ/giao diện, và đảm bảo an ninh mạng chống lại các cuộc tấn công giả
+                                                mạo (CSRF). Bạn hoàn toàn có thể thiết lập trình duyệt của mình để từ
+                                                chối tất cả cookie, tuy nhiên, điều này có thể làm cho một số tính năng
+                                                bảo mật của Dịch vụ không thể hoạt động chính xác.</p>
+                                        </div>
+                                    </details>
+
+                                    <details class="policy-accordion">
+                                        <summary>9. Age Restrictions</summary>
+                                        <div class="accordion-content">
+                                            <p>Dịch vụ của chúng tôi cung cấp công cụ quản lý doanh nghiệp (B2B) và các
+                                                công cụ quảng cáo. Do đó, Dịch vụ này không được thiết kế và không nhắm
+                                                mục tiêu đến trẻ em dưới 13 tuổi (hoặc độ tuổi giới hạn theo luật định
+                                                tại quốc gia của bạn). Chúng tôi không cố ý thu thập thông tin cá nhân
+                                                từ trẻ vị thành niên. Nếu chúng tôi phát hiện ra một tài khoản thuộc về
+                                                người chưa đủ tuổi hợp pháp, chúng tôi sẽ tiến hành khóa tài khoản và
+                                                xóa bỏ toàn bộ dữ liệu ngay lập tức.</p>
+                                        </div>
+                                    </details>
+
+                                    <details class="policy-accordion">
+                                        <summary>10. International Data Transfer</summary>
+                                        <div class="accordion-content">
+                                            <p>Máy chủ cơ sở dữ liệu của chúng tôi có thể được đặt tại nhiều khu vực
+                                                (Regions) khác nhau do các đối tác Cloud cung cấp. Do đó, dữ liệu của
+                                                bạn có thể được truyền tải và lưu trữ bên ngoài quốc gia nơi bạn sinh
+                                                sống. Khi thực hiện các luồng chuyển giao này, chúng tôi luôn đảm bảo
+                                                việc truyền tải tuân thủ các Cơ chế bảo vệ dữ liệu được pháp luật công
+                                                nhận, đảm bảo an toàn tuyệt đối.</p>
+                                        </div>
+                                    </details>
+
+                                    <details class="policy-accordion">
+                                        <summary>11. Policy Updates and Changes</summary>
+                                        <div class="accordion-content">
+                                            <p>Chúng tôi bảo lưu quyền sửa đổi và cập nhật Policies Quyền riêng tư này
+                                                vào bất kỳ lúc nào để phản ánh sự thay đổi trong công nghệ, luật pháp,
+                                                hoặc tính năng Dịch vụ. Bất kỳ sự thay đổi quan trọng nào sẽ được thông
+                                                báo rõ ràng cho bạn thông qua email (nếu bạn đã cung cấp) hoặc bằng một
+                                                thông báo nổi bật ngay trên giao diện ứng dụng trước khi thay đổi có
+                                                hiệu lực. Ngày "Cập nhật lần cuối" ở đầu trang sẽ cho bạn biết thời điểm
+                                                chính sách này được sửa đổi gần nhất.</p>
+                                        </div>
+                                    </details>
+
+                                    <details class="policy-accordion">
+                                        <summary>12. Contact Information</summary>
+                                        <div class="accordion-content">
+                                            <p>Chúng tôi luôn lắng nghe và sẵn sàng giải đáp mọi thắc mắc của bạn về
+                                                Policies Quyền riêng tư này. Nếu bạn có bất kỳ câu hỏi nào, khiếu nại,
+                                                hoặc muốn thực hiện các quyền riêng tư của mình, xin vui lòng liên hệ
+                                                với Cán bộ Bảo vệ Dữ liệu (Data Protection Officer) của chúng tôi thông
+                                                qua:</p>
+                                            <ul>
+                                                <li><strong>Email Hỗ trợ & Pháp lý:</strong> <a
+                                                        href="mailto:contact@ezisolutions.tech"
+                                                        style="color: var(--primary);">contact@ezisolutions.tech</a>
+                                                </li>
+                                                <li><strong>Địa chỉ Trụ sở chính:</strong> EZI Tech Solutions
+                                                    Headquarter, Việt Male.</li>
+                                            </ul>
+                                            <p><em>Cảm ơn bạn đã tin tưởng và sử dụng Dịch vụ của chúng tôi!</em></p>
+                                        </div>
+                                    </details>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1357,8 +1513,9 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3>Quản lý Quyền riêng tư & Dữ liệu cá nhân</h3>
-                                        <p>Kiểm soát quyền dữ liệu cá nhân, sao lưu thông tin và bảo mật tài khoản.</p>
+                                        <h3>Privacy & Personal Data Management</h3>
+                                        <p>Control personal data rights, backup information and secure account.
+                                        </p>
                                     </div>
                                 </div>
 
@@ -1367,37 +1524,29 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                     <div class="data-action-row"
                                         style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md);">
                                         <div>
-                                            <h4 style="font-size: 14px; font-weight: 600; color: var(--text-main);">Tải
-                                                xuống bản sao dữ liệu cá nhân</h4>
-                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Xuất
-                                                toàn bộ lịch sử hoạt động, bài viết và báo cáo cá nhân dạng CSV/PDF.</p>
+                                            <h4 style="font-size: 14px; font-weight: 600; color: var(--text-main);">
+                                                Download personal data copy</h4>
+                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+                                                Export all activity history, posts and personal reports in CSV/PDF
+                                                format.
+                                            </p>
                                         </div>
-                                        <button class="btn btn-outline" onclick="exportPersonalData()">Tải dữ
-                                            liệu</button>
+                                        <button class="btn btn-outline" onclick="exportPersonalData()">Download
+                                            Data</button>
                                     </div>
 
-                                    <div class="data-action-row"
-                                        style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md);">
-                                        <div>
-                                            <h4 style="font-size: 14px; font-weight: 600; color: var(--text-main);">Lịch
-                                                sử đăng nhập & Thiết bị</h4>
-                                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
-                                                MacBook Air (Hồ Chí Minh) · Đang hoạt động</p>
-                                        </div>
-                                        <button class="btn btn-outline" onclick="showLoginHistory()">Xem chi
-                                            tiết</button>
-                                    </div>
 
                                     <div class="data-action-row"
                                         style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #fff5f5; border: 1px solid #feb2b2; border-radius: var(--radius-md);">
                                         <div>
-                                            <h4 style="font-size: 14px; font-weight: 600; color: #c53030;">Yêu cầu xóa
-                                                dữ liệu cá nhân</h4>
-                                            <p style="font-size: 12px; color: #9b2c2c; margin-top: 2px;">Xóa toàn bộ hồ
+                                            <h4 style="font-size: 14px; font-weight: 600; color: #c53030;">Delete
+                                                Personal Data</h4>
+                                            <p style="font-size: 12px; color: #9b2c2c; margin-top: 2px;">Delete toàn bộ
+                                                hồ
                                                 sơ dữ liệu cá nhân khỏi máy chủ hệ thống Ezi Talent.</p>
                                         </div>
-                                        <button class="btn btn-outline-danger" onclick="requestDataErasure()">Yêu cầu
-                                            xóa</button>
+                                        <button class="btn btn-outline-danger" onclick="requestDataErasure()">Delete
+                                            Personal Data</button>
                                     </div>
                                 </div>
                             </div>
@@ -1413,7 +1562,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
     <div class="toast-notification hidden" id="toast-notif">
         <div class="toast-icon">💬</div>
         <div class="toast-content">
-            <div class="toast-title" id="toast-title">Tin nhắn mới từ Nguyễn Văn An</div>
+            <div class="toast-title" id="toast-title">Message mới từ Nguyễn Văn An</div>
             <div class="toast-desc" id="toast-desc">Chào shop, vị trí tuyển dụng còn tuyển không ạ?</div>
         </div>
         <button class="toast-close" onclick="closeToast()">&times;</button>
@@ -1423,7 +1572,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
         <div class="confirm-modal-box" style="max-width: 600px;">
             <div class="comments-modal-header">
                 <div>
-                    <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main);">Chi tiết chiến dịch</h3>
+                    <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main);">Campaign Details</h3>
                     <p class="comments-modal-subtitle" id="campaign-details-subtitle">ID: --</p>
                 </div>
                 <button class="toast-close" onclick="closeCampaignDetailsModal()">&times;</button>
@@ -1431,87 +1580,109 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
 
             <div style="margin: 16px 0; max-height: 450px; overflow-y: auto; padding-right: 8px;">
                 <!-- Nhóm 1: Thông tin chung -->
-                <h4 style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; margin-top: 0; padding-bottom: 4px; border-bottom: 1px solid var(--border);">Thiết lập chung</h4>
+                <h4
+                    style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; margin-top: 0; padding-bottom: 4px; border-bottom: 1px solid var(--border);">
+                    General Settings</h4>
                 <div class="form-row">
                     <div class="form-col">
-                        <label>Tên chiến dịch</label>
-                        <input type="text" id="campaign-details-name" readonly style="background-color: var(--surface-variant);">
+                        <label>Campaign Name</label>
+                        <input type="text" id="campaign-details-name" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                     <div class="form-col">
-                        <label>Tài khoản quảng cáo</label>
-                        <input type="text" id="campaign-details-ad-account" readonly style="background-color: var(--surface-variant);">
-                    </div>
-                </div>
-                
-                <div class="form-row" style="margin-top: 12px;">
-                    <div class="form-col">
-                        <label>Mục tiêu</label>
-                        <input type="text" id="campaign-details-objective" readonly style="background-color: var(--surface-variant);">
-                    </div>
-                    <div class="form-col">
-                        <label>Đích đến</label>
-                        <input type="text" id="campaign-details-destination" readonly style="background-color: var(--surface-variant);">
+                        <label>Ads Account</label>
+                        <input type="text" id="campaign-details-ad-account" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                 </div>
 
                 <div class="form-row" style="margin-top: 12px;">
                     <div class="form-col">
-                        <label>Ngân sách (VNĐ)</label>
-                        <input type="text" id="campaign-details-budget" readonly style="background-color: var(--surface-variant);">
+                        <label>Objective</label>
+                        <input type="text" id="campaign-details-objective" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                     <div class="form-col">
-                        <label>Loại ngân sách</label>
-                        <input type="text" id="campaign-details-budget-type" readonly style="background-color: var(--surface-variant);">
+                        <label>Destination</label>
+                        <input type="text" id="campaign-details-destination" readonly
+                            style="background-color: var(--surface-variant);">
+                    </div>
+                </div>
+
+                <div class="form-row" style="margin-top: 12px;">
+                    <div class="form-col">
+                        <label>Budget (VND)</label>
+                        <input type="text" id="campaign-details-budget" readonly
+                            style="background-color: var(--surface-variant);">
+                    </div>
+                    <div class="form-col">
+                        <label>Budget Type</label>
+                        <input type="text" id="campaign-details-budget-type" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                 </div>
 
                 <div class="form-row" style="margin-top: 12px;">
                     <div class="form-col">
                         <label>Fanpage</label>
-                        <input type="text" id="campaign-details-page" readonly style="background-color: var(--surface-variant);">
+                        <input type="text" id="campaign-details-page" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                     <div class="form-col">
-                        <label>Thời gian chạy</label>
-                        <input type="text" id="campaign-details-time" readonly style="background-color: var(--surface-variant);">
+                        <label>Run time</label>
+                        <input type="text" id="campaign-details-time" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                 </div>
 
-                <!-- Nhóm 2: Đối tượng & Vị trí -->
-                <h4 style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; margin-top: 16px; padding-bottom: 4px; border-bottom: 1px solid var(--border);">Đối tượng mục tiêu & Vị trí</h4>
+                <!-- Nhóm 2: Đối tượng & Location -->
+                <h4
+                    style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; margin-top: 16px; padding-bottom: 4px; border-bottom: 1px solid var(--border);">
+                    Target Audience & Location</h4>
                 <div class="form-row">
                     <div class="form-col">
-                        <label>Độ tuổi</label>
-                        <input type="text" id="campaign-details-age" readonly style="background-color: var(--surface-variant);">
+                        <label>Age</label>
+                        <input type="text" id="campaign-details-age" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                     <div class="form-col">
-                        <label>Giới tính</label>
-                        <input type="text" id="campaign-details-gender" readonly style="background-color: var(--surface-variant);">
+                        <label>Gender</label>
+                        <input type="text" id="campaign-details-gender" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                 </div>
                 <div class="form-row" style="margin-top: 12px;">
                     <div class="form-col">
-                        <label>Vị trí địa lý</label>
-                        <input type="text" id="campaign-details-location" readonly style="background-color: var(--surface-variant);">
+                        <label>Geographic Location</label>
+                        <input type="text" id="campaign-details-location" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                     <div class="form-col">
-                        <label>Phạm vi bán kính</label>
-                        <input type="text" id="campaign-details-radius" readonly style="background-color: var(--surface-variant);">
+                        <label>Radius range</label>
+                        <input type="text" id="campaign-details-radius" readonly
+                            style="background-color: var(--surface-variant);">
                     </div>
                 </div>
 
                 <!-- Nhóm 3: Nội dung quảng cáo -->
-                <h4 style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; margin-top: 16px; padding-bottom: 4px; border-bottom: 1px solid var(--border);">Nội dung quảng cáo</h4>
+                <h4
+                    style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; margin-top: 16px; padding-bottom: 4px; border-bottom: 1px solid var(--border);">
+                    Nội dung quảng cáo</h4>
                 <div class="form-group">
-                    <label>Tiêu đề (Headline)</label>
-                    <input type="text" id="campaign-details-headline" readonly style="background-color: var(--surface-variant);">
+                    <label>Headline</label>
+                    <input type="text" id="campaign-details-headline" readonly
+                        style="background-color: var(--surface-variant);">
                 </div>
                 <div class="form-group" style="margin-top: 12px;">
-                    <label>Văn bản chính (Primary Text)</label>
-                    <textarea id="campaign-details-text" readonly style="background-color: var(--surface-variant); height: 80px; resize: none; font-family: inherit; line-height: 1.4; padding: 10px;"></textarea>
+                    <label>Primary Text</label>
+                    <textarea id="campaign-details-text" readonly
+                        style="background-color: var(--surface-variant); height: 80px; resize: none; font-family: inherit; line-height: 1.4; padding: 10px;"></textarea>
                 </div>
-                
-                <div style="margin-top: 16px; padding: 12px; background-color: var(--primary-light); border-radius: var(--radius-md);">
-                    <h4 style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">Hiệu suất hiện tại</h4>
+
+                <div
+                    style="margin-top: 16px; padding: 12px; background-color: var(--primary-light); border-radius: var(--radius-md);">
+                    <h4 style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">Hiệu suất
+                        hiện tại</h4>
                     <div style="display: flex; gap: 24px;">
                         <div>
                             <div style="font-size: 11px; color: var(--text-muted);">Số tiền đã chi tiêu</div>
@@ -1523,7 +1694,8 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                         </div>
                         <div>
                             <div style="font-size: 11px; color: var(--text-muted);">Lượt click</div>
-                            <div style="font-weight: 700; color: var(--text-main);" id="campaign-details-clicks">--</div>
+                            <div style="font-weight: 700; color: var(--text-main);" id="campaign-details-clicks">--
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1540,7 +1712,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
         <div class="confirm-modal-box comments-modal-box">
             <div class="comments-modal-header">
                 <div>
-                    <h3>Quản lý bình luận</h3>
+                    <h3>Manage Comments</h3>
                     <p class="comments-modal-subtitle">
                         <span id="comments-modal-page-name">Ezi Talent</span> ·
                         <span id="comments-modal-post-excerpt"></span>
@@ -1552,8 +1724,8 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
             <div class="comments-modal-list" id="comments-modal-list"></div>
 
             <div class="empty-state-card hidden" id="comments-modal-empty" style="margin-top: 8px;">
-                <h3>Chưa có bình luận nào</h3>
-                <p>Bình luận từ người dùng trên bài viết này sẽ hiển thị tại đây.</p>
+                <h3>Chưa có comments nào</h3>
+                <p>Comment từ người dùng trên bài viết này sẽ hiển thị tại đây.</p>
             </div>
 
             <div class="confirm-modal-actions" style="margin-top: 16px;">
@@ -1567,71 +1739,16 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
         <div class="confirm-modal-box" style="max-width: 500px;">
             <div class="comments-modal-header">
                 <div>
-                    <h3 style="font-size: 16px; font-weight: 700; color: var(--text-main);">Kết nối tài khoản quảng cáo
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--text-main);">Connect Ads Account
                     </h3>
                     <p class="comments-modal-subtitle">Chọn tài khoản quảng cáo bạn muốn kết nối</p>
                 </div>
                 <button class="toast-close" onclick="closeAdsSelectionModal()">&times;</button>
             </div>
 
-            <div class="ads-account-list"
+            <div class="ads-account-list" id="ads-selection-modal-list"
                 style="margin-top: 16px; margin-bottom: 16px; max-height: 200px; overflow-y: auto;">
-                <div
-                    style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div class="page-logo-circle et-logo"
-                            style="background: linear-gradient(135deg, #1877f2, #0d6efd); width: 40px; height: 40px; font-size: 14px;">
-                            AD</div>
-                        <div>
-                            <span class="page-name-text">Ezi Solution Ads</span>
-                            <span class="page-id-text">ID: 678912345678901</span>
-                        </div>
-                    </div>
-                    <div>
-                        <span
-                            style="font-size: 13px; color: #10b981; font-weight: 600; display: flex; align-items: center; gap: 4px;">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Đã kết nối
-                        </span>
-                    </div>
-                </div>
-
-                <div
-                    style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div class="page-logo-circle ea-logo"
-                            style="background: linear-gradient(135deg, #f0703e, #f9a826); width: 40px; height: 40px; font-size: 14px;">
-                            TA</div>
-                        <div>
-                            <span class="page-name-text">Talent Acquisition Ads</span>
-                            <span class="page-id-text">ID: 123456789012345</span>
-                        </div>
-                    </div>
-                    <label style="cursor: pointer;">
-                        <input type="checkbox" name="ad_account_select_2" value="2"
-                            style="width: 18px; height: 18px; cursor: pointer;">
-                    </label>
-                </div>
-
-                <div
-                    style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; display: flex; align-items: center; justify-content: space-between;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div class="page-logo-circle"
-                            style="background: linear-gradient(135deg, #6b7280, #9ca3af); width: 40px; height: 40px; font-size: 14px; color: white;">
-                            HR</div>
-                        <div>
-                            <span class="page-name-text">HR Dept Campaigns</span>
-                            <span class="page-id-text">ID: 987654321098765</span>
-                        </div>
-                    </div>
-                    <label style="cursor: pointer;">
-                        <input type="checkbox" name="ad_account_select_3" value="3"
-                            style="width: 18px; height: 18px; cursor: pointer;">
-                    </label>
-                </div>
+                <!-- Rendered dynamically -->
             </div>
 
             <div style="display: flex; justify-content: center; margin-bottom: 24px;">
@@ -1640,7 +1757,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
             </div>
 
             <div class="confirm-modal-actions">
-                <button class="btn btn-outline" onclick="closeAdsSelectionModal()">Hủy bỏ</button>
+                <button class="btn btn-outline" onclick="closeAdsSelectionModal()">Cancel bỏ</button>
                 <button class="btn btn-primary" onclick="confirmAdsConnection()">Kết nối</button>
             </div>
         </div>
@@ -1651,7 +1768,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
         <div class="confirm-modal-box">
             <p class="confirm-modal-message" id="confirm-modal-message"></p>
             <div class="confirm-modal-actions">
-                <button class="btn btn-outline" id="confirm-modal-cancel-btn">Hủy bỏ</button>
+                <button class="btn btn-outline" id="confirm-modal-cancel-btn">Cancel bỏ</button>
                 <button class="btn btn-outline-danger" id="confirm-modal-ok-btn">Đồng ý</button>
             </div>
         </div>

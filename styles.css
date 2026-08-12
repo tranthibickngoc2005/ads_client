@@ -10,30 +10,30 @@
     --surface-variant: #f4f6fb;
     --background: #f7f9fa;
     --background-darker: #f0f2f5;
-    
+
     --text-main: #2d3748;
     --text-muted: #718096;
     --text-light: #a0aec0;
-    
+
     --border: #e2e8f0;
     --border-focus: #93a5c8;
-    
+
     --success: #38a169;
     --success-light: #e6fffa;
     --danger: #e53e3e;
     --danger-light: #fff5f5;
-    
+
     --font-main: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.02);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.02);
-    --shadow-fb: 0 1px 2px rgba(0,0,0,0.2);
-    
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    --shadow-fb: 0 1px 2px rgba(0, 0, 0, 0.2);
+
     --radius-sm: 6px;
     --radius-md: 12px;
     --radius-lg: 16px;
-    
+
     --transition-fast: 0.15s ease;
     --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -65,12 +65,13 @@ body {
 .sidebar {
     width: 270px;
     height: 100%;
-    background-color: var(--primary); /* Cam đỏ thương hiệu */
+    background-color: var(--primary);
+    /* Cam đỏ thương hiệu */
     color: #ffffff;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
     z-index: 10;
 }
 
@@ -141,8 +142,8 @@ body {
 .status-badge {
     display: inline-flex;
     align-items: center;
-    background-color: #ffffff; 
-    color: var(--primary); 
+    background-color: #ffffff;
+    color: var(--primary);
     font-size: 13px;
     font-weight: 700;
     padding: 6px 14px;
@@ -226,10 +227,13 @@ body {
 
 /* Brand colors */
 .brand-facebook-color {
-    color: #ffffff; /* For sidebar icons */
+    color: #ffffff;
+    /* For sidebar icons */
 }
+
 .menu-item.active .brand-facebook-color {
-    color: #1877f2 !important; /* Blue when active on white background */
+    color: #1877f2 !important;
+    /* Blue when active on white background */
 }
 
 /* Dropdown Menu Item */
@@ -239,12 +243,12 @@ body {
     transition: transform var(--transition-normal);
 }
 
-.menu-item.dropdown-active > a {
+.menu-item.dropdown-active>a {
     background-color: rgba(255, 255, 255, 0.15);
     color: #ffffff;
 }
 
-.menu-item.dropdown-active > a:hover {
+.menu-item.dropdown-active>a:hover {
     background-color: rgba(255, 255, 255, 0.25);
     color: #ffffff;
 }
@@ -467,8 +471,15 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .content-header {
@@ -581,10 +592,25 @@ body {
     margin-bottom: 16px;
 }
 
-.purple-bg { background-color: #f3ebff; color: #805ad5; }
-.orange-bg { background-color: #fffaf0; color: #dd6b20; }
-.blue-bg { background-color: #ebf8ff; color: #3182ce; }
-.green-bg { background-color: #f0fff4; color: #38a169; }
+.purple-bg {
+    background-color: #f3ebff;
+    color: #805ad5;
+}
+
+.orange-bg {
+    background-color: #fffaf0;
+    color: #dd6b20;
+}
+
+.blue-bg {
+    background-color: #ebf8ff;
+    color: #3182ce;
+}
+
+.green-bg {
+    background-color: #f0fff4;
+    color: #38a169;
+}
 
 .stat-value {
     font-size: 26px;
@@ -746,7 +772,7 @@ body {
     color: var(--text-muted);
 }
 
-.ad-estimate-row + .ad-estimate-row {
+.ad-estimate-row+.ad-estimate-row {
     margin-top: 8px;
 }
 
@@ -952,14 +978,59 @@ body {
 }
 
 /* Preloaded banner placeholders backgrounds styling */
-.office-banner-bg { background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); position: relative; }
-.office-banner-bg::after { content: '💼 Tuyển dụng Văn phòng'; position: absolute; bottom: 12px; left: 12px; color: #1a202c; font-weight: 700; font-size: 13px; background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: 4px; }
+.office-banner-bg {
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+    position: relative;
+}
 
-.hero-bg { background-image: linear-gradient(to right, #ff9566 0%, #ff5e62 100%); position: relative; }
-.hero-bg::after { content: '🚀 Tuyển dụng Marketing'; position: absolute; bottom: 12px; left: 12px; color: #fff; font-weight: 700; font-size: 13px; background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 4px; }
+.office-banner-bg::after {
+    content: '💼 Tuyển dụng Văn phòng';
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    color: #1a202c;
+    font-weight: 700;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
 
-.team-photo-bg { background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); position: relative; }
-.team-photo-bg::after { content: '🙌 Đồng hành cùng Ezi Team'; position: absolute; bottom: 12px; left: 12px; color: #fff; font-weight: 700; font-size: 13px; background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 4px; }
+.hero-bg {
+    background-image: linear-gradient(to right, #ff9566 0%, #ff5e62 100%);
+    position: relative;
+}
+
+.hero-bg::after {
+    content: '🚀 Tuyển dụng Marketing';
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.team-photo-bg {
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    position: relative;
+}
+
+.team-photo-bg::after {
+    content: '🙌 Đồng hành cùng Ezi Team';
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
 
 .card-metrics {
     padding: 12px 16px;
@@ -1024,7 +1095,13 @@ body {
 }
 
 .form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="number"],
+.form-col input[type="text"],
+.form-col input[type="date"],
+.form-col input[type="number"],
 .form-group select,
+.form-col select,
 .form-group textarea {
     width: 100%;
     padding: 11px 14px;
@@ -1037,7 +1114,13 @@ body {
 }
 
 .form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group input[type="number"]:focus,
+.form-col input[type="text"]:focus,
+.form-col input[type="date"]:focus,
+.form-col input[type="number"]:focus,
 .form-group select:focus,
+.form-col select:focus,
 .form-group textarea:focus {
     border-color: var(--primary);
     box-shadow: 0 0 0 3px var(--primary-light);
@@ -1168,9 +1251,17 @@ body {
     background-position: center;
 }
 
-.office-holder { background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); }
-.hero-holder { background-image: linear-gradient(to right, #ff9566 0%, #ff5e62 100%); }
-.team-holder { background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); }
+.office-holder {
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+}
+
+.hero-holder {
+    background-image: linear-gradient(to right, #ff9566 0%, #ff5e62 100%);
+}
+
+.team-holder {
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
 
 .form-actions {
     display: flex;
@@ -1319,6 +1410,7 @@ body {
 .fb-stats-replies span {
     cursor: pointer;
 }
+
 .fb-stats-replies span:hover {
     text-decoration: underline;
 }
@@ -1707,7 +1799,8 @@ body {
 }
 
 .outgoing .message-bubble {
-    background-color: #0084ff; /* Messenger Blue */
+    background-color: #0084ff;
+    /* Messenger Blue */
     color: #ffffff;
     border-bottom-right-radius: 4px;
 }
@@ -1769,12 +1862,24 @@ body {
     animation: typingPulse 1.2s infinite ease-in-out;
 }
 
-.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
 
 @keyframes typingPulse {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
 }
 
 /* Chat Input Bar */
@@ -1836,7 +1941,8 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: #0084ff; /* Messenger Blue */
+    background-color: #0084ff;
+    /* Messenger Blue */
     color: #ffffff;
     border: none;
     cursor: pointer;
@@ -1975,8 +2081,13 @@ body {
     justify-content: center;
 }
 
-.et-logo { background-color: var(--primary); }
-.ea-logo { background-color: #3182ce; }
+.et-logo {
+    background-color: var(--primary);
+}
+
+.ea-logo {
+    background-color: #3182ce;
+}
 
 .page-brand-info div {
     margin-left: 12px;
@@ -2065,8 +2176,15 @@ body {
 }
 
 @keyframes slideUp {
-    from { transform: translateY(100px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .toast-icon {
@@ -2124,8 +2242,13 @@ body {
 }
 
 @keyframes fadeInOverlay {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .confirm-modal-box {
@@ -2139,8 +2262,15 @@ body {
 }
 
 @keyframes popIn {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .confirm-modal-message {
@@ -2201,7 +2331,7 @@ body {
     transition: background-color var(--transition-fast);
 }
 
-.comment-item + .comment-item {
+.comment-item+.comment-item {
     border-top: 1px solid var(--border);
 }
 
@@ -2338,11 +2468,13 @@ body {
     width: 44px;
     height: 24px;
 }
+
 .switch-toggle input {
     opacity: 0;
     width: 0;
     height: 0;
 }
+
 .toggle-slider {
     position: absolute;
     cursor: pointer;
@@ -2354,6 +2486,7 @@ body {
     transition: .3s;
     border-radius: 24px;
 }
+
 .toggle-slider:before {
     position: absolute;
     content: "";
@@ -2364,12 +2497,14 @@ body {
     background-color: white;
     transition: .3s;
     border-radius: 50%;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
-.switch-toggle input:checked + .toggle-slider {
+
+.switch-toggle input:checked+.toggle-slider {
     background-color: var(--success);
 }
-.switch-toggle input:checked + .toggle-slider:before {
+
+.switch-toggle input:checked+.toggle-slider:before {
     transform: translateX(20px);
 }
 
@@ -2377,6 +2512,7 @@ body {
 .fb-connect-state-view {
     animation: fadeIn var(--transition-normal);
 }
+
 .connect-welcome-icon {
     display: inline-flex;
     align-items: center;
@@ -2387,6 +2523,7 @@ body {
     border-radius: 50%;
     margin-bottom: 24px;
 }
+
 .connected-user-badge {
     box-shadow: var(--shadow-sm);
 }
@@ -2854,4 +2991,15 @@ body {
 .pagination-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+}
+
+/* Hide number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }

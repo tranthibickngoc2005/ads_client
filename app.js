@@ -58,7 +58,7 @@ let chats = [
         pageName: "Ezi Talent",
         messages: [
             { sender: "incoming", text: "Chào shop, vị trí tuyển dụng còn tuyển không ạ?", time: "03:01" },
-            { sender: "outgoing", text: "Chào bạn, cảm ơn bạn đã quan tâm! Vị trí vẫn còn, bạn có thể ứng tuyển ngay trên trang web của chúng mình nhé.", time: "03:01" },
+            { sender: "outgoing", text: "Chào bạn, cảm ơn bạn đã quan tâm! Location vẫn còn, bạn có thể ứng tuyển ngay trên trang web của chúng mình nhé.", time: "03:01" },
             { sender: "incoming", text: "Chào shop, vị trí tuyển dụng còn tuyển không ạ?", time: "03:01" },
             { sender: "incoming", text: "hello", time: "03:19" }
         ],
@@ -128,55 +128,55 @@ function switchTab(tabId) {
     if (tabId === 'fb-connect') {
         document.getElementById('menu-resources').classList.add('dropdown-active');
         document.getElementById('menu-fb-connect').classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Tài khoản Facebook";
+        document.getElementById('breadcrumb-title').textContent = "Facebook Account";
         renderFacebookConnectionPanel();
     } else if (tabId === 'ads-connect') {
         document.getElementById('menu-resources').classList.add('dropdown-active');
         document.getElementById('menu-ads-connect').classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Tài khoản quảng cáo";
+        document.getElementById('breadcrumb-title').textContent = "Ads Account";
         renderAdsConnectionPanel();
     } else if (tabId === 'fb-posts') {
         document.getElementById('menu-fb-posts').classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Quản lý bài viết Facebook Fanpage";
+        document.getElementById('breadcrumb-title').textContent = "Post Management Facebook Fanpage";
         renderPosts();
     } else if (tabId === 'fb-create') {
         document.getElementById('menu-fb-create').classList.add('active');
         const editId = document.getElementById('edit-post-id').value;
-        document.getElementById('breadcrumb-title').textContent = editId ? "Chỉnh sửa bài viết Facebook" : "Tạo bài viết mới";
+        document.getElementById('breadcrumb-title').textContent = editId ? "Edit Facebook Post" : "Create New Post";
         updateLivePreview();
     } else if (tabId === 'fb-chat') {
         document.getElementById('menu-fb-chat').classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Inbox tuyển dụng Facebook Messenger";
+        document.getElementById('breadcrumb-title').textContent = "Facebook Messenger Recruitment Inbox";
         renderChatList();
         renderChatViewport();
     } else if (tabId === 'fb-ads-create') {
         document.getElementById('menu-fb-ads').classList.add('dropdown-active');
         document.getElementById('menu-fb-ads-create').classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Tạo quảng cáo Facebook";
-        renderAdsPage();
+        const editAdId = document.getElementById('edit-ad-id') ? document.getElementById('edit-ad-id').value : '';
+        document.getElementById('breadcrumb-title').textContent = editAdId ? "Edit Facebook Ad" : "Create Facebook Ad";
     } else if (tabId === 'fb-ads-list') {
         document.getElementById('menu-fb-ads').classList.add('dropdown-active');
         document.getElementById('menu-fb-ads-list').classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Danh sách quảng cáo Facebook";
+        document.getElementById('breadcrumb-title').textContent = "Ads List Facebook";
         renderAdsTable();
     } else if (tabId === 'settings' || tabId === 'settings-policy') {
         const settingsMenu = document.getElementById('menu-settings');
         if (settingsMenu) settingsMenu.classList.add('dropdown-active');
         const policySub = document.getElementById('menu-settings-policy');
         if (policySub) policySub.classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Cài đặt - Chính sách hệ thống";
+        document.getElementById('breadcrumb-title').textContent = "Settings - System Policies";
         switchSettingsSubTab('policy');
     } else if (tabId === 'settings-personal') {
         const settingsMenu = document.getElementById('menu-settings');
         if (settingsMenu) settingsMenu.classList.add('dropdown-active');
         const personalSub = document.getElementById('menu-settings-personal');
         if (personalSub) personalSub.classList.add('active');
-        document.getElementById('breadcrumb-title').textContent = "Cài đặt - Dữ liệu cá nhân";
+        document.getElementById('breadcrumb-title').textContent = "Settings - Personal Data";
         switchSettingsSubTab('personal');
     }
 }
 
-// --- Sidebar Dropdown Toggle (Cài đặt) ---
+// --- Sidebar Dropdown Toggle (Settings) ---
 function toggleSettingsDropdown(event) {
     const menuItem = document.getElementById('menu-settings');
     if (!menuItem) return;
@@ -212,32 +212,30 @@ function switchSettingsSubTab(subTab) {
 }
 
 function exportPersonalData() {
-    showToast("Đang chuẩn bị bản sao dữ liệu...", "Hệ thống đang trích xuất dữ liệu cá nhân của bạn dưới dạng tệp bảo mật.");
+    showToast("Preparing data copy...", "The system is extracting your personal data as a secure file.");
 }
 
-function showLoginHistory() {
-    alert("Lịch sử đăng nhập tài khoản:\n\n1. macOS Monterey · Chrome · TP. Hồ Chí Minh (Đang hoạt động)\n2. iOS 17.4 · Safari · TP. Hồ Chí Minh (Hôm qua 18:32)\n3. Windows 11 · Edge · TP. Hồ Chí Minh (3 ngày trước)");
-}
+
 
 function requestDataErasure() {
-    showConfirmModal("Bạn có chắc chắn muốn gửi yêu cầu xóa toàn bộ dữ liệu cá nhân khỏi máy chủ Ezi Talent không?", () => {
-        showToast("Đã gửi yêu cầu xóa dữ liệu", "Yêu cầu xóa dữ liệu cá nhân của bạn đang được Bộ phận Kỹ thuật & Pháp lý xử lý trong vòng 24h.");
+    showConfirmModal("Are you sure you want to send a request to delete all personal data from the Ezi Talent server?", () => {
+        showToast("Data deletion request sent", "Personal Data Deletion Request is being processed by the Technical & Legal Department within 24 hours.");
     });
 }
 
-// --- Sidebar Dropdown Toggle (Quản lý quảng cáo Facebook) ---
+// --- Sidebar Dropdown Toggle (Facebook Ads Management) ---
 function toggleAdsDropdown() {
     const menuItem = document.getElementById('menu-fb-ads');
     const isActive = menuItem.classList.contains('dropdown-active');
     if (isActive) {
         menuItem.classList.remove('dropdown-active');
     } else {
-        // Mở dropdown và điều hướng luôn tới trang Tạo quảng cáo nếu chưa ở trong nhóm này
+        // Mở dropdown và điều hướng luôn tới trang Create Ad nếu chưa ở trong nhóm này
         switchTab('fb-ads-create');
     }
 }
 
-// --- Sidebar Dropdown Toggle (Quản lý tài nguyên) ---
+// --- Sidebar Dropdown Toggle (Resource Management) ---
 function toggleResourcesDropdown() {
     const menuItem = document.getElementById('menu-resources');
     const isActive = menuItem.classList.contains('dropdown-active');
@@ -287,17 +285,17 @@ function renderPosts() {
                         <span>${post.likes}</span>
                     </div>
                     <div>
-                        <span>${post.comments} bình luận</span>
+                        <span>${post.comments} comments</span>
                         <span>·</span>
-                        <span>${post.shares} lượt chia sẻ</span>
+                        <span>${post.shares} shares</span>
                     </div>
                 </div>
                 <div class="card-actions">
                     <button class="btn btn-outline" onclick="openCommentsModal('${post.id}')">
-                        💬 Quản lý bình luận (${(comments[post.id] || []).length})
+                        💬 Manage Comments (${(comments[post.id] || []).length})
                     </button>
-                    <button class="btn btn-outline" onclick="editPost('${post.id}')">Chỉnh sửa</button>
-                    <button class="btn btn-outline-danger" onclick="deletePost('${post.id}')">Xóa</button>
+                    <button class="btn btn-outline" onclick="editPost('${post.id}')">Edit</button>
+                    <button class="btn btn-outline-danger" onclick="deletePost('${post.id}')">Delete</button>
                 </div>
             </div>
         `).join('');
@@ -310,11 +308,11 @@ function filterFacebookPosts() {
 
 function deletePost(id) {
     showConfirmModal(
-        "Bạn có chắc chắn muốn xóa bài đăng này trên Facebook Fanpage không? Hành động này không thể hoàn tác.",
+        "Are you sure you want to delete this post on Facebook Fanpage? This action cannot be undone.",
         () => {
             posts = posts.filter(post => post.id !== id);
             renderPosts();
-            showToast("Bài viết đã xóa", "Hệ thống đã gỡ bài đăng khỏi Fanpage Facebook thành công.");
+            showToast("Post deleted", "The system has successfully removed the post from the Facebook Fanpage.");
         }
     );
 }
@@ -361,21 +359,21 @@ function renderCommentsModal() {
 
                 ${c.reply ? `
                     <div class="comment-reply-block">
-                        <span class="comment-reply-label">Trang của bạn đã trả lời:</span>
+                        <span class="comment-reply-label">Your page replied:</span>
                         <p class="comment-reply-text">${c.reply}</p>
                     </div>
                 ` : `
                     <div class="comment-reply-form">
-                        <input type="text" placeholder="Viết trả lời với tư cách Fanpage..." id="reply-input-${c.id}">
-                        <button class="btn btn-outline" onclick="submitCommentReply('${c.id}')">Trả lời</button>
+                        <input type="text" placeholder="Write a reply as Fanpage..." id="reply-input-${c.id}">
+                        <button class="btn btn-outline" onclick="submitCommentReply('${c.id}')">Reply</button>
                     </div>
                 `}
 
                 <div class="comment-actions-row">
                     <button class="comment-action-link" onclick="toggleCommentVisibility('${c.id}')">
-                        ${c.hidden ? 'Bỏ ẩn bình luận' : 'Ẩn bình luận'}
+                        ${c.hidden ? 'Unhide comments' : 'Hide comments'}
                     </button>
-                    <button class="comment-action-link danger" onclick="deleteComment('${c.id}')">Xóa bình luận</button>
+                    <button class="comment-action-link danger" onclick="deleteComment('${c.id}')">Delete comments</button>
                 </div>
             </div>
         </div>
@@ -388,17 +386,17 @@ function toggleCommentVisibility(commentId) {
     if (!c) return;
     c.hidden = !c.hidden;
     renderCommentsModal();
-    showToast(c.hidden ? "Đã ẩn bình luận" : "Đã bỏ ẩn bình luận", c.hidden ? "Bình luận sẽ không hiển thị công khai trên Fanpage." : "Bình luận đã hiển thị trở lại trên bài viết.");
+    showToast(c.hidden ? "Hidden comments" : "Đã bỏ ẩn comments", c.hidden ? "The comment will not be publicly visible on the Fanpage." : "The comment is now visible again on the post.");
 }
 
 function deleteComment(commentId) {
     showConfirmModal(
-        "Bạn có chắc chắn muốn xóa bình luận này khỏi bài viết Facebook không?",
+        "Are you sure you want to delete this comment from the Facebook post?",
         () => {
             comments[activeCommentsPostId] = (comments[activeCommentsPostId] || []).filter(c => c.id !== commentId);
             renderCommentsModal();
             renderPosts();
-            showToast("Đã xóa bình luận", "Bình luận đã được gỡ khỏi bài viết trên Fanpage.");
+            showToast("Comment deleted", "The comment has been removed from the Fanpage post.");
         }
     );
 }
@@ -411,7 +409,7 @@ function submitCommentReply(commentId) {
     if (!c) return;
     c.reply = input.value.trim();
     renderCommentsModal();
-    showToast("Đã gửi trả lời", "Phản hồi của Fanpage đã được đăng dưới bình luận.");
+    showToast("Reply sent", "The Fanpage response has been posted under the comment.");
 }
 
 function editPost(id) {
@@ -425,9 +423,9 @@ function editPost(id) {
     document.getElementById('post-image-url').value = post.imagePreset;
 
     // UI update for edit mode
-    document.getElementById('create-post-title').textContent = "Chỉnh sửa bài viết";
-    document.getElementById('create-post-subtitle').textContent = "Cập nhật lại nội dung bài đăng trên Fanpage";
-    document.getElementById('submit-post-btn').textContent = "Cập nhật bài viết";
+    document.getElementById('create-post-title').textContent = "Edit Post";
+    document.getElementById('create-post-subtitle').textContent = "Update the content of the post on Fanpage";
+    document.getElementById('submit-post-btn').textContent = "Update Post";
 
     if (post.imagePreset) {
         showSelectedImage(post.imagePreset, post.imagePresetName || 'tệp_đã_tải_lên.png');
@@ -449,9 +447,9 @@ function resetPostForm() {
     document.getElementById('edit-post-id').value = '';
     document.getElementById('post-image-url').value = '';
 
-    document.getElementById('create-post-title').textContent = "Tạo bài viết mới";
-    document.getElementById('create-post-subtitle').textContent = "Soạn thảo bài viết và đăng lên Fanpage Facebook";
-    document.getElementById('submit-post-btn').textContent = "Tạo bài viết";
+    document.getElementById('create-post-title').textContent = "Create New Post";
+    document.getElementById('create-post-subtitle').textContent = "Draft a post and publish it to Facebook Fanpage";
+    document.getElementById('submit-post-btn').textContent = "Create Post";
 
     removeSelectedImage(null);
 }
@@ -474,7 +472,7 @@ function handlePostSubmit(event) {
         imagePresetName = 'Marketing Banner';
     } else if (imagePreset === 'team_photo.png') {
         imagePresetClass = 'team-photo-bg';
-        imagePresetName = 'Hoạt động Teamwork';
+        imagePresetName = 'Active Teamwork';
     } else if (imagePreset.startsWith('blob:')) {
         imagePresetName = 'tệp_đăng.png';
     }
@@ -491,8 +489,8 @@ function handlePostSubmit(event) {
             posts[postIndex].imagePreset = imagePreset;
             posts[postIndex].imagePresetClass = imagePresetClass;
             posts[postIndex].imagePresetName = imagePresetName;
-            posts[postIndex].time = "Vừa chỉnh sửa";
-            showToast("Đã cập nhật bài viết", "Bài đăng Facebook đã được cập nhật thành công.");
+            posts[postIndex].time = "Just edited";
+            showToast("Post updated", "The Facebook post has been successfully updated.");
         }
     } else {
         // Create new post
@@ -504,13 +502,13 @@ function handlePostSubmit(event) {
             imagePreset: imagePreset,
             imagePresetClass: imagePresetClass,
             imagePresetName: imagePresetName,
-            time: "Vừa xong",
+            time: "Just now",
             likes: 0,
             comments: 0,
             shares: 0
         };
         posts.unshift(newPost);
-        showToast("Đã tạo bài viết", "Bài viết mới đã được xuất bản lên Facebook Fanpage.");
+        showToast("Post created", "A new post has been published to the Facebook Fanpage.");
     }
 
     resetPostForm();
@@ -535,7 +533,7 @@ function updateLivePreview() {
     }
 
     // Update Text fields
-    document.getElementById('preview-post-content').textContent = content || "Nội dung chi tiết bài viết sẽ được cập nhật trực tiếp tại đây khi bạn nhập vào biểu mẫu bên trái...";
+    document.getElementById('preview-post-content').textContent = content || "The detailed content of the post will be updated directly here as you enter the form on the left...";
 
     // Update Image Preview
     const mediaBox = document.getElementById('preview-media-box');
@@ -627,7 +625,7 @@ function renderChatList() {
     if (filteredChats.length === 0) {
         container.innerHTML = `
             <div style="padding: 24px 16px; text-align: center; color: var(--text-muted); font-size: 13px;">
-                Không tìm thấy tin nhắn thuộc Fanpage đã chọn.
+                No messages found for the selected Fanpage.
             </div>
         `;
         return;
@@ -702,10 +700,10 @@ function renderChatViewport() {
     const statusDot = document.querySelector('.active-status .status-dot');
     if (chat.online) {
         if (statusDot) statusDot.classList.add('online');
-        document.querySelector('.active-status').innerHTML = '<span class="status-dot online"></span>Đang hoạt động';
+        document.querySelector('.active-status').innerHTML = '<span class="status-dot online"></span>Active now';
     } else {
         if (statusDot) statusDot.classList.remove('online');
-        document.querySelector('.active-status').innerHTML = '<span class="status-dot"></span>Ngoại tuyến';
+        document.querySelector('.active-status').innerHTML = '<span class="status-dot"></span>Offline';
     }
 
     // Render messages list
@@ -809,7 +807,7 @@ function simulateIncomingReply(chat) {
         renderChatList();
 
         // Play notifications sound simulation
-        showToast(`Tin nhắn mới từ ${chat.name}`, replyText);
+        showToast(`Message mới từ ${chat.name}`, replyText);
 
     }, 2200); // 2.2s total delay
 }
@@ -836,7 +834,7 @@ function syncCandidateProfile() {
 function simulateAddFanpage() {
     const newPage = prompt("Nhập tên Fanpage Facebook muốn liên kết với hệ thống tuyển dụng Ezi Talent:", "Ezi Community");
     if (newPage) {
-        alert(`Hệ thống đang mở popup OAuth Facebook... Đã ủy quyền thành công! Đã kết nối Fanpage "${newPage}" vào Ezi Talent.`);
+        alert(`Hệ thống đang mở popup OAuth Facebook... Đã ủy quyền thành công! Connected Fanpage "${newPage}" vào Ezi Talent.`);
         showToast("Liên kết Fanpage mới", `Đã liên kết thành công Fanpage "${newPage}" vào kênh tuyển dụng.`);
     }
 }
@@ -893,7 +891,7 @@ function closeToast() {
 }
 
 function triggerNotificationAlert() {
-    showToast("Thông báo Ezi Talent", "Không có thông báo hệ thống mới nào chưa đọc.");
+    showToast("Ezi Talent Notification", "There are no new unread system notifications.");
 }
 
 // --- Dynamic Real-Time Simulator Trigger ---
@@ -918,27 +916,97 @@ setTimeout(() => {
             renderChatViewport();
         }
 
-        showToast(`Tin nhắn mới từ ${chat.name}`, replyText);
+        showToast(`Message mới từ ${chat.name}`, replyText);
     }
 }, 12000);
 
 // --- Ads Account Connection Simulation ---
+let adAccounts = [
+    { id: '1', name: 'Ezi Solution Ads', accountId: '678912345678901', logo: 'AD', bg: 'linear-gradient(135deg, #1877f2, #0d6efd)', role: 'Administrator', connected: true },
+    { id: '2', name: 'Talent Acquisition Ads', accountId: '123456789012345', logo: 'TA', bg: 'linear-gradient(135deg, #f0703e, #f9a826)', role: 'Administrator', connected: true },
+    { id: '3', name: 'HR Dept Campaigns', accountId: '987654321098765', logo: 'HR', bg: 'linear-gradient(135deg, #6b7280, #9ca3af)', role: 'Administrator', connected: false }
+];
+
 function renderAdsConnectionPanel() {
     const unconnected = document.getElementById('ads-unconnected-state');
     const connected = document.getElementById('ads-connected-state');
-
+    const listContainer = document.getElementById('ads-connected-list-container');
+    const header = document.getElementById('ads-connected-header');
+    
+    // Check if any accounts are connected
+    const connectedAccounts = adAccounts.filter(acc => acc.connected);
+    adsConnected = connectedAccounts.length > 0;
+    
     if (adsConnected) {
         if (unconnected) unconnected.classList.add('hidden');
         if (connected) connected.classList.remove('hidden');
+        if (header) header.classList.remove('hidden');
+        
+        if (listContainer) {
+            listContainer.innerHTML = connectedAccounts.map(acc => `
+                <div class="connected-user-badge"
+                    style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background-color: var(--background); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div class="page-logo-circle"
+                            style="background: ${acc.bg}; width: 48px; height: 48px; font-size: 16px; color: white;">
+                            ${acc.logo}
+                        </div>
+                        <div>
+                            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main);">${acc.name}</h4>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Status: Ads account linked</p>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Role: ${acc.role} · ID: ${acc.accountId}</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-danger" style="padding: 6px 12px; font-size: 12px;"
+                        onclick="simulateAdsDisconnect('${acc.id}')">Disconnect</button>
+                </div>
+            `).join('');
+        }
     } else {
         if (unconnected) unconnected.classList.remove('hidden');
         if (connected) connected.classList.add('hidden');
     }
 }
 
+function renderAdsSelectionModal() {
+    const modalList = document.getElementById('ads-selection-modal-list');
+    if (!modalList) return;
+    
+    modalList.innerHTML = adAccounts.map(acc => `
+        <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="page-logo-circle"
+                    style="background: ${acc.bg}; width: 40px; height: 40px; font-size: 14px; color: white;">
+                    ${acc.logo}</div>
+                <div>
+                    <div class="page-name-text" style="font-weight: 600; display: inline-block;">${acc.name}</div>
+                    <span class="page-id-text" style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">ID: ${acc.accountId}</span>
+                </div>
+            </div>
+            ${acc.connected ? `
+            <div>
+                <span style="font-size: 13px; color: #10b981; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Connected
+                </span>
+            </div>
+            ` : `
+            <label style="cursor: pointer;">
+                <input type="checkbox" name="ad_account_select" value="${acc.id}" class="ad-account-checkbox"
+                    style="width: 18px; height: 18px; cursor: pointer;">
+            </label>
+            `}
+        </div>
+    `).join('');
+}
+
 function simulateAdsOAuth() {
     showToast("Đang tải dữ liệu...", "Đang lấy danh sách tài khoản quảng cáo.");
     setTimeout(() => {
+        renderAdsSelectionModal();
         document.getElementById('ads-selection-modal-overlay').classList.remove('hidden');
     }, 800);
 }
@@ -948,40 +1016,35 @@ function closeAdsSelectionModal() {
 }
 
 function confirmAdsConnection() {
+    const checkboxes = document.querySelectorAll('.ad-account-checkbox:checked');
+    if (checkboxes.length === 0) {
+        closeAdsSelectionModal();
+        return;
+    }
+    
     closeAdsSelectionModal();
     showToast("Đang kết nối...", "Đang thiết lập ủy quyền tài khoản quảng cáo.");
     setTimeout(() => {
-        adsConnected = true;
+        checkboxes.forEach(cb => {
+            const acc = adAccounts.find(a => a.id === cb.value);
+            if (acc) acc.connected = true;
+        });
+        
         renderAdsConnectionPanel();
-
-        const emptyState = document.getElementById('ads-connected-empty');
-        if (emptyState) emptyState.classList.add('hidden');
-        const header = document.getElementById('ads-connected-header');
-        if (header) header.classList.remove('hidden');
-
-        showToast("Kết nối thành công!", "Đã liên kết tài khoản quảng cáo.");
+        showToast("Kết nối thành công!", "Ads account linked.");
     }, 1000);
 }
 
-function simulateAdsDisconnect(btnElement) {
+function simulateAdsDisconnect(id) {
     showConfirmModal(
         "Bạn có chắc chắn muốn hủy liên kết tài khoản quảng cáo này không?",
         () => {
-            if (btnElement) {
-                const badge = btnElement.closest('.connected-user-badge');
-                if (badge) {
-                    badge.remove();
-                }
+            const acc = adAccounts.find(a => a.id === id);
+            if (acc) {
+                acc.connected = false;
+                renderAdsConnectionPanel();
+                showToast("Đã hủy kết nối", "Ads Account đã được gỡ.");
             }
-
-            // Check if any accounts are left
-            const remainingAccounts = document.querySelectorAll('#ads-connected-state .connected-user-badge');
-            if (remainingAccounts.length === 0) {
-                document.getElementById('ads-connected-header').classList.add('hidden');
-                document.getElementById('ads-connected-empty').classList.remove('hidden');
-            }
-
-            showToast("Đã hủy kết nối", "Đã ngắt liên kết tài khoản quảng cáo.");
         }
     );
 }
@@ -1001,13 +1064,13 @@ function renderFacebookConnectionPanel() {
         if (settingsFbCard) settingsFbCard.classList.remove('hidden');
         if (settingsFbActions) {
             settingsFbActions.innerHTML = `
-                <button class="btn btn-outline-danger" onclick="simulateFacebookDisconnect()">Hủy kết nối kênh Facebook</button>
-                <button class="btn btn-outline" onclick="simulateAddFanpage()">+ Thêm Fanpage liên kết</button>
+                <button class="btn btn-outline-danger" onclick="simulateFacebookDisconnect()">Disconnect Facebook channel</button>
+                <button class="btn btn-outline" onclick="simulateAddFanpage()">+ Add Linked Fanpage</button>
             `;
         }
         if (settingsFbStatus) {
             settingsFbStatus.className = 'connection-status-tag connected';
-            settingsFbStatus.textContent = 'Đã kết nối';
+            settingsFbStatus.textContent = 'Connected';
         }
     } else {
         if (unconnected) unconnected.classList.remove('hidden');
@@ -1017,7 +1080,7 @@ function renderFacebookConnectionPanel() {
         if (settingsFbActions) {
             settingsFbActions.innerHTML = `
                 <button class="btn btn-primary" style="background-color: #1877f2; border-color: #1877f2;" onclick="switchTab('fb-connect')">
-                    Kết nối tài khoản Facebook ngay
+                    Connect Facebook Account ngay
                 </button>
             `;
         }
@@ -1025,7 +1088,7 @@ function renderFacebookConnectionPanel() {
             settingsFbStatus.className = 'connection-status-tag';
             settingsFbStatus.style.backgroundColor = '#edf2f7';
             settingsFbStatus.style.color = '#718096';
-            settingsFbStatus.textContent = 'Chưa kết nối';
+            settingsFbStatus.textContent = 'Not connected';
         }
     }
 }
@@ -1110,7 +1173,7 @@ function toggleAdsSync(accountName, checkbox) {
 function simulateAddAdsAccount() {
     const newAccount = prompt("Nhập tên tài khoản quảng cáo muốn liên kết với hệ thống tuyển dụng Ezi Talent:", "Ezi Talent Ads");
     if (newAccount) {
-        alert(`Hệ thống đang mở popup OAuth Facebook... Đã ủy quyền thành công! Đã kết nối tài khoản quảng cáo "${newAccount}" vào Ezi Talent.`);
+        alert(`Hệ thống đang mở popup OAuth Facebook... Đã ủy quyền thành công! Connected tài khoản quảng cáo "${newAccount}" vào Ezi Talent.`);
         showToast("Liên kết tài khoản quảng cáo mới", `Đã liên kết thành công tài khoản quảng cáo "${newAccount}" vào kênh tuyển dụng.`);
     }
 }
@@ -1182,7 +1245,7 @@ const AD_OBJECTIVE_LABELS = {
 
 const AD_DESTINATION_CTA = {
     website: "Tìm hiểu thêm",
-    message: "Gửi tin nhắn"
+    message: "Send message"
 };
 
 let adsCurrentPage = 1;
@@ -1236,8 +1299,8 @@ function updateAdPreview() {
 
     document.getElementById('ad-preview-avatar').textContent = fanpage === 'Ezi Talent' ? 'ET' : 'EA';
     document.getElementById('ad-preview-page-name').textContent = fanpage;
-    document.getElementById('ad-preview-content').textContent = primaryText || "Chọn thông tin bên trái để xem trước nội dung quảng cáo...";
-    document.getElementById('ad-preview-headline').textContent = headline || "Tiêu đề quảng cáo sẽ hiển thị ở đây";
+    document.getElementById('ad-preview-content').textContent = primaryText || "Select information on the left to preview ad content...";
+    document.getElementById('ad-preview-headline').textContent = headline || "Ad headline will appear here";
     document.getElementById('ad-preview-cta').textContent = AD_DESTINATION_CTA[destination] || "Tìm hiểu thêm";
 
     if (mediaInput && mediaInput.files && mediaInput.files.length > 0) {
@@ -1302,6 +1365,7 @@ function updateAdPreview() {
 function handleAdSubmit(event) {
     event.preventDefault();
 
+    const editId = document.getElementById('edit-ad-id').value;
     const fanpage = document.getElementById('ad-fanpage').value;
     const name = document.getElementById('ad-name').value || "Chiến dịch chưa đặt tên";
     const objective = document.getElementById('ad-objective').value;
@@ -1311,40 +1375,71 @@ function handleAdSubmit(event) {
     const startDate = document.getElementById('ad-start-date').value || new Date().toISOString().slice(0, 10);
     const endDate = document.getElementById('ad-end-date').value || startDate;
 
-    const newAd = {
-        id: `${Date.now()}`.slice(-11),
-        name: name,
-        pageName: fanpage,
-        objective: objective,
-        objectiveLabel: AD_OBJECTIVE_LABELS[objective],
-        destination: destination,
-        budgetType: budgetType,
-        budget: budget,
-        startDate: startDate,
-        endDate: endDate,
-        status: "running",
-        spend: 0,
-        reach: Math.round((budget / 1000) * 15),
-        clicks: Math.round((budget / 1000) * 1.2),
-        ctr: 2.5,
-        impressions: Math.round((budget / 1000) * 40)
-    };
+    if (editId) {
+        const adIndex = ads.findIndex(a => a.id === editId);
+        if (adIndex > -1) {
+            ads[adIndex] = {
+                ...ads[adIndex],
+                name: name,
+                pageName: fanpage,
+                objective: objective,
+                objectiveLabel: AD_OBJECTIVE_LABELS ? AD_OBJECTIVE_LABELS[objective] : objective,
+                destination: destination,
+                budgetType: budgetType,
+                budget: budget,
+                startDate: startDate,
+                endDate: endDate
+            };
+            showToast("Đã cập nhật quảng cáo!", `Chiến dịch "${name}" đã được lưu thay đổi.`);
+        }
+    } else {
+        const newAd = {
+            id: `${Date.now()}`.slice(-11),
+            name: name,
+            pageName: fanpage,
+            objective: objective,
+            objectiveLabel: AD_OBJECTIVE_LABELS ? AD_OBJECTIVE_LABELS[objective] : objective,
+            destination: destination,
+            budgetType: budgetType,
+            budget: budget,
+            startDate: startDate,
+            endDate: endDate,
+            status: "running",
+            spend: 0,
+            reach: Math.round((budget / 1000) * 15),
+            clicks: Math.round((budget / 1000) * 1.2),
+            ctr: 2.5,
+            impressions: Math.round((budget / 1000) * 40)
+        };
+        ads.unshift(newAd);
+        showToast("Đã khởi chạy quảng cáo!", `Chiến dịch "${name}" đang chờ duyệt.`);
+    }
 
-    ads.unshift(newAd);
     resetAdForm();
-    showToast("Đã khởi chạy quảng cáo!", `Chiến dịch "${name}" đang chờ Facebook duyệt và sẽ sớm hiển thị trong Danh sách quảng cáo.`);
     switchTab('fb-ads-list');
 }
 
 function resetAdForm() {
     const form = document.getElementById('fb-create-ad-form');
     if (form) form.reset();
+    if (document.getElementById('edit-ad-id')) {
+        document.getElementById('edit-ad-id').value = '';
+    }
     document.getElementById('ad-budget').value = 150000;
-    document.getElementById('ad-video-filename').textContent = "Chọn video hoặc hình ảnh";
+    document.getElementById('ad-video-filename').textContent = "Select video or image";
+    
+    // Đặt lại text UI về trạng thái Tạo mới
+    const titleEl = document.getElementById('create-ad-title');
+    if(titleEl) titleEl.textContent = "Create Facebook Ad";
+    const subtitleEl = document.getElementById('create-ad-subtitle');
+    if(subtitleEl) subtitleEl.textContent = "Run ads for recruitment posts to reach more potential candidates";
+    const btnEl = document.getElementById('submit-ad-btn');
+    if(btnEl) btnEl.textContent = "🚀 Publish Ad";
+
     updateAdPreview();
 }
 
-// --- Ads Table (Danh sách quảng cáo) ---
+// --- Ads Table (Ads List) ---
 function renderAdsTable() {
     const tbody = document.getElementById('ads-table-body');
     const emptyState = document.getElementById('ads-empty-state');
@@ -1367,7 +1462,7 @@ function renderAdsTable() {
     const pageAds = ads.slice(startIdx, startIdx + ADS_PAGE_SIZE);
 
     tbody.innerHTML = pageAds.map(ad => `
-        <tr style="cursor: pointer;" onclick="viewCampaignDetails('${ad.id}')">
+        <tr>
             <td><input type="checkbox" class="ads-row-checkbox" onclick="event.stopPropagation()"></td>
             <td>
                 <div class="ads-table-campaign-name">${ad.name}</div>
@@ -1381,6 +1476,10 @@ function renderAdsTable() {
             <td>${ad.clicks.toLocaleString('vi-VN')}</td>
             <td>${ad.ctr.toFixed(2)}%</td>
             <td>${ad.impressions.toLocaleString('vi-VN')}</td>
+            <td>
+                <button class="btn btn-outline" style="padding: 4px 8px; font-size: 12px; margin-right: 4px;" onclick="editAd('${ad.id}')">Sửa</button>
+                <button class="btn btn-outline-danger" style="padding: 4px 8px; font-size: 12px;" onclick="deleteAd('${ad.id}')">Delete</button>
+            </td>
         </tr>
     `).join('');
 
@@ -1389,6 +1488,56 @@ function renderAdsTable() {
     document.getElementById('ads-page-current').textContent = adsCurrentPage;
     document.getElementById('ads-page-prev').disabled = adsCurrentPage <= 1;
     document.getElementById('ads-page-next').disabled = adsCurrentPage >= totalPages;
+}
+
+function editAd(id) {
+    const ad = ads.find(a => a.id === id);
+    if (!ad) return;
+
+    // Set fields
+    document.getElementById('edit-ad-id').value = ad.id;
+    document.getElementById('ad-name').value = ad.name;
+    document.getElementById('ad-fanpage').value = ad.pageName;
+    document.getElementById('ad-objective').value = ad.objective || 'engagement';
+    
+    // Toggles
+    const budgetBtns = document.querySelectorAll('#ad-budget-type-group .toggle-btn-option');
+    budgetBtns.forEach(btn => btn.classList.remove('active'));
+    const matchedBudgetBtn = Array.from(budgetBtns).find(btn => btn.dataset.value === (ad.budgetType || 'daily'));
+    if (matchedBudgetBtn) matchedBudgetBtn.classList.add('active');
+    document.getElementById('ad-budget-type').value = ad.budgetType || 'daily';
+
+    const destBtns = document.querySelectorAll('#ad-destination-group .toggle-btn-option');
+    destBtns.forEach(btn => btn.classList.remove('active'));
+    const matchedDestBtn = Array.from(destBtns).find(btn => btn.dataset.value === (ad.destination || 'message'));
+    if (matchedDestBtn) matchedDestBtn.classList.add('active');
+    document.getElementById('ad-destination').value = ad.destination || 'message';
+
+    document.getElementById('ad-budget').value = ad.budget;
+    document.getElementById('ad-start-date').value = ad.startDate || '';
+    document.getElementById('ad-end-date').value = ad.endDate || '';
+
+    // Update UI headers
+    const titleEl = document.getElementById('create-ad-title');
+    if(titleEl) titleEl.textContent = "Edit quảng cáo";
+    const subtitleEl = document.getElementById('create-ad-subtitle');
+    if(subtitleEl) subtitleEl.textContent = "Cập nhật lại thông tin chiến dịch quảng cáo";
+    const btnEl = document.getElementById('submit-ad-btn');
+    if(btnEl) btnEl.textContent = "Lưu thay đổi";
+
+    updateAdPreview();
+    switchTab('fb-ads-create');
+}
+
+function deleteAd(id) {
+    showConfirmModal(
+        "Bạn có chắc chắn muốn xóa chiến dịch quảng cáo này? Hành động này không thể hoàn tác.",
+        () => {
+            ads = ads.filter(a => a.id !== id);
+            renderAdsTable();
+            showToast("Đã xóa chiến dịch", "Hệ thống đã gỡ chiến dịch quảng cáo thành công.");
+        }
+    );
 }
 
 function viewCampaignDetails(id) {
@@ -1403,7 +1552,7 @@ function viewCampaignDetails(id) {
     document.getElementById('campaign-details-page').value = ad.pageName || '--';
     
     document.getElementById('campaign-details-ad-account').value = ad.adAccount || 'Ezi Solution Ads';
-    document.getElementById('campaign-details-budget-type').value = ad.budgetType === 'lifetime' ? 'Ngân sách trọn đời' : 'Ngân sách hàng ngày';
+    document.getElementById('campaign-details-budget-type').value = ad.budgetType === 'lifetime' ? 'Lifetime Budget' : 'Daily Budget';
     
     // Convert DD/MM/YYYY to YYYY-MM-DD for date inputs if necessary
     const parseDate = (dStr) => {
@@ -1427,7 +1576,7 @@ function viewCampaignDetails(id) {
     document.getElementById('campaign-details-time').value = `${formatDateObj(startDate)} - ${formatDateObj(endDate)}`;
     
     document.getElementById('campaign-details-age').value = ad.ageRange || '18 - 45';
-    document.getElementById('campaign-details-gender').value = ad.gender || 'Tất cả';
+    document.getElementById('campaign-details-gender').value = ad.gender || 'All';
     document.getElementById('campaign-details-location').value = ad.location || 'Hà Nội, TP. Hồ Chí Minh';
     document.getElementById('campaign-details-radius').value = ad.radius ? `${ad.radius} km` : '40 km';
     
