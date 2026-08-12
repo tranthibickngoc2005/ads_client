@@ -1,3 +1,27 @@
+
+function setFormReadOnly(formId, isReadOnly) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    
+    // Disable form inputs
+    const elements = form.querySelectorAll('input, select, textarea');
+    elements.forEach(el => {
+        el.disabled = isReadOnly;
+    });
+
+    // Disable custom elements like toggles and upload zones
+    const customEls = form.querySelectorAll('.toggle-btn-option, .upload-zone, .remove-image-btn, .video-dropzone, .suggest-content-link');
+    customEls.forEach(el => {
+        if (isReadOnly) {
+            el.style.pointerEvents = 'none';
+            el.style.opacity = '0.6';
+        } else {
+            el.style.pointerEvents = 'auto';
+            el.style.opacity = '1';
+        }
+    });
+}
+
 // app.js - Ezi Talent Facebook Integration Logic
 
 // --- Global State ---
@@ -425,6 +449,7 @@ function editPost(id) {
     document.getElementById('create-post-title').textContent = "Xem Bài Viết";
     document.getElementById('create-post-subtitle').textContent = "Xem nội dung của bài viết trên Fanpage";
     document.getElementById('submit-post-btn').style.display = 'none';
+    setFormReadOnly('fb-create-post-form', true);
 
     if (post.imagePreset) {
         showSelectedImage(post.imagePreset, post.imagePresetName || 'tệp_đã_tải_lên.png');
@@ -450,6 +475,7 @@ function resetPostForm() {
     document.getElementById('create-post-subtitle').textContent = "Draft a post and publish it to Facebook Fanpage";
     document.getElementById('submit-post-btn').textContent = "Create Post";
     document.getElementById('submit-post-btn').style.display = 'inline-block';
+    setFormReadOnly('fb-create-post-form', false);
 
     removeSelectedImage(null);
 }
@@ -1438,6 +1464,7 @@ function resetAdForm() {
         btnEl.textContent = "🚀 Publish Ad";
         btnEl.style.display = 'inline-block';
     }
+    setFormReadOnly('fb-create-ad-form', false);
 
     updateAdPreview();
 }
@@ -1526,6 +1553,7 @@ function editAd(id) {
     if(subtitleEl) subtitleEl.textContent = "Xem thông tin chiến dịch quảng cáo";
     const btnEl = document.getElementById('submit-ad-btn');
     if(btnEl) btnEl.style.display = 'none';
+    setFormReadOnly('fb-create-ad-form', true);
 
     updateAdPreview();
     switchTab('fb-ads-create');
