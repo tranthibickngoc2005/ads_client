@@ -163,7 +163,7 @@ function switchTab(tabId) {
         document.getElementById('menu-resources').classList.add('dropdown-active');
         document.getElementById('menu-pixel-manage').classList.add('active');
         document.getElementById('breadcrumb-title').textContent = "Quản lý Pixel Facebook (Meta Pixel)";
-        filterPixelAccountType(currentPixelAccountFilter || 'personal');
+        renderPixelTable();
     } else if (tabId === 'fb-posts') {
         document.getElementById('menu-fb-posts').classList.add('active');
         document.getElementById('breadcrumb-title').textContent = "Post Management Facebook Fanpage";
@@ -1811,49 +1811,12 @@ let pixels = [
     }
 ];
 
-let currentPixelAccountFilter = 'personal'; // 'personal' | 'business'
 let activeDetailPixelId = null;
 let activeMenuPixelId = null;
 
-// Lọc phân loại tài khoản (Cá nhân / Doanh nghiệp)
-function filterPixelAccountType(type) {
-    currentPixelAccountFilter = type;
-    
-    // Update segment buttons
-    document.querySelectorAll('.pixel-segment-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    const banner = document.getElementById('personal-pixel-info-banner');
-    const toolbarActions = document.getElementById('pixel-toolbar-actions');
-
-    if (type === 'personal') {
-        const btn = document.getElementById('pixel-tab-personal');
-        if (btn) btn.classList.add('active');
-        if (banner) banner.classList.remove('hidden');
-        // Ẩn toàn bộ thanh tìm kiếm, bộ lọc trạng thái và nút Thêm Pixel khi ở tab Cá nhân
-        if (toolbarActions) toolbarActions.classList.add('hidden');
-    } else if (type === 'business') {
-        const btn = document.getElementById('pixel-tab-business');
-        if (btn) btn.classList.add('active');
-        if (banner) banner.classList.add('hidden');
-        if (toolbarActions) toolbarActions.classList.remove('hidden');
-    }
-    
-    renderPixelTable();
-}
-
-// Cập nhật thẻ số liệu thống kê
+// Render Bảng Pixel (chỉ Doanh nghiệp BM)
 function updatePixelStats() {
-    const personalCount = pixels.filter(p => p.accountType === 'personal').length;
-    const businessCount = pixels.filter(p => p.accountType === 'business').length;
-
-    // Badges in segments
-    const countPersonal = document.getElementById('count-personal');
-    const countBusiness = document.getElementById('count-business');
-
-    if (countPersonal) countPersonal.textContent = personalCount;
-    if (countBusiness) countBusiness.textContent = businessCount;
+    // No segment badges needed anymore
 }
 
 // Render Bảng Pixel
@@ -1869,11 +1832,6 @@ function renderPixelTable() {
     const statusFilter = document.getElementById('pixel-status-filter')?.value || 'all';
 
     const filtered = pixels.filter(p => {
-        // Filter by Account Type
-        if (currentPixelAccountFilter !== 'all' && p.accountType !== currentPixelAccountFilter) {
-            return false;
-        }
-
         // Filter by Status
         if (statusFilter !== 'all' && p.status !== statusFilter) {
             return false;

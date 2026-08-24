@@ -1099,40 +1099,22 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                 <section id="section-pixel-manage" class="tab-content hidden">
                     <div class="content-header">
                         <h1>Quản lý Pixel Facebook</h1>
-                        <p class="subtitle">Theo dõi, kiểm tra và quản lý các mã Meta Pixel từ Tài khoản cá nhân & Doanh nghiệp (BM)</p>
+                        <p class="subtitle">Theo dõi, kiểm tra và quản lý các mã Meta Pixel cho Tài khoản Doanh nghiệp (BM)</p>
                     </div>
 
                     <!-- Thẻ bảng quản lý Pixel -->
                     <div class="pixel-main-card">
-                        <!-- Toolbar với Segment Tabs lọc Cá nhân / Doanh nghiệp -->
-                        <div class="pixel-toolbar">
-                            <!-- Bộ chuyển đổi Phân loại tài khoản (Chỉ gồm Cá nhân và Doanh nghiệp) -->
-                            <div class="pixel-type-segments">
-                                <button class="pixel-segment-btn active" id="pixel-tab-personal" onclick="filterPixelAccountType('personal')">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                    </svg>
-                                    Tài khoản cá nhân <span class="pixel-badge-count" id="count-personal">1</span>
-                                </button>
-                                <button class="pixel-segment-btn" id="pixel-tab-business" onclick="filterPixelAccountType('business')">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                                    </svg>
-                                    Tài khoản doanh nghiệp (BM) <span class="pixel-badge-count" id="count-business">6</span>
-                                </button>
+                        <!-- Toolbar tìm kiếm và thao tác -->
+                        <div class="pixel-toolbar" style="display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;">
+                            <div class="pixel-search-box" style="flex: 1; max-width: 320px;">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <input type="text" id="pixel-search-input" placeholder="Tìm kiếm tên Pixel, ID..." oninput="renderPixelTable()">
                             </div>
 
                             <div class="pixel-toolbar-actions" id="pixel-toolbar-actions">
-                                <div class="pixel-search-box">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                    </svg>
-                                    <input type="text" id="pixel-search-input" placeholder="Tìm kiếm tên Pixel, ID..." oninput="renderPixelTable()">
-                                </div>
-
                                 <select id="pixel-status-filter" class="pixel-select" onchange="renderPixelTable()">
                                     <option value="all">Tất cả trạng thái</option>
                                     <option value="Hoạt động">Hoạt động</option>
@@ -1149,20 +1131,8 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                 </button>
 
                                 <button class="btn btn-primary" id="btn-add-pixel" onclick="openAddPixelModal()">
-                                    <span style="font-size:16px; line-height:1; font-weight:700;">+</span> Thêm Pixel (BM)
+                                    <span style="font-size:16px; line-height:1; font-weight:700;">+</span> Thêm Pixel
                                 </button>
-                            </div>
-                        </div>
-
-                        <!-- Thông báo lưu ý khi xem Tài khoản cá nhân -->
-                        <div class="pixel-info-banner hidden" id="personal-pixel-info-banner">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="16" x2="12" y2="12"></line>
-                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                            </svg>
-                            <div>
-                                <strong>Lưu ý về Pixel cá nhân:</strong> Mỗi tài khoản cá nhân Facebook chỉ sở hữu <strong>1 mã Meta Pixel duy nhất</strong> do hệ thống Meta cấp cố định. Để tạo thêm các mã Pixel phân tách theo từng chiến dịch, vui lòng sử dụng <strong>Tài khoản Doanh nghiệp (BM)</strong>.
                             </div>
                         </div>
 
