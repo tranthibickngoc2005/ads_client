@@ -140,7 +140,7 @@ function switchTab(tabId) {
     // Manage active classes on Sidebar items
     document.querySelectorAll('.menu-item').forEach(item => {
         item.classList.remove('active');
-        if (tabId !== 'fb-connect' && tabId !== 'ads-connect' && tabId !== 'fb-ads-create' && tabId !== 'fb-ads-list' && tabId !== 'settings' && tabId !== 'settings-policy' && tabId !== 'settings-personal') {
+        if (tabId !== 'fb-connect' && tabId !== 'ads-connect' && tabId !== 'pixel-manage' && tabId !== 'fb-ads-create' && tabId !== 'fb-ads-list' && tabId !== 'settings' && tabId !== 'settings-policy' && tabId !== 'settings-personal') {
             item.classList.remove('dropdown-active');
         }
     });
@@ -159,6 +159,11 @@ function switchTab(tabId) {
         document.getElementById('menu-ads-connect').classList.add('active');
         document.getElementById('breadcrumb-title').textContent = "Ads Account";
         renderAdsConnectionPanel();
+    } else if (tabId === 'pixel-manage') {
+        document.getElementById('menu-resources').classList.add('dropdown-active');
+        document.getElementById('menu-pixel-manage').classList.add('active');
+        document.getElementById('breadcrumb-title').textContent = "Quản lý Pixel Facebook (Meta Pixel)";
+        filterPixelAccountType(currentPixelAccountFilter || 'personal');
     } else if (tabId === 'fb-posts') {
         document.getElementById('menu-fb-posts').classList.add('active');
         document.getElementById('breadcrumb-title').textContent = "Post Management Facebook Fanpage";
@@ -1680,3 +1685,604 @@ function toggleCampaignStatus(id, checkbox) {
         }
     );
 }
+
+// =======================================================
+// --- QUẢN LÝ META PIXEL (PIXEL MANAGEMENT LOGIC) ---
+// =======================================================
+
+let pixels = [
+    {
+        id: "pix-1",
+        name: "BM Main Pixel",
+        pixelId: "1234567890123456",
+        type: "BM",
+        accountType: "business",
+        owner: "BM: Công ty ABC",
+        status: "Hoạt động",
+        lastActive: "2 phút trước",
+        events24h: 1840,
+        emq: "8.8 / 10",
+        token: "EAABw123456bm_main",
+        events: [
+            { name: "PageView", url: "https://ezitalent.vn/tuyen-dung", time: "2 phút trước", status: "Hoạt động (200 OK)" },
+            { name: "Lead", url: "https://ezitalent.vn/jobs/react-native", time: "14 phút trước", status: "Hoạt động (200 OK)" },
+            { name: "ViewContent", url: "https://ezitalent.vn/jobs/uiux-designer", time: "28 phút trước", status: "Hoạt động (200 OK)" },
+            { name: "CompleteRegistration", url: "https://ezitalent.vn/register", time: "45 phút trước", status: "Hoạt động (200 OK)" },
+            { name: "PageView", url: "https://ezitalent.vn/bang-gia", time: "1 giờ trước", status: "Hoạt động (200 OK)" }
+        ]
+    },
+    {
+        id: "pix-2",
+        name: "Pixel Page - Easy Auto",
+        pixelId: "2234567890123456",
+        type: "Page",
+        accountType: "personal",
+        owner: "Page: Easy Auto",
+        status: "Hoạt động",
+        lastActive: "5 phút trước",
+        events24h: 920,
+        emq: "8.4 / 10",
+        token: "EAABw223456page_easy",
+        events: [
+            { name: "PageView", url: "https://easyauto.vn/", time: "5 phút trước", status: "Hoạt động (200 OK)" },
+            { name: "Contact", url: "https://easyauto.vn/lien-he", time: "18 phút trước", status: "Hoạt động (200 OK)" },
+            { name: "ViewContent", url: "https://easyauto.vn/xe-ban", time: "35 phút trước", status: "Hoạt động (200 OK)" }
+        ]
+    },
+    {
+        id: "pix-3",
+        name: "BM Pixel - ABC Shop",
+        pixelId: "3234567890123456",
+        type: "BM",
+        accountType: "business",
+        owner: "BM: Công ty ABC",
+        status: "Hoạt động",
+        lastActive: "10 phút trước",
+        events24h: 650,
+        emq: "8.1 / 10",
+        token: "",
+        events: [
+            { name: "PageView", url: "https://abcshop.com/", time: "10 phút trước", status: "Hoạt động (200 OK)" },
+            { name: "AddToCart", url: "https://abcshop.com/san-pham/1", time: "42 phút trước", status: "Hoạt động (200 OK)" }
+        ]
+    },
+    {
+        id: "pix-4",
+        name: "BM Pixel - XYZ Store",
+        pixelId: "4234567890123456",
+        type: "BM",
+        accountType: "business",
+        owner: "BM: Công ty ABC",
+        status: "Lỗi",
+        lastActive: "1 ngày trước",
+        events24h: 12,
+        emq: "4.2 / 10",
+        token: "",
+        events: [
+            { name: "PageView", url: "https://xyzstore.vn/checkout", time: "1 ngày trước", status: "Lỗi: Miền chưa được xác minh" }
+        ]
+    },
+    {
+        id: "pix-5",
+        name: "BM Pixel - Fashion",
+        pixelId: "5234567890123456",
+        type: "BM",
+        accountType: "business",
+        owner: "BM: Công ty ABC",
+        status: "Hoạt động",
+        lastActive: "15 phút trước",
+        events24h: 1230,
+        emq: "8.9 / 10",
+        token: "EAABw553456page_fashion",
+        events: [
+            { name: "PageView", url: "https://fashionhouse.vn/summer", time: "15 phút trước", status: "Hoạt động (200 OK)" },
+            { name: "Lead", url: "https://fashionhouse.vn/ung-tuyen", time: "22 phút trước", status: "Hoạt động (200 OK)" }
+        ]
+    },
+    {
+        id: "pix-6",
+        name: "BM Backup Pixel",
+        pixelId: "6234567890123456",
+        type: "BM",
+        accountType: "business",
+        owner: "BM: Công ty ABC",
+        status: "Hoạt động",
+        lastActive: "30 phút trước",
+        events24h: 420,
+        emq: "8.5 / 10",
+        token: "EAABw663456bm_backup",
+        events: [
+            { name: "PageView", url: "https://ezitalent.vn/backup-landing", time: "30 phút trước", status: "Hoạt động (200 OK)" }
+        ]
+    },
+    {
+        id: "pix-7",
+        name: "BM Pixel - Beauty",
+        pixelId: "7234567890123456",
+        type: "BM",
+        accountType: "business",
+        owner: "BM: Công ty ABC",
+        status: "Không hoạt động",
+        lastActive: "3 ngày trước",
+        events24h: 0,
+        emq: "0 / 10",
+        token: "",
+        events: []
+    }
+];
+
+let currentPixelAccountFilter = 'personal'; // 'personal' | 'business'
+let activeDetailPixelId = null;
+let activeMenuPixelId = null;
+
+// Lọc phân loại tài khoản (Cá nhân / Doanh nghiệp)
+function filterPixelAccountType(type) {
+    currentPixelAccountFilter = type;
+    
+    // Update segment buttons
+    document.querySelectorAll('.pixel-segment-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    const banner = document.getElementById('personal-pixel-info-banner');
+    const toolbarActions = document.getElementById('pixel-toolbar-actions');
+
+    if (type === 'personal') {
+        const btn = document.getElementById('pixel-tab-personal');
+        if (btn) btn.classList.add('active');
+        if (banner) banner.classList.remove('hidden');
+        // Ẩn toàn bộ thanh tìm kiếm, bộ lọc trạng thái và nút Thêm Pixel khi ở tab Cá nhân
+        if (toolbarActions) toolbarActions.classList.add('hidden');
+    } else if (type === 'business') {
+        const btn = document.getElementById('pixel-tab-business');
+        if (btn) btn.classList.add('active');
+        if (banner) banner.classList.add('hidden');
+        if (toolbarActions) toolbarActions.classList.remove('hidden');
+    }
+    
+    renderPixelTable();
+}
+
+// Cập nhật thẻ số liệu thống kê
+function updatePixelStats() {
+    const personalCount = pixels.filter(p => p.accountType === 'personal').length;
+    const businessCount = pixels.filter(p => p.accountType === 'business').length;
+
+    // Badges in segments
+    const countPersonal = document.getElementById('count-personal');
+    const countBusiness = document.getElementById('count-business');
+
+    if (countPersonal) countPersonal.textContent = personalCount;
+    if (countBusiness) countBusiness.textContent = businessCount;
+}
+
+// Render Bảng Pixel
+function renderPixelTable() {
+    updatePixelStats();
+
+    const tbody = document.getElementById('pixel-table-body');
+    const emptyState = document.getElementById('pixel-empty-state');
+    const countEl = document.getElementById('pixel-table-count');
+    if (!tbody) return;
+
+    const searchQuery = (document.getElementById('pixel-search-input')?.value || '').trim().toLowerCase();
+    const statusFilter = document.getElementById('pixel-status-filter')?.value || 'all';
+
+    const filtered = pixels.filter(p => {
+        // Filter by Account Type
+        if (currentPixelAccountFilter !== 'all' && p.accountType !== currentPixelAccountFilter) {
+            return false;
+        }
+
+        // Filter by Status
+        if (statusFilter !== 'all' && p.status !== statusFilter) {
+            return false;
+        }
+
+        // Search by name, pixelId, owner
+        if (searchQuery) {
+            const matchName = p.name.toLowerCase().includes(searchQuery);
+            const matchId = p.pixelId.toLowerCase().includes(searchQuery);
+            const matchOwner = p.owner.toLowerCase().includes(searchQuery);
+            if (!matchName && !matchId && !matchOwner) return false;
+        }
+
+        return true;
+    });
+
+    if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        if (emptyState) emptyState.classList.remove('hidden');
+        if (countEl) countEl.textContent = 'Không tìm thấy Pixel nào';
+        return;
+    }
+
+    if (emptyState) emptyState.classList.add('hidden');
+    if (countEl) countEl.textContent = `Đang hiển thị ${filtered.length} của ${pixels.length} Pixel`;
+
+    tbody.innerHTML = filtered.map(p => {
+        // Type Badge Class
+        const typeBadgeClass = p.type === 'BM' ? 'pixel-badge-bm' : 'pixel-badge-page';
+        
+        // Status Badge Class
+        let statusBadgeClass = 'pixel-status-active';
+        if (p.status === 'Lỗi') statusBadgeClass = 'pixel-status-error';
+        else if (p.status === 'Không hoạt động') statusBadgeClass = 'pixel-status-inactive';
+
+        return `
+            <tr>
+                <td>
+                    <div class="pixel-name-cell">
+                        <div class="pixel-code-icon" title="Meta Pixel">&lt;/&gt;</div>
+                        <div class="pixel-name-title">${p.name}</div>
+                    </div>
+                </td>
+                <td>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="pixel-id-text">${p.pixelId}</span>
+                        <button class="pixel-copy-btn" onclick="copyPixelId('${p.pixelId}')" title="Sao chép ID Pixel">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <span class="pixel-type-badge ${typeBadgeClass}">${p.type}</span>
+                </td>
+                <td>
+                    <span style="color: var(--text-main); font-weight: 500;">${p.owner}</span>
+                </td>
+                <td>
+                    <span class="pixel-status-badge ${statusBadgeClass}">${p.status}</span>
+                </td>
+                <td>
+                    <span style="color: var(--text-muted); font-size: 13px;">${p.lastActive}</span>
+                </td>
+                <td>
+                    <div class="pixel-action-cell">
+                        <button class="pixel-btn-icon" title="Xem chi tiết & Logs sự kiện" onclick="openPixelDetailsModal('${p.id}')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                        <button class="pixel-btn-icon" title="Tùy chọn khác" onclick="openPixelActionMenu('${p.id}', event)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="1"></circle>
+                                <circle cx="19" cy="12" r="1"></circle>
+                                <circle cx="5" cy="12" r="1"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+// Refresh Pixel Data
+function refreshPixelData() {
+    showToast("Đang đồng bộ Pixel...", "Hệ thống đang kiểm tra trạng thái kết nối và sự kiện từ Meta Graph API.");
+    setTimeout(() => {
+        renderPixelTable();
+        showToast("Đồng bộ hoàn tất", "Dữ liệu Pixel và sự kiện chuyển đổi đã được cập nhật mới nhất.");
+    }, 600);
+}
+
+function changePixelPage(delta) {
+    showToast("Phân trang", "Hiện tại đang ở trang 1.");
+}
+
+// Sao chép ID Pixel
+function copyPixelId(pixelId) {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(pixelId).then(() => {
+            showToast("Đã sao chép ID", `ID Pixel: ${pixelId} đã được lưu vào clipboard.`);
+        });
+    } else {
+        showToast("Đã sao chép ID", `ID Pixel: ${pixelId}`);
+    }
+}
+
+// Mở menu tùy chọn `...`
+function openPixelActionMenu(id, event) {
+    event.stopPropagation();
+    activeMenuPixelId = id;
+    const menu = document.getElementById('pixel-action-menu');
+    if (!menu) return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    menu.style.top = `${rect.bottom + 6}px`;
+    menu.style.left = `${Math.min(window.innerWidth - 220, rect.left - 150)}px`;
+    menu.classList.remove('hidden');
+}
+
+function closePixelActionMenu() {
+    const menu = document.getElementById('pixel-action-menu');
+    if (menu) menu.classList.add('hidden');
+}
+
+// Xử lý các action trong dropdown menu
+function handleMenuAction(action) {
+    const p = pixels.find(item => item.id === activeMenuPixelId);
+    closePixelActionMenu();
+    if (!p) return;
+
+    if (action === 'details') {
+        openPixelDetailsModal(p.id);
+    } else if (action === 'test') {
+        triggerTestPixelEvent(p.id);
+    } else if (action === 'copy') {
+        copyPixelId(p.pixelId);
+    } else if (action === 'edit') {
+        openEditPixelModal(p.id);
+    } else if (action === 'delete') {
+        deletePixel(p.id);
+    }
+}
+
+// Đóng menu khi click ngoài
+window.addEventListener('click', function (e) {
+    const menu = document.getElementById('pixel-action-menu');
+    if (menu && !menu.classList.contains('hidden')) {
+        menu.classList.add('hidden');
+    }
+});
+
+// --- MODAL THÊM / SỬA PIXEL ---
+function openAddPixelModal() {
+    document.getElementById('pixel-modal-title').textContent = "Thêm Pixel Doanh nghiệp (BM)";
+    document.getElementById('pixel-form-submit-btn').textContent = "Tạo Pixel";
+    document.getElementById('pixel-form-id').value = "";
+    document.getElementById('pixel-form-name').value = "";
+    document.getElementById('pixel-form-pixel-id').value = "";
+    document.getElementById('pixel-form-owner').value = "";
+    document.getElementById('pixel-form-status').value = "Hoạt động";
+    document.getElementById('pixel-form-token').value = "";
+    
+    // Hide ID field because Facebook automatically generates and assigns it
+    const idGroup = document.getElementById('pixel-edit-id-group');
+    if (idGroup) idGroup.classList.add('hidden');
+
+    document.getElementById('pixel-form-modal').classList.remove('hidden');
+}
+
+function openEditPixelModal(id) {
+    const p = pixels.find(item => item.id === id);
+    if (!p) return;
+
+    document.getElementById('pixel-modal-title').textContent = "Chỉnh sửa Pixel";
+    document.getElementById('pixel-form-submit-btn').textContent = "Cập nhật";
+    document.getElementById('pixel-form-id').value = p.id;
+    document.getElementById('pixel-form-name').value = p.name;
+    document.getElementById('pixel-form-pixel-id').value = p.pixelId;
+    document.getElementById('pixel-form-owner').value = p.owner;
+    document.getElementById('pixel-form-status').value = p.status;
+    document.getElementById('pixel-form-token').value = p.token || "";
+    
+    // Show ID field as readonly info when editing
+    const idGroup = document.getElementById('pixel-edit-id-group');
+    if (idGroup) idGroup.classList.remove('hidden');
+
+    document.getElementById('pixel-form-modal').classList.remove('hidden');
+}
+
+function closePixelFormModal() {
+    document.getElementById('pixel-form-modal').classList.add('hidden');
+}
+
+function savePixelForm(e) {
+    e.preventDefault();
+    const editId = document.getElementById('pixel-form-id').value;
+    const name = document.getElementById('pixel-form-name').value.trim();
+    const owner = document.getElementById('pixel-form-owner').value.trim();
+    const status = document.getElementById('pixel-form-status').value;
+    const token = document.getElementById('pixel-form-token').value.trim();
+
+    if (editId) {
+        // Edit existing
+        const p = pixels.find(item => item.id === editId);
+        if (p) {
+            p.name = name;
+            p.owner = owner;
+            p.status = status;
+            p.token = token;
+            showToast("Cập nhật thành công", `Pixel "${name}" đã được lưu thay đổi.`);
+        }
+    } else {
+        // Create new: Tự động là Pixel Doanh nghiệp (BM) và Facebook cấp ID 16 số
+        const generatedPixelId = Math.floor(1000000000000000 + Math.random() * 9000000000000000).toString().substring(0, 16);
+        
+        const newPixel = {
+            id: `pix-${Date.now()}`,
+            name: name,
+            pixelId: generatedPixelId,
+            type: 'BM',
+            accountType: 'business',
+            owner: owner,
+            status: status,
+            lastActive: "Vừa xong",
+            events24h: 1,
+            emq: "8.0 / 10",
+            token: token,
+            events: [
+                { name: "PageView", url: "https://ezitalent.vn/", time: "Vừa xong", status: "Hoạt động (200 OK)" }
+            ]
+        };
+        pixels.unshift(newPixel);
+        showToast("Tạo Pixel thành công 🎉", `Meta Pixel "${name}" đã được tạo (ID Facebook cấp: ${generatedPixelId}).`);
+    }
+
+    closePixelFormModal();
+    renderPixelTable();
+}
+
+function deletePixel(id) {
+    const p = pixels.find(item => item.id === id);
+    if (!p) return;
+
+    showConfirmModal(
+        `Bạn có chắc chắn muốn xóa Pixel "${p.name}" (ID: ${p.pixelId}) khỏi hệ thống?`,
+        () => {
+            pixels = pixels.filter(item => item.id !== id);
+            renderPixelTable();
+            showToast("Đã xóa Pixel", `Pixel "${p.name}" đã được gỡ khỏi danh sách.`);
+        }
+    );
+}
+
+// --- MODAL CHI TIẾT PIXEL & REAL-TIME EVENT STREAM ---
+function openPixelDetailsModal(id) {
+    const p = pixels.find(item => item.id === id);
+    if (!p) return;
+
+    activeDetailPixelId = id;
+
+    // Header info
+    document.getElementById('pixel-detail-title').textContent = p.name;
+    document.getElementById('pixel-detail-id').textContent = p.pixelId;
+    document.getElementById('pixel-detail-owner').textContent = p.owner;
+    document.getElementById('pixel-detail-events-count').textContent = (p.events24h || 0).toLocaleString();
+    document.getElementById('pixel-detail-emq').textContent = p.emq || '8.5 / 10';
+    document.getElementById('pixel-detail-last-active').textContent = p.lastActive;
+
+    // Badges in Header
+    const typeBadgeClass = p.type === 'BM' ? 'pixel-badge-bm' : 'pixel-badge-page';
+    document.getElementById('pixel-detail-type-badge').innerHTML = `<span class="pixel-type-badge ${typeBadgeClass}">${p.type}</span>`;
+    
+    let statusBadgeClass = 'pixel-status-active';
+    if (p.status === 'Lỗi') statusBadgeClass = 'pixel-status-error';
+    else if (p.status === 'Không hoạt động') statusBadgeClass = 'pixel-status-inactive';
+    document.getElementById('pixel-detail-status-badge').innerHTML = `<span class="pixel-status-badge ${statusBadgeClass}">${p.status}</span>`;
+
+    // Render Real-time events
+    renderPixelEventsList(p);
+
+    // Render Base Code
+    const baseCode = `<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '${p.pixelId}');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=${p.pixelId}&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->`;
+    document.getElementById('pixel-base-code-snippet').textContent = baseCode;
+
+    // Default tab
+    switchPixelModalTab('events');
+
+    document.getElementById('pixel-details-modal').classList.remove('hidden');
+}
+
+function closePixelDetailsModal() {
+    document.getElementById('pixel-details-modal').classList.add('hidden');
+}
+
+function switchPixelModalTab(tab) {
+    const btnEvents = document.getElementById('tab-btn-events');
+    const btnCode = document.getElementById('tab-btn-code');
+    const viewEvents = document.getElementById('pixel-modal-events-view');
+    const viewCode = document.getElementById('pixel-modal-code-view');
+
+    if (tab === 'events') {
+        btnEvents.classList.add('active');
+        btnCode.classList.remove('active');
+        viewEvents.classList.remove('hidden');
+        viewCode.classList.add('hidden');
+    } else {
+        btnCode.classList.add('active');
+        btnEvents.classList.remove('active');
+        viewCode.classList.remove('hidden');
+        viewEvents.classList.add('hidden');
+    }
+}
+
+function renderPixelEventsList(p) {
+    const listContainer = document.getElementById('pixel-detail-events-list');
+    if (!listContainer) return;
+
+    if (!p.events || p.events.length === 0) {
+        listContainer.innerHTML = `<tr><td colspan="4" style="text-align: center; padding: 20px; color: var(--text-muted);">Chưa ghi nhận sự kiện nào gần đây. Hãy gửi sự kiện Test để kiểm tra.</td></tr>`;
+        return;
+    }
+
+    listContainer.innerHTML = p.events.map(ev => `
+        <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px 12px; font-weight: 600; color: var(--primary);">
+                <span style="display: inline-flex; align-items: center; gap: 6px;">
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #16a34a;"></span>
+                    ${ev.name}
+                </span>
+            </td>
+            <td style="padding: 10px 12px; font-family: monospace; color: var(--text-muted);">${ev.url}</td>
+            <td style="padding: 10px 12px; color: var(--text-muted);">${ev.time}</td>
+            <td style="padding: 10px 12px; text-align: right; color: ${ev.status.includes('Lỗi') ? 'var(--danger)' : '#16a34a'}; font-weight: 600;">${ev.status}</td>
+        </tr>
+    `).join('');
+}
+
+// Bắn sự kiện Test từ modal
+function triggerTestCurrentPixelEvent() {
+    if (!activeDetailPixelId) return;
+    triggerTestPixelEvent(activeDetailPixelId);
+}
+
+function triggerTestPixelEvent(id) {
+    const p = pixels.find(item => item.id === id);
+    if (!p) return;
+
+    const sampleEvents = ["PageView", "Lead", "CompleteRegistration", "Contact", "SubmitApplication"];
+    const randomEvent = sampleEvents[Math.floor(Math.random() * sampleEvents.length)];
+
+    const newEvent = {
+        name: randomEvent,
+        url: "https://ezitalent.vn/jobs/apply-test",
+        time: "Vừa xong",
+        status: "Hoạt động (200 OK)"
+    };
+
+    if (!p.events) p.events = [];
+    p.events.unshift(newEvent);
+    p.lastActive = "Vừa xong";
+    p.events24h = (p.events24h || 0) + 1;
+    if (p.status === 'Không hoạt động') p.status = 'Hoạt động';
+
+    showToast("Đã nhận sự kiện Test 🎉", `Meta Pixel ${p.name} (ID: ${p.pixelId}) vừa bắn thành công sự kiện "${randomEvent}".`);
+
+    // Update table & detail view if open
+    renderPixelTable();
+    if (activeDetailPixelId === id) {
+        document.getElementById('pixel-detail-events-count').textContent = p.events24h.toLocaleString();
+        document.getElementById('pixel-detail-last-active').textContent = "Vừa xong";
+        renderPixelEventsList(p);
+    }
+}
+
+function copyCurrentDetailPixelId() {
+    const p = pixels.find(item => item.id === activeDetailPixelId);
+    if (p) copyPixelId(p.pixelId);
+}
+
+function copyPixelBaseCode() {
+    const code = document.getElementById('pixel-base-code-snippet')?.textContent;
+    if (code && navigator.clipboard) {
+        navigator.clipboard.writeText(code).then(() => {
+            showToast("Đã sao chép Base Code", "Đoạn mã Pixel đã sẵn sàng để dán vào thẻ <head> website.");
+        });
+    } else {
+        showToast("Đã sao chép", "Đoạn mã Pixel đã được sao chép.");
+    }
+}
+

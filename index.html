@@ -87,6 +87,19 @@
                                     <span class="item-text">Ads Account</span>
                                 </a>
                             </li>
+                            <li class="submenu-item" id="menu-pixel-manage" onclick="switchTab('pixel-manage')">
+                                <a href="javascript:void(0)">
+                                    <span class="submenu-icon">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <polyline points="16 18 22 12 16 6"></polyline>
+                                            <polyline points="8 6 2 12 8 18"></polyline>
+                                        </svg>
+                                    </span>
+                                    <span class="item-text">Pixel Management</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
@@ -1082,6 +1095,114 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                     </div>
                 </section>
 
+                <!-- 6.7. QUẢN LÝ PIXEL FACEBOOK SECTION -->
+                <section id="section-pixel-manage" class="tab-content hidden">
+                    <div class="content-header">
+                        <h1>Quản lý Pixel Facebook</h1>
+                        <p class="subtitle">Theo dõi, kiểm tra và quản lý các mã Meta Pixel từ Tài khoản cá nhân & Doanh nghiệp (BM)</p>
+                    </div>
+
+                    <!-- Thẻ bảng quản lý Pixel -->
+                    <div class="pixel-main-card">
+                        <!-- Toolbar với Segment Tabs lọc Cá nhân / Doanh nghiệp -->
+                        <div class="pixel-toolbar">
+                            <!-- Bộ chuyển đổi Phân loại tài khoản (Chỉ gồm Cá nhân và Doanh nghiệp) -->
+                            <div class="pixel-type-segments">
+                                <button class="pixel-segment-btn active" id="pixel-tab-personal" onclick="filterPixelAccountType('personal')">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    Tài khoản cá nhân <span class="pixel-badge-count" id="count-personal">1</span>
+                                </button>
+                                <button class="pixel-segment-btn" id="pixel-tab-business" onclick="filterPixelAccountType('business')">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                    </svg>
+                                    Tài khoản doanh nghiệp (BM) <span class="pixel-badge-count" id="count-business">6</span>
+                                </button>
+                            </div>
+
+                            <div class="pixel-toolbar-actions" id="pixel-toolbar-actions">
+                                <div class="pixel-search-box">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg>
+                                    <input type="text" id="pixel-search-input" placeholder="Tìm kiếm tên Pixel, ID..." oninput="renderPixelTable()">
+                                </div>
+
+                                <select id="pixel-status-filter" class="pixel-select" onchange="renderPixelTable()">
+                                    <option value="all">Tất cả trạng thái</option>
+                                    <option value="Hoạt động">Hoạt động</option>
+                                    <option value="Lỗi">Lỗi</option>
+                                    <option value="Không hoạt động">Không hoạt động</option>
+                                </select>
+
+                                <button class="btn-icon-square" title="Làm mới" onclick="refreshPixelData()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="23 4 23 10 17 10"></polyline>
+                                        <polyline points="1 20 1 14 7 14"></polyline>
+                                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                                    </svg>
+                                </button>
+
+                                <button class="btn btn-primary" id="btn-add-pixel" onclick="openAddPixelModal()">
+                                    <span style="font-size:16px; line-height:1; font-weight:700;">+</span> Thêm Pixel (BM)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Thông báo lưu ý khi xem Tài khoản cá nhân -->
+                        <div class="pixel-info-banner hidden" id="personal-pixel-info-banner">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                            <div>
+                                <strong>Lưu ý về Pixel cá nhân:</strong> Mỗi tài khoản cá nhân Facebook chỉ sở hữu <strong>1 mã Meta Pixel duy nhất</strong> do hệ thống Meta cấp cố định. Để tạo thêm các mã Pixel phân tách theo từng chiến dịch, vui lòng sử dụng <strong>Tài khoản Doanh nghiệp (BM)</strong>.
+                            </div>
+                        </div>
+
+                        <!-- Bảng Pixel chuẩn giao diện mẫu -->
+                        <div class="pixel-table-wrap">
+                            <table class="pixel-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 25%;">Tên Pixel</th>
+                                        <th style="width: 20%;">ID Pixel</th>
+                                        <th style="width: 10%;">Loại</th>
+                                        <th style="width: 17%;">Thuộc về</th>
+                                        <th style="width: 12%;">Trạng thái</th>
+                                        <th style="width: 10%;">Lần hoạt động cuối</th>
+                                        <th style="width: 6%; text-align: center;">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pixel-table-body">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="empty-state-card hidden" id="pixel-empty-state">
+                            <div style="font-size: 36px; margin-bottom: 8px;">🔍</div>
+                            <h3>Không tìm thấy Pixel phù hợp</h3>
+                            <p>Thử đổi bộ lọc hoặc thêm mã Pixel mới vào hệ thống.</p>
+                        </div>
+
+                        <div class="pixel-table-footer">
+                            <span id="pixel-table-count">Đang hiển thị 7 Pixel</span>
+                            <div class="pixel-table-pagination">
+                                <button class="pagination-btn" id="pixel-page-prev" onclick="changePixelPage(-1)">&lt;</button>
+                                <button class="pagination-btn active" id="pixel-page-current">1</button>
+                                <button class="pagination-btn" id="pixel-page-next" onclick="changePixelPage(1)">&gt;</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- 7. CÀI ĐẶT SECTION -->
                 <section id="section-settings" class="tab-content hidden">
                     <div class="content-header">
@@ -1605,6 +1726,194 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                 <button class="btn btn-outline" onclick="closeAdsSelectionModal()">Cancel</button>
                 <button class="btn btn-primary" onclick="confirmAdsConnection()">Connect</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal Thêm / Chỉnh sửa Pixel -->
+    <div class="confirm-modal-overlay hidden" id="pixel-form-modal">
+        <div class="confirm-modal-box" style="max-width: 540px;">
+            <div class="comments-modal-header">
+                <div>
+                    <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main);" id="pixel-modal-title">Thêm Pixel mới</h3>
+                    <p class="comments-modal-subtitle">Liên kết và cấu hình Meta Pixel để theo dõi sự kiện tuyển dụng</p>
+                </div>
+                <button class="toast-close" onclick="closePixelFormModal()">&times;</button>
+            </div>
+
+            <form id="pixel-edit-form" onsubmit="savePixelForm(event)" style="margin: 16px 0;">
+                <input type="hidden" id="pixel-form-id" value="">
+                
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px; display: block;">Tên Pixel <span style="color: var(--danger);">*</span></label>
+                    <input type="text" id="pixel-form-name" placeholder="VD: BM Main Pixel, Pixel Page - Tuyển dụng..." required style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13.5px;">
+                </div>
+
+                <!-- ID Pixel (Chỉ hiển thị khi Chỉnh sửa, khi tạo mới Facebook tự động cấp) -->
+                <div class="form-group hidden" id="pixel-edit-id-group" style="margin-bottom: 14px;">
+                    <label style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px; display: block;">ID Pixel Meta (Do Facebook cấp)</label>
+                    <input type="text" id="pixel-form-pixel-id" readonly style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13.5px; font-family: monospace; background-color: var(--surface-variant); color: var(--text-muted);">
+                </div>
+
+                <div class="form-row" style="margin-bottom: 14px;">
+                    <div class="form-col">
+                        <label style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px; display: block;">Thuộc về (Tên Business Manager) <span style="color: var(--danger);">*</span></label>
+                        <input type="text" id="pixel-form-owner" placeholder="VD: BM: Công ty ABC" required style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13.5px;">
+                    </div>
+                    <div class="form-col">
+                        <label style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px; display: block;">Trạng thái</label>
+                        <select id="pixel-form-status" style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13.5px; background: white;">
+                            <option value="Hoạt động">Hoạt động (Active)</option>
+                            <option value="Lỗi">Lỗi (Error)</option>
+                            <option value="Không hoạt động">Không hoạt động (Inactive)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 18px;">
+                    <label style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px; display: block;">Conversions API Token (Tùy chọn)</label>
+                    <input type="password" id="pixel-form-token" placeholder="EAABw..." style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13.5px;">
+                    <span style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px; display: block;">Dùng để gửi trực tiếp sự kiện server-to-server tới Meta Graph API.</span>
+                </div>
+
+                <div class="confirm-modal-actions" style="margin-top: 20px;">
+                    <button type="button" class="btn btn-outline" onclick="closePixelFormModal()">Hủy bỏ</button>
+                    <button type="submit" class="btn btn-primary" id="pixel-form-submit-btn">Lưu Pixel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Chi tiết Pixel & Lịch sử sự kiện (Event Stream Inspector) -->
+    <div class="confirm-modal-overlay hidden" id="pixel-details-modal">
+        <div class="confirm-modal-box" style="max-width: 680px;">
+            <div class="comments-modal-header">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main);" id="pixel-detail-title">BM Main Pixel</h3>
+                        <span id="pixel-detail-type-badge"></span>
+                        <span id="pixel-detail-status-badge"></span>
+                    </div>
+                    <p class="comments-modal-subtitle" style="margin-top: 4px;">
+                        ID: <span id="pixel-detail-id" style="font-family: monospace; font-weight: 600; color: var(--text-main);">1234567890123456</span> 
+                        <button class="pixel-copy-btn" onclick="copyCurrentDetailPixelId()" title="Sao chép ID" style="margin-left: 6px;">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg> Sao chép
+                        </button>
+                        · Thuộc về: <strong id="pixel-detail-owner">BM: Công ty ABC</strong>
+                    </p>
+                </div>
+                <button class="toast-close" onclick="closePixelDetailsModal()">&times;</button>
+            </div>
+
+            <!-- Detail Metrics Strip -->
+            <div class="pixel-detail-metrics" style="margin: 16px 0; padding: 14px 16px; background: var(--surface-variant); border-radius: var(--radius-md); display: flex; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Sự kiện 24h qua</div>
+                    <div style="font-size: 18px; font-weight: 700; color: var(--text-main); margin-top: 2px;" id="pixel-detail-events-count">1,840</div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Chất lượng khớp (EMQ)</div>
+                    <div style="font-size: 18px; font-weight: 700; color: #16a34a; margin-top: 2px;" id="pixel-detail-emq">8.8 / 10</div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Conversions API</div>
+                    <div style="font-size: 18px; font-weight: 700; color: #2563eb; margin-top: 2px;">Đang kết nối</div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Hoạt động gần nhất</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--text-main); margin-top: 4px;" id="pixel-detail-last-active">2 phút trước</div>
+                </div>
+            </div>
+
+            <!-- Subtabs inside Details Modal -->
+            <div class="pixel-modal-tabs">
+                <button class="pixel-modal-tab-btn active" id="tab-btn-events" onclick="switchPixelModalTab('events')">Lịch sử sự kiện Real-time</button>
+                <button class="pixel-modal-tab-btn" id="tab-btn-code" onclick="switchPixelModalTab('code')">Mã cài đặt Base Code</button>
+            </div>
+
+            <!-- View 1: Real-time Event Stream -->
+            <div id="pixel-modal-events-view" style="margin-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="font-size: 13px; font-weight: 600; color: var(--text-main);">
+                        Luồng sự kiện nhận gần đây (Real-time Logs)
+                    </div>
+                    <button class="btn btn-outline" style="font-size: 12px; padding: 4px 10px; display: inline-flex; align-items: center; gap: 4px;" onclick="triggerTestCurrentPixelEvent()">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Gửi sự kiện Test
+                    </button>
+                </div>
+
+                <div style="max-height: 240px; overflow-y: auto; border: 1px solid var(--border); border-radius: var(--radius-sm);">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 12.5px;">
+                        <thead style="background: var(--surface-variant); position: sticky; top: 0;">
+                            <tr>
+                                <th style="padding: 8px 12px; text-align: left; font-weight: 600; color: var(--text-muted);">Sự kiện</th>
+                                <th style="padding: 8px 12px; text-align: left; font-weight: 600; color: var(--text-muted);">URL nguồn</th>
+                                <th style="padding: 8px 12px; text-align: left; font-weight: 600; color: var(--text-muted);">Thời gian</th>
+                                <th style="padding: 8px 12px; text-align: right; font-weight: 600; color: var(--text-muted);">Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pixel-detail-events-list">
+                            <!-- Dynamic Event Rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- View 2: Base Code Snippet -->
+            <div id="pixel-modal-code-view" class="hidden" style="margin-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-size: 12.5px; color: var(--text-muted);">Chèn đoạn mã này vào thẻ &lt;head&gt; của website tuyển dụng:</span>
+                    <button class="btn btn-outline" style="font-size: 12px; padding: 4px 10px;" onclick="copyPixelBaseCode()">Sao chép mã</button>
+                </div>
+                <pre id="pixel-base-code-snippet" style="background: #1e293b; color: #f8fafc; padding: 14px; border-radius: var(--radius-sm); font-size: 12px; font-family: monospace; overflow-x: auto; line-height: 1.5;"></pre>
+            </div>
+
+            <div class="confirm-modal-actions" style="margin-top: 20px;">
+                <button class="btn btn-outline" onclick="closePixelDetailsModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Dropdown Action Menu for Pixel -->
+    <div id="pixel-action-menu" class="pixel-action-dropdown hidden" onclick="event.stopPropagation()">
+        <div class="pixel-action-menu-item" onclick="handleMenuAction('details')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            Xem chi tiết & sự kiện
+        </div>
+        <div class="pixel-action-menu-item" onclick="handleMenuAction('test')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Gửi sự kiện thử nghiệm
+        </div>
+        <div class="pixel-action-menu-item" onclick="handleMenuAction('copy')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Sao chép ID Pixel
+        </div>
+        <div class="pixel-action-menu-item" onclick="handleMenuAction('edit')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            Chỉnh sửa Pixel
+        </div>
+        <div class="pixel-action-menu-item danger" onclick="handleMenuAction('delete')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            Xóa Pixel
         </div>
     </div>
 

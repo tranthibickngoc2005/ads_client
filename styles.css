@@ -3003,3 +3003,521 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
+
+/* ======================================================= */
+/* --- QUẢN LÝ META PIXEL (FACEBOOK PIXEL MANAGEMENT) --- */
+/* ======================================================= */
+
+/* --- Thống kê Pixel Stats Grid --- */
+.pixel-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1024px) {
+    .pixel-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.pixel-stat-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pixel-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.pixel-stat-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pixel-stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.pixel-stat-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+.pixel-stat-lbl {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+/* --- Card chính Quản lý Pixel --- */
+.pixel-main-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 20px 22px;
+}
+
+/* --- Toolbar & Type Filter Segments --- */
+.pixel-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+@media (min-width: 1100px) {
+    .pixel-toolbar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+}
+
+.pixel-type-segments {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f1f5f9;
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    gap: 4px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.pixel-segment-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    border-radius: 7px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+}
+
+.pixel-segment-btn:hover {
+    color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.pixel-segment-btn.active {
+    background-color: var(--surface);
+    color: var(--primary);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.pixel-badge-count {
+    font-size: 11px;
+    padding: 1px 7px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.07);
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.pixel-segment-btn.active .pixel-badge-count {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.pixel-toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+/* --- Banner thông báo Pixel cá nhân --- */
+.pixel-info-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: #1e40af;
+    line-height: 1.4;
+    animation: fadeInMenu 0.2s ease-out;
+}
+
+.pixel-info-banner svg {
+    color: #3b82f6;
+    flex-shrink: 0;
+}
+
+.pixel-search-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0 10px;
+    height: 38px;
+    min-width: 220px;
+}
+
+.pixel-search-box svg {
+    color: var(--text-light);
+    margin-right: 8px;
+}
+
+.pixel-search-box input {
+    border: none;
+    outline: none;
+    font-size: 13px;
+    color: var(--text-main);
+    width: 100%;
+    background: transparent;
+}
+
+.pixel-select {
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    font-size: 13px;
+    color: var(--text-main);
+    cursor: pointer;
+    outline: none;
+}
+
+.pixel-select:focus,
+.pixel-search-box:focus-within {
+    border-color: var(--primary);
+}
+
+/* --- Bảng Pixel chuẩn giao diện mẫu --- */
+.pixel-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+}
+
+.pixel-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 860px;
+}
+
+.pixel-table thead th {
+    background-color: var(--surface-variant);
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.pixel-table tbody td {
+    padding: 16px;
+    font-size: 13.5px;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.pixel-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.pixel-table tbody tr:hover {
+    background-color: #fafbfc;
+}
+
+/* Cột Tên Pixel với Icon code </> xanh dương */
+.pixel-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pixel-code-icon {
+    width: 32px;
+    height: 32px;
+    background-color: #1877f2;
+    color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    font-family: monospace;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(24, 119, 242, 0.2);
+}
+
+.pixel-name-title {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+/* Cột ID Pixel */
+.pixel-id-text {
+    font-family: monospace;
+    font-size: 13px;
+    color: var(--text-main);
+    letter-spacing: 0.2px;
+}
+
+/* Badges Loại (BM vs Page / Cá nhân) */
+.pixel-type-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.pixel-badge-bm {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+.pixel-badge-page {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+/* Badges Trạng thái */
+.pixel-status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.pixel-status-active {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.pixel-status-error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.pixel-status-inactive {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+/* Nút hành động xem chi tiết & More */
+.pixel-action-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.pixel-btn-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.pixel-btn-icon:hover {
+    background-color: var(--surface-variant);
+    border-color: var(--border-focus);
+    color: var(--text-main);
+}
+
+/* Footer & Pagination */
+.pixel-table-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.pixel-table-pagination {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* --- Account Type Selector in Modal --- */
+.pixel-account-type-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.pixel-radio-card {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background: var(--surface);
+}
+
+.pixel-radio-card input {
+    margin-top: 3px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.pixel-radio-card.active {
+    border-color: var(--primary);
+    background-color: var(--primary-light);
+}
+
+.pixel-radio-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.pixel-radio-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.3;
+}
+
+/* --- Pixel Details Modal Tabs --- */
+.pixel-modal-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.pixel-modal-tab-btn {
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.pixel-modal-tab-btn.active {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.pixel-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.pixel-copy-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* --- Pixel Context Dropdown Menu --- */
+.pixel-action-dropdown {
+    position: fixed;
+    z-index: 1000;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 6px 0;
+    min-width: 200px;
+    animation: fadeInMenu 0.12s ease-out;
+}
+
+@keyframes fadeInMenu {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pixel-action-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    font-size: 13px;
+    color: var(--text-main);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.pixel-action-menu-item:hover {
+    background-color: var(--surface-variant);
+}
+
+.pixel-action-menu-item.danger {
+    color: var(--danger);
+}
+
+.pixel-action-menu-item.danger:hover {
+    background-color: var(--danger-light);
+}
