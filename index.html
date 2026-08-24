@@ -1144,7 +1144,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                         <th style="width: 25%;">Tên Pixel</th>
                                         <th style="width: 20%;">ID Pixel</th>
                                         <th style="width: 10%;">Loại</th>
-                                        <th style="width: 17%;">Thuộc về</th>
+                                        <th style="width: 17%;">Tài khoản QC</th>
                                         <th style="width: 12%;">Trạng thái</th>
                                         <th style="width: 10%;">Lần hoạt động cuối</th>
                                         <th style="width: 6%; text-align: center;">Thao tác</th>
@@ -1726,8 +1726,16 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
 
                 <div class="form-row" style="margin-bottom: 14px;">
                     <div class="form-col">
-                        <label style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px; display: block;">Thuộc về (Tên Business Manager) <span style="color: var(--danger);">*</span></label>
-                        <input type="text" id="pixel-form-owner" placeholder="VD: BM: Công ty ABC" required style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13.5px;">
+                        <label style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px; display: block;">Tài khoản quảng cáo <span style="color: var(--danger);">*</span></label>
+                        <select id="pixel-form-owner" required style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13.5px; background: white;">
+                            <option value="">-- Chọn tài khoản quảng cáo --</option>
+                            <option value="Tài khoản QC Công ty ABC - Main">Tài khoản QC Công ty ABC - Main</option>
+                            <option value="Tài khoản QC ABC Shop">Tài khoản QC ABC Shop</option>
+                            <option value="Tài khoản QC XYZ Store">Tài khoản QC XYZ Store</option>
+                            <option value="Tài khoản QC Fashion House">Tài khoản QC Fashion House</option>
+                            <option value="Tài khoản QC Beauty Brand">Tài khoản QC Beauty Brand</option>
+                            <option value="Tài khoản QC Ezi Talent">Tài khoản QC Ezi Talent</option>
+                        </select>
                     </div>
                     <div class="form-col">
                         <label style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 6px; display: block;">Trạng thái</label>
@@ -1771,7 +1779,7 @@ Bạn đam mê Marketing, có tư duy chiến lược và kinh nghiệm dẫn d�
                                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                             </svg> Sao chép
                         </button>
-                        · Thuộc về: <strong id="pixel-detail-owner">BM: Công ty ABC</strong>
+                        · Tài khoản QC: <strong id="pixel-detail-owner">Tài khoản QC Công ty ABC - Main</strong>
                     </p>
                 </div>
                 <button class="toast-close" onclick="closePixelDetailsModal()">&times;</button>

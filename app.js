@@ -1686,9 +1686,15 @@ function toggleCampaignStatus(id, checkbox) {
     );
 }
 
-// =======================================================
-// --- QUẢN LÝ META PIXEL (PIXEL MANAGEMENT LOGIC) ---
-// =======================================================
+// Danh sách tài khoản quảng cáo (Ads Account) để liên kết với Pixel
+const adsAccountList = [
+    { id: "act_1001", name: "Tài khoản QC Công ty ABC - Main", currency: "VND" },
+    { id: "act_1002", name: "Tài khoản QC ABC Shop", currency: "VND" },
+    { id: "act_1003", name: "Tài khoản QC XYZ Store", currency: "VND" },
+    { id: "act_1004", name: "Tài khoản QC Fashion House", currency: "VND" },
+    { id: "act_1005", name: "Tài khoản QC Beauty Brand", currency: "VND" },
+    { id: "act_1006", name: "Tài khoản QC Ezi Talent", currency: "VND" },
+];
 
 let pixels = [
     {
@@ -1697,7 +1703,8 @@ let pixels = [
         pixelId: "1234567890123456",
         type: "BM",
         accountType: "business",
-        owner: "BM: Công ty ABC",
+        owner: "Tài khoản QC Công ty ABC - Main",
+
         status: "Hoạt động",
         lastActive: "2 phút trước",
         events24h: 1840,
@@ -1717,7 +1724,7 @@ let pixels = [
         pixelId: "2234567890123456",
         type: "Page",
         accountType: "personal",
-        owner: "Page: Easy Auto",
+        owner: "Tài khoản QC ABC Shop",
         status: "Hoạt động",
         lastActive: "5 phút trước",
         events24h: 920,
@@ -1735,7 +1742,7 @@ let pixels = [
         pixelId: "3234567890123456",
         type: "BM",
         accountType: "business",
-        owner: "BM: Công ty ABC",
+        owner: "Tài khoản QC ABC Shop",
         status: "Hoạt động",
         lastActive: "10 phút trước",
         events24h: 650,
@@ -1752,7 +1759,7 @@ let pixels = [
         pixelId: "4234567890123456",
         type: "BM",
         accountType: "business",
-        owner: "BM: Công ty ABC",
+        owner: "Tài khoản QC XYZ Store",
         status: "Lỗi",
         lastActive: "1 ngày trước",
         events24h: 12,
@@ -1768,7 +1775,7 @@ let pixels = [
         pixelId: "5234567890123456",
         type: "BM",
         accountType: "business",
-        owner: "BM: Công ty ABC",
+        owner: "Tài khoản QC Fashion House",
         status: "Hoạt động",
         lastActive: "15 phút trước",
         events24h: 1230,
@@ -1785,7 +1792,7 @@ let pixels = [
         pixelId: "6234567890123456",
         type: "BM",
         accountType: "business",
-        owner: "BM: Công ty ABC",
+        owner: "Tài khoản QC Ezi Talent",
         status: "Hoạt động",
         lastActive: "30 phút trước",
         events24h: 420,
@@ -1801,7 +1808,7 @@ let pixels = [
         pixelId: "7234567890123456",
         type: "BM",
         accountType: "business",
-        owner: "BM: Công ty ABC",
+        owner: "Tài khoản QC Beauty Brand",
         status: "Không hoạt động",
         lastActive: "3 ngày trước",
         events24h: 0,
